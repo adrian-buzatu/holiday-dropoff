@@ -1,0 +1,1807 @@
+* {margin:0px; padding:0px;}
+
+body {
+	font-family:"Century Gothic";
+	color: #000;
+	margin:0px;
+	padding:0px;
+	display:block;
+	font-weight:bold;
+
+}
+input, button, textarea {font-family:"Century Gothic";}
+.c1 {
+	clear:both;
+}
+
+.textlogin2 {
+	font-family:Century Gothic;
+	font-size:16px;
+	color:#FFF;
+}
+ @font-face {
+ font-family:'Century Gothic';
+ src: url('../font/GOTHIC.TTF') format('truetype');
+ font-weight: normal;
+ font-style: normal;
+}
+ @font-face {
+ font-family: 'MyriadPro-Regular';
+ src: url('myriadpro-regular.eot');
+ src: url('myriadpro-regular.eot?#iefix') format('embedded-opentype'), url('myriadpro-regular.woff') format('woff'), url('myriadpro-regular.ttf') format('truetype'), url('myriadpro-regular.svg#myriadpro-regular') format('svg');
+ font-weight: normal;
+ font-style: normal;
+}
+ul li {
+	list-style:none;
+}
+a img {
+	border:none;
+	outline:none;
+}
+a {
+	border:none;
+	outline:none;
+}
+.fl {
+	float:right;
+}
+/** background part ***/
+
+.background_top {
+	margin:0px;
+	padding:0px;
+	background:url(../images/bg-img-h.png) center top no-repeat;
+}
+#wrap {background:url(../images/blue_bg.png) top left repeat-x;}
+#green {background:url(../images/green_bg.png) top left repeat-x;}
+#red {background:url(../images/red_bg.png) top left repeat-x;}
+#yellow {background:url(../images/yellow_bg.png) top left repeat-x;}
+#parple {background:url(../images/parple_bg.png) top left repeat-x;}
+#orenge {background:url(../images/orenge_bg.png) top left repeat-x;}
+#ordark {background:url(../images/ordark.png) top left repeat-x;}
+#wrapper {
+	margin:0px auto;
+	padding:0px 0px;
+	/*background:url(../images/menushadow.png) center 144px no-repeat;*/
+}
+#page{width:1030px; margin:0 auto;}
+/** background part ***/
+.header {
+	width:1030px;
+	}
+.logo {
+	float:left;
+	width:214px;
+	height:142px;
+	margin:0px 0 10px 70px;
+}
+.loginbox {
+	float:right;
+	width:352px;
+	margin:18px 0 0 0px; 
+}
+.login {
+	float:left;
+	width:352px;
+	
+}
+.myaccount {
+	float:left;
+	width:190px;
+	line-height:30px;
+	font-size:15px;
+	font-family:"Century Gothic";
+	text-align:center;
+	font-weight:bold;
+	color:#FFF;
+	background:#70d0f4;
+	border:#00CCFF solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+}
+
+.welcomemsg {
+	font-weight:normal; 
+	position:absolute; 
+	margin-left:-130px;
+	line-height:30px;
+	font-size:15px;
+	font-family:"Century Gothic";
+	text-align:right;
+	font-weight:bold;
+	color:#000;
+}
+
+.myaccount a {
+	text-decoration:none;
+	color:#FFF;
+}
+.myaccount a:hover {
+	text-decoration:none;
+	color:#000000;
+}
+.sigunup {
+	float:left;
+	width:102px;
+	line-height:30px;
+	margin:0 0 0 10px;
+	font-family:"Century Gothic";
+	color:#FFF;
+	background:#70d0f4;
+	font-weight:bold;
+	text-align:center;
+	font-size:15px;
+	border:#00CCFF solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+}
+.sigunup a {
+	text-decoration:none;
+	color:#FFF;
+}
+.sigunup a:hover {
+	text-decoration:none;
+	color:#000000;
+}
+.mailbox {
+	float:left;
+	width:191px;
+	height:30px;
+	margin:20px 0 0 0;
+}
+.envelop {
+	float:left;
+	width:33px;
+	height:23px;
+	margin:0 0 0 0;
+}
+.mailid {
+	float:left;
+	width:145px;
+	height:23;
+	margin:0 0 0 12px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#FFF;
+	font-size:18.05;
+	font-weight:bold;
+}
+.mailid a {
+	text-decoration:none;
+	color:#000000;
+}
+.mailid a:hover {
+	text-decoration:none;
+	color:#FF0000;
+}
+.contact {
+	float:left;
+	width:191px;
+	height:30px;
+	margin:3px 0 0 0;
+}
+.envelop {
+	float:left;
+	width:33px;
+	height:23px;
+	margin:0 0 0 0;
+}
+.mailid {
+	float:left;
+	width:145px;
+	height:23;
+	margin:0 0 0 12px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#000;
+	font-size:18.05;
+	font-weight:bold;
+}
+.navigation {
+	float:left;
+	width:1030px;
+	height:29px;
+	font-weight:bold;
+}
+.navigation ul {
+	margin:0px;
+	padding:0px;
+}
+.navigation ul li a.home {
+	background:url(../images/home.png) no-repeat;
+	width:130px;
+	float:left;
+	margin:0 0 0 35px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#fff;
+	font-weight:bold;
+	font-size:16px;
+	text-align:center;
+	padding:5px 0px;
+}
+.navigation ul li .home:hover {
+	color:#000
+}
+.navigation ul li a.about {
+	background:url(../images/about-us.png) no-repeat;
+	width:130px;
+	float:left;
+	margin:0 0 0 8px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#fff;
+	font-weight:bold;
+	font-size:16px;
+	text-align:center;
+	padding:5px 0px;
+}
+.navigation ul li .about:hover {
+	color:#000
+}
+.navigation ul li a.our-camps {
+	background:url(../images/our-camps.png) no-repeat;
+	width:130px;
+	float:left;
+	margin:0 0 0 8px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#fff;
+	font-weight:bold;
+	font-size:16px;
+	text-align:center;
+	padding:5px 0px;
+}
+.navigation ul li .our-camps:hover {
+	color:#000
+}
+.navigation ul li a.useful-stuff {
+	background:url(../images/usefulstuff.png) no-repeat;
+	width:130px;
+	float:left;
+	margin:0 0 0 8px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#fff;
+	font-weight:bold;
+	font-size:16px;
+	text-align:center;
+	padding:5px 0px;
+}
+.navigation ul li .useful-stuff:hover {
+	color:#000
+}
+.navigation ul li a.prices {
+	background:url(../images/pricess.png) no-repeat;
+	width:130px;
+	float:left;
+	margin:0 0 0 8px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#fff;
+	font-weight:bold;
+	font-size:16px;
+	text-align:center;
+	padding:5px 0px;
+}
+.navigation ul li .prices:hover {
+	color:#000
+}
+.navigation ul li a.bookonline {
+	background:url(../images/book-online.png) no-repeat;
+	width:130px;
+	float:left;
+	margin:0 0 0 8px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#fff;
+	font-weight:bold;
+	font-size:16px;
+	text-align:center;
+	padding:5px 0px;
+}
+.navigation ul li .bookonline:hover {
+	color:#000
+}
+.navigation ul li a.contact-us {
+	background:url(../images/contact-us.png) no-repeat;
+	width:130px;
+	float:left;
+	margin:0 0 0 8px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#fff;
+	font-weight:bold;
+	font-size:16px;
+	text-align:center;
+	padding:5px 0px;
+}
+.navigation ul li .contact-us:hover {
+	background:url(../images/contact-us.png) no-repeat;
+	color:#000
+}
+.menubottomco1 {
+	float:left;
+	width:1030px;
+	height:14px;
+	background:#70d0f4;
+}
+.menubottomco2 {
+	float:left;
+	width:1030px;
+	height:14px;
+	background:#57b947;
+}
+.menubottomco3 {
+	float:left;
+	width:1030px;
+	height:14px;
+	background:#ed2024;
+}
+.menubottomco4 {
+	float:left;
+	width:1030px;
+	height:14px;
+	background:#e2c729;
+}
+.menubottomco5 {
+	float:left;
+	width:1030px;
+	height:14px;
+	background:#8350a0;
+}
+.menubottomco6 {
+	float:left;
+	width:1030px;
+	height:14px;
+	background:#e94925;
+}
+.menubottomco7 {
+	float:left;
+	width:1030px;
+	height:14px;
+	background:#e79a26;
+}
+.middlepart1 {
+	float:left;
+	width:970px;
+}
+.container {
+	float:left;
+	width:970px;
+	padding:10px 30px 0 30px;
+	margin-top:18px;
+	background:url(../images/contenttopbg.png) repeat-x;
+}
+.middleleft {
+	float:left;
+	width:265px;
+	margin:0 0 0 0px;
+}
+.newslatter {
+	float:left;
+	width:263px;
+	background:#ed1c24;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+}
+.newstext1 {
+	float:left;
+	margin:0 0 0 16px;
+	width:236px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#fff;
+	font-weight:bold;
+	font-size:27px;
+	text-align:left;
+	padding:10px 0px;
+}
+.newstext2 {
+	float:left;
+	margin:0 0 0 16px;
+	width:236px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#fff;
+	font-weight:bold;
+	font-size:13px;
+	text-align:left;
+}
+.newstext3 {
+	float:left;
+	margin:8px 0 10px 10px;
+	width:226px;
+	padding:11px;
+	text-decoration:none;
+	background:url(../images/newsinputbg.png);
+	background-repeat:no-repeat;
+	border:0px;
+	line-height:19px;
+	font-family:"Century Gothic";
+	color:#d0cecf;
+	font-weight:bold;
+	font-size:13px;
+}
+.nextcamps {
+	float:left;
+	width:263px;
+	padding-bottom:10px;
+	margin:18px 0 0 0px;
+	background:url(../images/next-camps-bg.png) repeat-x;
+	border:#CCCCCC solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+}
+.campstext1 {
+	float:left;
+	margin:0 0 0 16px;
+	width:236px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#fff;
+	font-weight:bold;
+	font-size:27px;
+	text-align:left;
+	padding:2px 0px;
+}
+.campstext2 {
+	float:left;
+	margin:2px 0 0 16px;
+	width:236px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#fff;
+	font-weight:bold;
+	font-size:15px;
+	text-align:left;
+	padding:0px 0px;
+}
+.middleright {
+	float:left;
+	width:727px;
+	margin:30px 0 0 27px;
+}
+.middle-text-content {
+	float:right;
+	width:685px;
+	margin:30px 0 0 0px;
+	border:#CCCCCC solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#e2c729;
+}
+.middle-bookoline {
+	float:right;
+	width:684px;
+	margin:30px 0 0 0px;
+	border-bottom-left-radius:8px;
+	border-bottom-right-radius:8px;
+	border-top-left-radius:8px;
+	border-top-right-radius:8px;
+	background:#e94825;
+	border:solid;
+}
+.midle-heading-text {
+	float:left;
+	width:200px;
+	margin:0px 0 0 15px;
+}
+.book-onl-content {
+	width:675;
+	float:left;
+	margin:31px 0 0 8px;
+}
+.book-onlinesignp {
+	float:right;
+	width:360px;
+	margin:5px 21px 0 73px;
+}
+.book-onlintext {
+	float:left;
+	width:260px;
+	margin:5px 0px 0 0px;
+	font-family:"Century Gothic";
+	color:#fff;
+	font-weight:bold;
+	font-size:13px;
+}
+.book-onlinbutton {
+	float:left;
+	width:99px;
+	margin:0px 0px 0 0px;
+}
+.middle-text {
+	float:left;
+	width:650px;
+	height:838px;
+	margin:18px 0 5px 15px;
+	background:#FFF;
+	border:#CCCCCC solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+}
+.book-onl-middle-text {
+	float:left;
+	width:650px;
+	height:838px;
+	margin:0px 0 5px 16px;
+	background:#FFF;
+}
+.book-onl-matter {
+	float:left;
+	width:630px;
+	margin:60px 0 0 10px;
+}
+.summercamp {
+	float:left;
+	width:600px;
+	margin:0 0 0 15px;
+}
+.summercamp-heading-content {
+	float:left;
+	width:600px;
+	margin:13px 0 0 15px;
+	font-family:"Century Gothic";
+	color:#000;
+	font-weight:bold;
+	font-size:15px;
+}
+.summercamp-main-content {
+	float:left;
+	width:600px;
+	margin:10px 0 0 15px;
+	font-family:"Century Gothic";
+	color:#000;
+	font-weight:bold;
+	font-size:15px;
+	line-height:1.10;
+}
+.summertext {
+	width:268px;
+	margin:0 0 0 0;
+	float:right;
+	font-family:"Century Gothic";
+	color:#000;
+	font-weight:bold;
+	font-size:13px;
+}
+.summertext span {
+	color:#ed1e24;
+	font-weight:bold;
+}
+.textdotted {
+	float: left;
+	width:600px;
+	margin:11px 0 0 15px;
+	border-bottom: dotted 1px #a6a4a3;
+}
+.textdotted2 {
+	float: left;
+	width:600px;
+	margin:20px 0 0 15px;
+	border-bottom: dotted 1px #a6a4a3;
+}
+.Confirm-button {
+	width:450px;
+	float:left;
+	margin:31px 0 0 15px;
+}
+.bannerbox {
+	float:right;
+	width:671px; padding:4px;
+	margin:0 0 0 0px;
+	background:#FFF;
+	border:#70d0f4 solid 5px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	color:#67c6e9;
+	height: 225px;
+}
+.bannerbox img {
+	float:left;
+	display:block;
+}
+.banner {
+	float:left;
+	width:487px;
+	margin:20px 23px 0 14px;
+}
+.middlepart2 {
+	float:left;
+	width:1030px;
+	margin:0 0 0 0;
+	background:url(../images/middle-conteat-bg.png)
+}
+.middlecontant1 {
+	float:left;
+	width:262px;
+	margin:9px 0 0 23px;
+}
+.gallery {
+	float:left;
+	width:263px;
+	height:320px;
+	margin:18px 0 0 0;
+	background:#f4eb22;
+	border:#CCCCCC solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	color:#666;
+}
+.gallery2 {
+	float:left;
+	width:262px;
+	margin:18px 0 0 0px;
+	background:#f4eb22;
+	border:#333333 solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	color:#666;
+}
+.gallery-img1 {
+	float:left;
+	width:66px;
+	height:66px;
+	margin:23px 0 0 15px;
+	border:#9b9556 solid 1px;
+	background:#FFFFFF;
+}
+.gallery-img2 {
+	float:left;
+	width:66px;
+	height:66px;
+	margin:23px 0 0 15px;
+	border:#9b9556 solid 1px;
+	background:#FFFFFF;
+}
+.gallery-img3 {
+	float:left;
+	width:66px;
+	height:66px;
+	margin:23px 0 0 15px;
+	border:#9b9556 solid 1px;
+	background:#FFFFFF;
+}
+.gallery-img4 {
+	float:left;
+	width:66px;
+	height:66px;
+	margin:10px 0 0 15px;
+	border:#9b9556 solid 1px;
+	background:#FFFFFF;
+}
+.gallery-img5 {
+	float:left;
+	width:222px;
+	margin:16px 0 20px 15px;
+	border:#9b9556 solid 1px;
+	background:#FFFFFF;
+	font-weight:bold;
+	color:#000000;
+	font-size:12px;
+	text-align:center;
+	padding:5px;
+	line-height:18px;
+}
+.checklist {
+	float:left;
+	width:263px;
+	height:285px;
+	margin:20px 0 0 0;
+	background:#ed1c28;
+	border:#CCCCCC solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	color:#666;
+}
+.checklist2 {
+	float:left;
+	width:262px;
+	margin:20px 0 0 0px;
+	background:#ed1c28;
+	border:#000000 solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	color:#666;
+}
+.cheklist-text-hd {
+	float:left;
+	width:220px;
+	padding:20px 0 0 17px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#fff;
+	font-weight:bold;
+	font-size:26px;
+	text-align:left;
+}
+.cheklist-text-hd2 {
+	float:left;
+	width:220px; height:198px;
+	padding:10px 0 10px 17px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#fff;
+	font-weight:bold;
+	font-size:27px;
+	text-align:left;
+}
+.icon {
+	float:left;
+	width:19px;
+	margin:5px 0 0 0;
+}
+.cheklist-offer {
+	float:left;
+	width:200px;
+	margin:0px 0 5px 0px;
+	text-decoration:none;
+	font-family:"Century Gothic";
+	color:#fff;
+	font-weight:bold;
+	font-size:15px;
+	text-align:left;
+}
+.cheklist-offer img {
+	float:left;
+	padding-right:15px;
+	padding-top:6px;
+}
+.middlecontant2 {
+	float:left;
+	width:470px;
+	margin:9px 0 0 24px;
+}
+.welcome {
+	float:left;
+	width:428px;
+	margin:27px 0 0 0px;
+}
+.welcome2 {
+	float:left;
+	width:466px;
+	margin:4px 0 0 0px;
+	font-family:"Century Gothic";
+	color:#70c05a;
+	font-weight:bold;
+	font-size:22.07px;
+}
+.icon2 {
+	width:470px;
+	float:left;
+}
+.icon2 img {
+	margin:20px 0 0 2px;
+}
+.star-icon {
+	float:right;
+	width:24px;
+	height:22px;
+	margin:20px 3px 0 4px;
+	background:url(../images/star-icon.png) repeat-x;
+}
+.body-main-content {
+	width:460px;
+	margin:25px 0 0 0px;
+	float:left;
+}
+.bodycontent1 {
+	width:470px;
+	height:0 auto;
+	margin:2px 0 0 1px;
+	font-family:"Century Gothic";
+	color:#333333;
+	font-size:13px;
+	font-weight:bold;
+}
+.bodycontent2 {
+	width:470px;
+	height:0 auto;
+	margin:20px 0 0 4px;
+	font-family:"Century Gothic";
+	color:#000;
+	font-size:15.05px;
+	line-height:1.12;
+}
+.middlecontant3 {
+	float:right;
+	width:185px;
+	margin:9px 0 0 20px;
+}
+.flayer {
+	float:right;
+	width:177px;
+	height:90px;
+	margin:18px 0 0 0;
+	background-image:url(../images/downloadbg.png);
+	background-repeat:no-repeat;
+	color:#666;
+}
+.downloadtext {
+	float:left;
+	width:150px;
+	margin:30px 0 0 15px;
+	font-family:"Century Gothic";
+	color:#000;
+	font-size:12px;
+	font-weight:bold;
+	text-align:center;
+}
+.downloadtext a{ 
+	font-family:"Century Gothic";
+	color:#000;
+	font-size:12px;
+	font-weight:bold;
+	text-align:center;
+	text-decoration:none;
+}
+.downloadtext a:hover{ 
+	font-family:"Century Gothic";
+	color:#F00;
+	font-size:12px;
+	font-weight:bold;
+	text-align:center;
+	text-decoration:none;
+}
+.img-effect {
+	float:left;
+	widows:187;
+	margin:40px 0 0 15px;
+}
+.footer {
+	width:100%;
+	float:left;
+	margin:0 auto;
+	background:url(../images/footer-pic.jpg) center bottom no-repeat;
+}
+.footer-news-content {
+	width:967px;
+	float:left;
+	margin:20px 0 0 0px;
+	background:#000;
+	border:#CCCCCC solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+}
+.footer-text-part1 {
+	float:left;
+	width:327px;
+	height:114px;
+	margin:0 0 0 0;
+}
+.latestnews {
+	float:left;
+	width:185px;
+	height:21px;
+	margin:15px 0 0 16px;
+	color:#FFF;
+	font-size:18px;
+}
+.join-facebook {
+	float:left;
+	width:185px;
+	height:21px;
+	margin:15px 0 0 35px;
+	color:#FFF;
+	font-size:18px;
+}
+.news-text-box {
+	float:left;
+	width:285px;
+	height:20px;
+	margin:17px 0 0 16px;
+	color:#FFF;
+	font-size:12px;
+}
+.news-text {
+	width:280px;
+	height:20px;
+	margin:17px 0 0 5px;
+	float:left;
+	color:#FFF;
+	font-size:12px;
+	border:#FFF;
+}
+.footer-text-part2 {
+	float:left;
+	width:327px;
+	height:114px;
+	margin:35px 0 0 10px;
+}
+.footer-text-part3 {
+	float:right;
+	width:250px;
+	margin:8px 0 0 0px;
+}
+.footer-text-part3 h2 {
+	width:200px;
+	color:#FFFFFF;
+	font-size:16px;
+	margin:0px;
+	padding:0px;
+	padding-bottom:13px;
+}
+.footer-text-part3 p {
+	width:229px;
+	color:#FFFFFF;
+	font-size:11px;
+	margin:0px;
+	padding:0px;
+}
+.like-icon {
+	float:left;
+	width:250px;
+	margin:18px 0 0 0px;
+}
+.like-icon img {
+	margin-right:5px;
+}
+.rightpart {
+	float:left;
+	width:350px;
+	margin:0 0 10px 13px;
+}
+.rightpart h2 {
+	float:left;
+	margin:0px;
+	padding:10px 0 10px 0;
+	font-size:16px;
+	font-weight:bold;
+	width:340px;
+	color:#FFFFFF;
+}
+.rightpart li {
+	width:316px;
+	float:left;
+	font-family:"Century Gothic";
+	color:#FFF;
+	font-size:11px;
+	background-image:url(../images/circle-icon.png);
+	background-repeat:no-repeat;
+	background-position:0px 8px;
+	padding-left:24px;
+	font-weight:bold;
+	list-style:none;
+	line-height:30px;
+}
+.rightpart li a{
+	color:#FFF;
+	text-decoration:none;
+	font-size:11px;
+	font-weight:bold;
+	}
+.rightpart li a:hover{
+	color:#f00;
+	text-decoration:none;
+	font-size:11px;
+	font-weight:bold;
+	}
+.rightpart ul {
+	margin:0px;
+	padding:0px;
+}
+.middilepart {
+	float:left;
+	width:340px;
+	margin-top:40px;
+}
+.middilepart h2 {
+	float:left;
+	margin:0px;
+	padding:10px 0 10px 0;
+	font-size:16px;
+	font-weight:bold;
+	width:315px;
+	color:#FFFFFF;
+}
+.middilepart li {
+	width:315px;
+	float:left;
+	font-family:"Century Gothic";
+	color:#FFF;
+	font-size:12px;
+	background-image:url(../images/circle-icon.png);
+	background-repeat:no-repeat;
+	background-position:0px 5px;
+	padding-left:24px;
+	font-weight:bold;
+	list-style:none;
+	line-height:24px;
+}
+.middilepart li a{
+	font-family:"Century Gothic";
+	color:#FFF;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration:none;
+}
+.middilepart li a:hover{
+	font-family:"Century Gothic";
+	color:#F00;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration:none;
+}
+.middilepart ul {
+	margin:0px;
+	padding:0px;
+}
+.main-footer {
+	width:970px;
+	margin:0 auto;
+	padding:5px 30px 0 30px;
+}
+.footertext {
+	width:1000px;
+	margin:0 0 0 0;
+	font-family:"Century Gothic";
+	color:#FFF;
+	font-size:15px;
+	padding:200px 0px 23px 0px;
+	text-align:center;
+	font-weight:bold;
+}
+
+.footertext a { text-decoration:none; color:#fff;}
+.footertext a:hover{ text-decoration:none; color:#333333;}
+
+/*prices style start here*/
+
+.price-heading-text {
+	float:left;
+	width:650px;
+	padding:20px 0 0 0;
+}
+.price-right-content {
+	float:right;
+	width:650px;
+	border:#231f20 solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#8350a0;
+	padding:0 17px 20px 17px;
+}
+.price-middle-content {
+	float:right;
+	width:630px;
+	margin:18px 0 0 0px;
+	padding:10px;
+	border:#333333 solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#ffffff;
+	font-size:13px;
+	text-align:justify;
+	line-height:18px;
+	font-weight:bold;
+	color:#333333;
+}
+.price-image-block-1 {
+	float:left;
+	width:282px;
+	margin:18px 0 0 0px;
+	padding:8px 18px 8px 18px;
+	border:#333333 solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#ffffff;
+}
+.price-image-block-2 {
+	float:right;
+	width:282px;
+	margin:18px 0 0 0px;
+	padding:8px 18px 8px 18px;
+	border:#333333 solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#ffffff;
+}
+/*aboutus style start here*/
+
+.aboutus-right-content {
+	float:right;
+	width:650px;
+	border:#000000 solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#57b947;
+	padding:0 17px 20px 17px;
+}
+.aboutus-middle-content {
+	float:right; 
+	width:630px; height:811px; overflow:auto;
+	margin:18px 0 0 0px;
+	padding:10px;
+	border:#333333 solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius:10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#ffffff;
+	font-size:13px;
+	text-align:justify;
+	line-height:18px;
+	font-weight:bold;
+	color:#333333;
+}
+.aboutus-middle-content p{ margin:0px; padding-top:10px; line-height:18px;}
+/*our campus style start here*/
+
+.ourcampus-right-content {
+	float:right;
+	width:654px;
+	border:#CCCCCC solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#ed1c24;
+	padding:0 17px 20px 14px;
+}
+.ourcampus-right-content1 {
+	float:right;
+	width:685px;
+}
+.ourcampus-middle-content {
+	float:left;
+	width:650px;
+}
+.ourcampus-testmonials {
+	float:left;
+	width:657px;
+	height:151px;
+	background-image:url(../images/testimonialbg.png);
+	background-repeat:no-repeat;
+	margin-top:15px;
+}
+.ourcampus-testmonials h1 {
+	float:left;
+	width:130px;
+	margin:0px;
+	padding:0px;
+	font-size:14px;
+	color:#000000;
+	padding:6px 0 0 13px;
+}
+.ourcampus-testmonials img {
+	padding:2px 0 0 0px;
+	float:right;
+}
+.ourcampus-testmonials p {
+	float:left;
+	width:610px;
+	padding:9px;
+	font-size:13px;
+	color:#FF0000;
+	font-weight:bold;
+	margin:0px;
+}
+/*useful stuff style start here*/
+.useful-stuff-right-content {
+	float:right;
+	width:650px;
+	border:#554d2b solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#e2c729;
+	padding:0 17px 0 17px;
+}
+.usesttuff-middle-content {
+	float:right;
+	width:630px; height:815px; overflow:auto;
+	margin:18px 0 20px 0px;
+	padding:10px;
+	border:#333333 solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#ffffff;
+	font-size:13px;
+	text-align:justify;
+	line-height:18px;
+	font-weight:bold;
+	color:#333333;
+}
+.usesttuff-middle-content p { margin:0px; padding-top:10px;}
+/*bookonline style start here*/
+
+
+.bookonline-right-content {
+	float:right;
+	width:650px;
+	border:#CCCCCC solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#e94825;
+	padding:0 17px 20px 17px;
+}
+.bookonline-middle-content {
+price-heading-text float:right;
+	width:648px;
+	margin:18px 0 0 0px;
+}
+.bookonline-heading-text {
+	float:left;
+	width:650px;
+	padding:20px 0 10px 0;
+}
+.bookonline-heading-text p {
+	float: left;
+	margin: 0;
+	padding: 9px 10px 0 0;
+	text-align: right;
+	width: 324px;
+	font-size:13px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+.bookonline-heading-text span {
+	float:left;
+	width:96px;
+}
+img {
+	float:left;
+	margin:0px;
+	padding:0px;
+}
+.bgcolor {
+	background:#b2d3ef;
+}
+.bcodebg {
+	float:right;
+	width:267px;
+	border:#b2d3ef solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#b2d3ef;
+	margin:22px 17px 5px 0px;
+	font-size:13px;
+	line-height:25px;
+	padding-left:10px;
+	height:25px;
+}
+.bcodebg input {
+	float:right;
+	width:104px;
+	border:#333333 solid 1px;
+	padding:3px;
+	height:13px;
+	margin:2px 10px 0 0;
+}
+.bottomblock {
+	float:left;
+	width:644px;
+}
+
+.oncart11 { float:left; width:290px;      font-size:16px;  	border:#333333 solid 1px; margin-top:20px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#ffffff; padding-left:15px; height:46px; line-height:46px; margin-bottom:10px;"
+}
+
+.afnamebg{width:430px; height:25px; background:url(../images/afnamebg.png)left top no-repeat; border:none; padding:3px; margin-bottom:10px; margin-top:10px;}	
+	
+/*add friend style start here*/
+.add-form-details{float:left; width:610px;}
+
+.add-form-details h1 {width:610px; border-bottom:dashed solid 1px; color:#666666; }
+	
+	
+.textbox {width:216px; height:144px; background:url(../images/afmassebf.png)left top no-repeat; padding:5px;  padding-right:8px; font-size:12px;font-weight:normal; border:none; margin-bottom:10px;}	
+/*confirmbooking style start here*/	
+.oncart1 {
+	float:right;
+	font-size:16px; font-family:"Century Gothic";
+	border:#333333 solid 1px;
+	margin-top:20px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#ffffff;
+	padding:0px 15px;
+	height:40px;
+	line-height:46px;
+	margin-bottom:10px;
+	}
+/*login forgot style start here*/
+.login-heading-text {
+	float:left;
+	width:658px;
+	font-size:24px;
+	font-weight:bold;
+	color:#FFFFFF;
+	padding:10px 0 10px 3px;
+	margin:0px;
+	padding:0px;
+}
+.login-heading-text p {
+	width:650px;
+	font-size:15px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+.emailiputbg {
+	width:368px;
+	height:21px;
+	border:0px;
+	margin-top:10px;
+	padding:5px;
+	line-height:31px;
+	background-image:url(../images/emailaddressbg.png);
+	background-repeat:no-repeat;
+}
+.emailbt {
+	width:267px;
+	height:34px;
+	border:0px;
+	line-height:31px;
+	font-size:15px;
+	font-weight:bold;
+	padding-left:25px;
+	background-image:url(../images/emailnewpbt.png);
+	background-repeat:no-repeat;
+}
+.emailbt a {
+	color:#FFFFFF;
+	text-decoration:none;
+}
+.emailbt a:hover {
+	color:#000000;
+	text-decoration:none;
+}
+.emailsignbt {
+	width:353px;
+	float:right;
+	height:63px;
+	line-height:63px;
+	text-align:center;
+	font-weight:bold;
+	color:#FFFFFF;
+	border:0px;
+	margin-top:10px;
+	background-image:url(../images/login-signupbt-.png);
+	background-repeat:no-repeat;
+}
+.emailsignbt a {
+	color:#FFFFFF;
+	text-decoration:none;
+}
+.emailsignbt a:hover {
+	color:#f4eb22;
+	text-decoration:none;
+}
+/*login style start here*/
+
+
+.login-heading-text1 {
+	float:left;
+	width:658px;
+}
+.login-heading-text1 h1 {
+	width:650px;
+	font-size:24px;
+	font-weight:bold;
+	color:#FFFFFF;
+	padding:10px 0 15px 3px;
+	margin:0px;
+}
+.login-heading-text1 p {
+	width:650px;
+	font-size:15px;
+	font-weight:bold;
+	color:#FFFFFF;
+	padding:0 0 20px 3px;
+	margin:0px;
+}
+.login-content-text1 {
+	float:left;
+	width:650px;
+	font-size:15px;
+	font-weight:bold;
+	color:#FFFFFF;
+	padding:20px 0 10px 0;
+}
+.loginbt {
+	width:117px;
+	height:34px;
+	border:0px;
+	line-height:31px;
+	font-size:15px;
+	font-weight:bold;
+	padding-left:25px;
+	background-image:url(../images/loginbt.png);
+	background-repeat:no-repeat;
+}
+.loginbt a {
+	color:#FFFFFF;
+	text-decoration:none;
+}
+.loginbt a:hover {
+	color:#000000;
+	text-decoration:none;
+}
+.accountsignbt {
+	width:339px;
+	float:right;
+	height:63px;
+	line-height:63px;
+	text-align:center;
+	font-weight:bold;
+	color:#FFFFFF;
+	border:0px;
+	margin-top:10px;
+	background-image:url(../images/accountsignupbt.png);
+	background-repeat:no-repeat;
+}
+.accountsignbt a {
+	color:#FFFFFF;
+	text-decoration:none;
+}
+.accountsignbt a:hover {
+	color:#f4eb22;
+	text-decoration:none;
+}
+.forgotbt {
+	width:339px;
+	float:left;
+	height:63px;
+	line-height:63px;
+	text-align:center;
+	font-weight:bold;
+	color:#FFFFFF;
+	border:0px;
+	margin-top:10px;
+	background-image:url(../images/accountsignupbt.png);
+	background-repeat:no-repeat;
+}
+.forgotbt a {
+	color:#FFFFFF;
+	text-decoration:none;
+}
+.forgotbt a:hover {
+	color:#f4eb22;
+	text-decoration:none;
+}
+.massagebg {
+	width:186px;
+	height:48px;
+	background-image:url(../images/signupmassagebg.png);
+	background-repeat:no-repeat;
+	font-size:14px;
+	color:#333333;
+	padding-left:34px;
+}
+.useriputbg {
+	width:354px;
+	height:21px;
+	border:0px;
+	margin-top:5px;
+	padding:5px;
+	line-height:31px;
+	background-image:url(../images/uesrbg.png);
+	background-repeat:no-repeat;
+}
+/*sign up style start here*/
+
+.signup-right-content {
+	float:right;
+	width:622px;
+	border:#554d2b solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#FFFFFF;
+	padding:10px 17px 40px 17px;
+}
+.formdetails {
+	float:left;
+	width:625px;
+	margin-top:10px;
+	border-bottom:dotted #666666 1px;
+}
+.formdetails span {
+	float:left;
+	width:250px;
+	color:#333333!important;
+	padding-bottom:10px;
+	padding-top:3px;
+	font-size:15px;
+	font-weight:bold;
+}
+.formdetails p {
+	float:right;
+	width:365px;
+	margin:0px;
+	padding:0px;
+}
+.formdetails p input {
+	width:365px;
+	font-size:12px;
+	font-weight:normal;
+	color:#666666;
+	padding:5px;
+	background-image:url(../images/signupinputbg.png);
+	background-repeat:no-repeat;
+	border:0px;
+	height:20px;
+	line-height:20px;
+	margin-bottom:10px;
+}
+.signupbt {
+	float:right;
+	width:99px;
+	background-image:url(../images/signupbt.png);
+	background-repeat:no-repeat;
+	height:35px;
+	line-height:35px;
+	text-align:center;
+	color:#FFFFFF;
+	margin-top:30px;
+}
+.signupbt a {
+	text-decoration:none;
+	color:#FFFFFF;
+}
+.signupbt a:hover {
+	text-decoration:none;
+	color:#000000;
+}
+/*myaccount style start here*/
+.myaccount-right-content {
+	float:right;
+	width:650px;
+	border:#ed2024 solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	background:#ed2024;
+	padding:0 17px 20px 17px;
+}
+.sumbg {
+	width:227px;
+	background-image:url(../images/summerbg.png);
+	background-repeat:no-repeat;
+	height:32px;
+	background-position:0 70px;
+	padding-top:35px;
+	padding-left:10px;
+}
+.myaccount-middle-content {
+price-heading-text float:right;
+	width:656px;
+}
+.myaccount-heading-text {
+	float:right;
+	width:650px;
+	padding:20px 0 10px 0;
+}
+.myaccount-heading-text span img {
+	float:right;
+	margin-left:5px;
+}
+/*my details style start here*/
+
+
+.mydetail-right-content {
+	float:right;
+	width:622px;
+	padding:10px 17px 40px 17px;
+}
+.newadd {
+	color:#000000;
+}
+.newadd a {
+	color:#000000;
+}
+.newadd a:hover {
+	color:#FF0000;
+}
+/*contactus style start here*/
+.contactus-right-content {
+	float:right;
+	width:688px;
+}
+.contactus-right-content1 {
+price-heading-text float:right;
+	width:700px;
+}
+.cnameinput {
+	background:url(../images/contactinput.png) left no-repeat;
+	width:363px;
+	height:41px;
+	border:0px;
+	padding:0px 10px 17px 10px;
+	line-height:56px !important;
+	font-size:15px;
+}
+.cmassage {
+	background:url(../images/massagebox.png) left top no-repeat;
+	border:0px; height:175px; width:602px;
+	padding:5px 10px 20px 5px;
+}
+.cmassage textarea {border: medium none; font:normal 12px Arial, Helvetica, sans-serif;
+    height: 150px;
+    width: 577px;}
+.contactmasssage{margin: 0 auto; width:500px; background:#FFFFFF; 	border:#FFFFFF solid 1px; text-align:center; font-size:15px; padding:15px 0; 
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */}
+
+
+
+
+
+/*Find Us - Maps style start here*/
+
+.findus-right-content-middile {
+	margin: 0 auto;
+	width: 622px;
+	padding:0 23px 0 023px;
+	background:#FFFFFF;
+	border:#b78447 solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	padding-bottom:88px;
+	margin-top:10px;
+}
+
+.findus-right-content-middile h1 {
+	
+	font-size:15px; color:#333333; padding:6px 0;
+}
+
+.findus-right-content-middile p {
+	
+	font-size:15px; color:#333333; padding:40px 0 136px 0;
+}
+
+.mapcollection {width:622px; background:#eaeaea; border:#eaeaea solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	text-align:center;
+	padding:141px 0;
+	font-size:15px; font-weight:bold; color:#FFFFFF;
+	
+	
+	}
+
+
+
+/*work for us - Maps style start here*/
+
+.workforus-right-content-middile {
+	margin: 0 auto;
+	width: 622px;
+	padding:0 23px 0 023px;
+	background:#FFFFFF;
+	border:#b78447 solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	padding-bottom:0px;
+	margin-top:10px;
+}
+
+.workforus-right-content-middile p {
+	
+	font-size:15px; color:#333333; padding:16px 0 0px 0;
+}
+
+.workforus-image{
+width:622px; background:#eaeaea; border:#eaeaea solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	text-align:center;
+	padding:65px 0;
+	font-size:30px; font-weight:bold; color:#FFFFFF; margin-top:10px;
+	
+	
+	}
+
+/*photo gallery - Maps style start here*/
+
+.photogallery-right-content1 {
+price-heading-text float:right;
+	width:660px;
+}
+
+.photogallery-right-content {
+	float:right;
+	width:660px;
+}
+
+
+
+
+.photogallery-big-box {
+		width:600px;
+	background:#e8e8e8; border:#000000 solid 1px;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari and Chrome */
+	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+	height:270px;
+	margin-top:50px;
+	
+}
+
+
+.photogallery-small-box {
+	width:600px;
+	margin-top:10px;}
+	
+.photogallerybox {
+	float:left;
+	width:90px; height:58px;
+	background-image:url(../images/gsmallpicbg.png); background-repeat:no-repeat; margin-bottom:10px; margin-left:2px;}
+	
+	
+.photogallerybuffring {
+	margin: 0 auto;
+	width:368px;
+	padding-bottom:20px;
+	}
+.photogallerysearch {
+	margin: 0 auto;
+	width:368px;
+	
+	}
+
+.photogallerysearch span {
+	float:left;
+	width:178px;
+	color:#000000;
+	font-size:15px;
+	}
+.photogallerysearch select {
+	float:right;
+	width:186px;
+	border:#666666 solid 1px; padding:3px; font-size:12px; color:#999999; background:#FFFFFF;
+	}
+#floatMenu {
+	position:absolute;
+	top:393px;
+	margin-left:682px;
+	width:200px;
+}
+#float_div {
+	display:block;
+	background:#B2D3EF;
+	border:solid 1px #000000;
+	border-radius: 10px 10px 10px 10px;
+	padding:10px;
+	width: 200px;
+}
+.total {
+	background:#FFFFFF;
+	font-family:"Century Gothic";
+	border: 1px solid #333333;
+	border-radius: 10px 10px 10px 10px;
+	font-size: 15px;
+	height: 28px;
+	line-height: 28px;
+	padding:2px 10px;
+}
