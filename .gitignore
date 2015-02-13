@@ -10,7 +10,8 @@ application/logs/*
 
 applications/front/config/database.php
 application/admin/config/database.php
-
+applications/front/config/config.php
+application/admin/config/config.php
 # Compiled source #
 ###################
 *.com
@@ -32,7 +33,9 @@ application/admin/config/database.php
 *.rar
 *.tar
 *.zip
- 
+*.jpg
+assets/images/*
+
 # Logs and databases #
 ######################
 *.log
