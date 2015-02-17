@@ -1,0 +1,56 @@
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ * 
+ *
+ * @category    design
+ * @package     default_blank
+ * @copyright  Copyright (c) 2011 template-help.com
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/* Reset ================================================================================= */
+img           { border:0; vertical-align:top; }
+
+a             { color:#787878; text-decoration:underline; }
+a:hover       { text-decoration:none; }
+a:hover img   {position:relative;}
+:focus        { outline: 0; }
+
+/*============================slider===========================*/
+/*--------------------slider-1---------------*/
+#slides .slides_container {
+	width:585px;
+	height:320px;
+	display:none;
+	float:left;
+}
+
+#slides .slides_container .slide {width:585px;}
+
+#slides .slides_container .item {
+	width:145px;
+	height:320px;	
+	float:left;
+	display:block;
+	/*padding:0 1px 0 0;*/
+	position:relative;
+}
+
+#slides .nav-box{ margin:5px 0px 0px; float:right; position:relative; z-index:222;}
+#slides .prev{display:none;}
+#slides .next{display:none;}
+#slides .pagination{display:block; padding:0 4px 0 0; margin:0px; position:absolute; left:20px; top:0; z-index:99999; zoom:1;}
+#slides .pagination li{display:block; float:left; width:20px; height:19px; font:bold 15px "Myriad Pro", Calibri, Arial, Verdana; }
+#slides .pagination li a{display:block; text-align:center; width:10px; height:19px; text-decoration:none; color:#6980be; }
+#slides .pagination li.current a{ background:#6980be; color:#FFFFFF; }
+/*--------------------------------------------*/

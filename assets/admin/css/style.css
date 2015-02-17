@@ -1,0 +1,548 @@
+body {
+	font-family:"Century Gothic";
+	color: #000;
+	margin:0px;
+	padding:0px;
+	display:block;
+	font-weight:bold;
+	background:#FFFFFF;
+}
+ @font-face {
+ font-family:'Century Gothic';
+ src: url('../font/GOTHIC.TTF') format('truetype');
+ font-weight: normal;
+ font-style: normal;
+}
+ @font-face {
+ font-family: 'MyriadPro-Regular';
+ src: url('myriadpro-regular.eot');
+ src: url('myriadpro-regular.eot?#iefix') format('embedded-opentype'), url('myriadpro-regular.woff') format('woff'), url('myriadpro-regular.ttf') format('truetype'), url('myriadpro-regular.svg#myriadpro-regular') format('svg');
+ font-weight: normal;
+ font-style: normal;
+}
+.cl, .clear {
+	clear:both;
+}
+img {
+	border:none;
+}
+a {
+	outline:none;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin:0px;
+	padding:0px;
+}
+h1 {
+	font-size:24px;
+	color:#333;
+	font-weight:bold;
+	padding-bottom:8px;
+}
+#wrapper {
+	margin:0px auto;
+	padding:0px 0px;
+	background:url(../images/menushadow.png) center 144px no-repeat;
+}
+#wrap {
+	background:url(../images/blue_bg.png) top left repeat-x;
+}
+#page {
+	width:1000px;
+	margin:0 auto;
+}
+#login {
+	background:url(../images/admin-loginbg.jpg) center top no-repeat;
+	padding:50px 0 90px;
+	margin:60px 0px 0px;
+}
+#login .login-box {
+	margin:0px;
+	padding:0px;
+	background:url(../images/login-input.png) left top no-repeat;
+	width:243px;
+	height:29px;
+}
+#login .login-box input {
+	margin:0px;
+	padding:0px 0px 0px 8px;
+	background:none;
+	border:none;
+	width:226px;
+	font:normal 13px "Myriad Pro", Calibri, Arial, Verdana;
+}
+#login .login-btn {
+	margin:0px;
+	padding:0px;
+	background:url(../images/login-btn.png) left top no-repeat;
+	width:63px;
+	height:29px;
+	text-indent:-10000px;
+	display:block;
+	border:none;
+	cursor:pointer;
+}
+.content {
+	overflow:hidden;
+	clear:both;
+	margin:0px;
+	padding:0px 0px 0px;
+	min-height:500px;
+}
+.content_left {
+	float:left;
+	width:220px;
+}
+.logo {
+	height: 161px;
+	margin: 0 auto;
+	padding: 20px 0 0;
+	width: 960px;
+}
+.menutop {
+	margin:0px;
+	padding:0px;
+}
+.menutop ul {
+	margin:0px;
+	background:#f3f3f3;
+	border:#e0e0e0;
+	padding:5px;
+	font-size:12px;
+	color:#FFF;
+	list-style:none;
+	border-radius:10px;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+}
+.menutop ul li {
+	margin:0px;
+	padding:3px;
+}
+.menutop ul li a {
+	margin:0px;
+	padding:2px 0px 2px 10px;
+	color:#CC5E40;
+	text-decoration:none;
+	background:#F1F1F2;
+	display:block;
+}
+.menutop ul li a.active {
+	margin:0px;
+	color:#ffffff;
+	text-decoration:none;
+	background:#57b947;
+	display:block;
+	border--radius:10px;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+}
+.menutop ul li a:hover {
+	margin:0px;
+	border-radius:10px;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	color:#ffffff;
+	text-decoration:none;
+	background:#57b947;
+	display:block;
+}
+.content_right {
+	float:right;
+	width:715px;
+}
+.content_right h2 {
+	font-size:25px;
+	border-bottom:2px solid #CCCCCC;
+	text-align:center;
+	padding:10px 0px;
+	margin:0px;
+	color:#333;
+}
+.content_right h3 {
+	font-size:20px;
+	border-bottom:2px solid #CCCCCC;
+	padding:10px 0px;
+	margin:0px;
+	color:#333333;
+}
+.table-head {
+	margin:0px;
+	padding:4px 4px;
+	font:bold 15px "Myriad Pro", Calibri, Arial, Verdana;
+	border-bottom:1px solid #6e85c3;
+	color:#DE0002;
+}
+.table-head a {
+	color:#000000;
+	text-decoration:none;
+}
+.table-content {
+	margin:0px;
+	padding:4px 4px;
+	font:normal 14px "Myriad Pro", Calibri, Arial, Verdana;
+	border-bottom:1px solid #6e85c3;
+	color:#000000;
+	text-transform:capitalize;
+}
+.table-content a {
+	color:#000000;
+	text-decoration:none;
+}
+#home {
+	padding:20px;
+	margin:0px auto;
+	background:#FFFFFF;
+	border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	margin-top:50px;
+	min-height:400px;
+}
+.admin_in {
+	width:380px;
+	margin:0 auto;
+}
+#home .content_right .link {
+	margin:0px;
+	padding:0px;
+	clear:both;
+	overflow:hidden;
+}
+#home .content_right .link ul {
+	margin:0px;
+	padding:0px;
+	list-style:none;
+}
+#home .content_right .link ul li {
+	margin:0px;
+	padding:20px 4px 5px;
+	float:left;
+}
+#home .content_right .logout {
+	padding:0px 0px 0px 4px;
+}
+.categories-form {
+	margin:0px;
+	padding:0px;
+}
+.categories-form-heading {
+	margin:0px;
+	padding:5px 0px 5px 5px;
+	font-size:15px;
+	color:#6e85c3;
+}
+.categories-form-content {
+	margin:0px;
+	padding:4px;
+	font-size:14px;
+	color:#333;
+}
+.categories-input input {
+	margin:0px;
+	padding:0px;
+	background:#FFFFFF;
+	border:2px solid #6e85c3;
+	width:230px;
+}
+.categories-textarea textarea {
+	margin:0px;
+	padding:0px;
+	background:#FFFFFF;
+	border:2px solid #6e85c3;
+	width:230px;
+}
+input.button9 {
+	margin:0px;
+	padding:0px;
+	background:url(../images/button9.jpg) left top no-repeat;
+	width:62px;
+	height:23px;
+	text-indent:-10000px;
+	display:block;
+	border:none;
+	cursor:pointer;
+}
+.fragrances-select {
+	margin:0px;
+	padding:0px;
+	background:url(../images/fragrances-select.jpg) left top no-repeat;
+	width:491px;
+	overflow:hidden;
+}
+.fragrances-select select {
+	margin:18px 12px 0px 12px;
+	padding:0px 0px 0px 0px;
+	background:none;
+	border:none;
+	width:365px;
+	height:18px;
+	float:left;
+	font:normal 16px "Myriad Pro", Calibri, Arial, Verdana;
+	text-transform:capitalize;
+	color:#6d85c3;
+}
+input.fragrances-submit {
+	margin:0px;
+	padding:0px;
+	background:url(../images/fragrances-submit.jpg) left top no-repeat;
+	width:97px;
+	height:55px;
+	text-indent:-10000px;
+	display:block;
+	border:none;
+	cursor:pointer;
+	float:left;
+}
+.multipleimg-select {
+	margin:0px;
+	padding:0px;
+	background:url(../images/fragrances-select.jpg) left top no-repeat;
+	width:491px;
+	overflow:hidden;
+}
+.multipleimg-select select {
+	margin:18px 12px 0px 12px;
+	padding:0px 0px 0px 0px;
+	background:none;
+	border:none;
+	width:365px;
+	height:18px;
+	float:left;
+	font:normal 16px "Myriad Pro", Calibri, Arial, Verdana;
+	text-transform:capitalize;
+	color:#6d85c3;
+}
+input.multipleimg-submit {
+	margin:0px;
+	padding:0px;
+	background:url(../images/fragrances-submit.jpg) left top no-repeat;
+	width:97px;
+	height:55px;
+	text-indent:-10000px;
+	display:block;
+	border:none;
+	cursor:pointer;
+	float:left;
+}
+.pagination {
+	margin:0px;
+	padding:0px;
+}
+.pagination a {
+	padding:2px 6px;
+	text-decoration:none;
+	color:#6d85c3;
+}
+.pagination strong {
+	padding:2px 6px;
+	text-decoration:none;
+	background:#6d85c3;
+	color:#ffffff;
+}
+.products-dtl-box1 {
+	margin:0px;
+	padding:0px;
+}
+.products-dtl-block1 {
+	margin:0px;
+	padding:0px;
+	width:147px;
+	float:left;
+}
+.products-dtl-block2 {
+	margin:0px;
+	padding:0px;
+	width:145px;
+	float:left;
+}
+.products-dtl-h {
+	margin:0px;
+	padding:3px 15px 3px 0px;
+	font:bold italic 13px "Myriad Pro", Calibri, Arial, Verdana;
+	color:#000000;
+	border-bottom:2px solid #556fb9;
+	border-right:2px solid #556fb9;
+	text-align:right;
+}
+.products-dtl-d {
+	margin:0px;
+	padding:3px 15px 3px 10px;
+	font:normal 12px "Myriad Pro", Calibri, Arial, Verdana;
+	color:#000000;
+	border-bottom:2px solid #556fb9;
+	text-align:left;
+	height:16px;
+}
+.footer {
+	margin:0px auto;
+	background:#dff3fa;
+	border-top:#cbebf8;
+	padding:5px 0px 10px 0px;
+	font:normal 15px "Myriad Pro", Calibri, Arial, Verdana;
+	text-align:center;
+	color:#1a1a1a;
+}
+.footer a {
+	color:#1a1a1a;
+	text-decoration:underline;
+}
+.adminlogin {
+	background:#f3f3f3;
+	border:solid 1px #e0e0e0;
+	float: left;
+	margin: 0;
+	padding: 25px 13px;
+	width: 346px;
+}
+.input {
+	background:#FFFFFF;
+	border:solid 1px #E6E6E6;
+	padding:3px 5px;
+	font-size:14px;
+	width:200px;
+}
+.input2 {
+	background:#FFFFFF;
+	border:solid 1px #d2d2d2;
+	padding:3px 5px;
+	font-size:14px;
+	width:200px;
+}
+
+.inputbutton {
+	background: url("../images/mainpage_readmore_bt.png") no-repeat scroll left top transparent;
+	border: 0 none;
+	color: #FFFFFF;
+	display: block;
+	float: right;
+	font-size: 15px;
+	font-weight: normal;
+	font-family:"Myriad Pro", Calibri, Arial, Verdana;
+	height: 33px;
+	line-height: 33px;
+	margin: 0px 13px 24px 0;
+	padding: 0 0 0px;
+	text-align: center;
+	width: 98px;
+	cursor:pointer;
+}
+.inputbutton:hover {
+	background: url("../images/mainpage_readmore_bt.png") repeat scroll left -38px transparent;
+}
+.inputtextbox {
+	background: none repeat scroll 0 0 #F8F8F8;
+	border: 1px solid #D3D3F3;
+	color: #999999;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	margin-top: 2px;
+	padding: 5px;
+	width: 197px;
+}
+.inputtitle {
+	color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 5px 0;
+	width: 100px;
+}
+.inputtextarea {
+	background: none repeat scroll 0 0 #F8F8F8;
+	border: 1px solid #E3E3E3;
+	color: #999999;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	margin-top: 2px;
+	padding: 5px;
+	width: 600px;
+}
+.linkbtn {
+	background: none repeat scroll 0 0 #0049A4;
+	border: medium none;
+	color: #FFFFFF;
+	cursor: pointer;
+	font-family: 'Myriad Pro';
+	font-size: 14px;
+	margin: 0;
+	padding: 5px 10px;
+	text-align: center;
+	vertical-align: middle;
+}
+.linkbtn:hover {
+	background: none repeat scroll 0 0 #DE0002;
+	border: medium none;
+	color: #FFFFFF;
+	cursor: pointer;
+	font-family: 'Myriad Pro';
+	font-size: 14px;
+	margin: 0;
+	padding: 5px 10px;
+	text-align: center;
+	vertical-align: middle;
+}
+.pages {
+	width:250px;
+	background:#ffffff;
+	padding:5px;
+}
+.pages a {
+	display:block;
+	background:#ffffff;
+	padding:5px;
+	color:#231F20;
+}
+.pages a:hover {
+	display:block;
+	background:#F7931E;
+	padding:5px;
+	color:#FFFFFF;
+}
+.tblrow {
+	display:block;
+	background:#ffffff;
+	padding:5px; border:solid 1px #eaeaea; margin-bottom:1px;
+	color:#231F20;
+}
+.tblrow:hover {
+	display:block;
+	background:#F7931E;
+	padding:5px;
+	color:#FFFFFF;
+}
+.tblrow:hover a {
+	display:block;
+	background:#F7931E;
+	color:#FFFFFF;
+}
+.courses a {
+	margin:50px;
+	padding:20px;
+	color:#CC5E40;
+	font-size:24px;
+	text-decoration:none;
+	background:#F1F1F2;
+	display:block;
+}
+.courses a:hover {
+	margin:50px;
+	padding:20px;
+	color:#FFFFFF;
+	font-size:24px;
+	text-decoration:none;
+	background:#CC5E40;
+	display:block;
+}
+.top_heading_red {
+	font-size:14px !important;
+	padding:5px 10px;
+	color:#FFFFFF !important;
+	background:#ED1C24;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+}
