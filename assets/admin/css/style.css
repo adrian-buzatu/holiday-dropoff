@@ -546,3 +546,8 @@ input.multipleimg-submit {
 	-webkit-border-radius:10px;
 	-moz-border-radius:10px;
 }
+
+.form_error{
+    color: #FF0000;
+    font-weight: bold; 
+}
