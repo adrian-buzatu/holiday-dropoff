@@ -11,7 +11,7 @@
 
     }
 
-function controller() {
+    function controller() {
         $CI = &get_instance();
         return $CI->uri->segment(1);
     }
