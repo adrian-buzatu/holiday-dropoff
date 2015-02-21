@@ -18,7 +18,7 @@ class Pages_Model extends CI_Model {
     }
     
     public function getBySlug($slug = ""){
-        $query = $this->db->get_where('pages', array('slug' => $slug));
+        $query = $this->db->get_where('pages', array('slug' => $slug), 1);
         if($query->num_rows == 0){
             return false;
         }

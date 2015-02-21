@@ -6,7 +6,10 @@
         <title>Holiday Drop Off Camps - Admin Panel</title>
         <!--<link href="stylesheet.css" type="text/css" rel="stylesheet" />-->
         <link href="<?php echo asset_url()?>css/style.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo asset_url()?>css/styles.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo asset_url()?>css/jquery.ui.css" rel="stylesheet" type="text/css" />
         <script src="<?php echo asset_url();?>js/jquery-1.11.2.min.js" type="text/javascript"></script>
+        <script src="<?php echo asset_url();?>js/jquery.ui.js" type="text/javascript"></script>
         <script src="<?php echo asset_url();?>js/main.js" type="text/javascript"></script>
         <?php if(controller() == 'pages'):?>
             <script src="<?php echo asset_url();?>js/nicEdit.js" type="text/javascript"></script>
@@ -23,8 +26,8 @@
                                 <div class="menutop">
                                     <ul class="mainmenu">
                                         <div class="top_heading_red">Our Camps</div>
-                                        <li><a class=""  href="#">Camp Groups</a></li>
-                                        <li><a class=""  href="#">Camps</a></li>
+                                        <li><a class="<?php echo controller() == 'campgroups' ? 'active' : '';?>"  href="<?php echo base_url()?>campgroups">Camp Groups</a></li>
+                                        <li><a class="<?php echo controller() == 'camps' ? 'active' : '';?>"  href="<?php echo base_url()?>camps">Camps</a></li>
                                         <li><a class="<?php echo item() == 'what-happens' ? 'active' : '';?>"  href="<?php echo base_url()?>pages/edit/what-happens">What happens</a></li>
                                         <li><a class="<?php echo item() == 'sports-at-hdo' ? 'active' : '';?>"  href="<?php echo base_url()?>pages/edit/sports-at-hdo">Sports at HDO</a></li>
                                         <li><a class="<?php echo item() == 'facilities' ? 'active' : '';?>"  href="<?php echo base_url()?>pages/edit/facilities">Facilities</a></li>
@@ -32,8 +35,8 @@
                                         <li><a class="<?php echo item() == 'staff-at-hdo' ? 'active' : '';?>"  href="<?php echo base_url()?>pages/edit/staff-at-hdo">Staff at HDO</a></li>
                                         <li><a class="<?php echo item() == 'work-for-us' ? 'active' : '';?>"  href="<?php echo base_url()?>pages/edit/work-for-us">Work For Us</a></li>
                                         <div class="top_heading_red">Pages</div>
-                                        <li><a class="<?php echo item() == 'home' ? 'active' : '';?>" href="#">Home</a></li>
-                                        <li><a class="" href="#">Download Our HDO E-Flyer</a></li>
+                                        <li><a class="<?php echo controller() == '' ? 'active' : '';?>" href="<?php echo base_url()?>">Home</a></li>
+                                        <li><a class="<?php echo controller() == 'flyer' ? 'active' : '';?>" href="<?php echo base_url()?>flyer">Download Our HDO E-Flyer</a></li>
                                         <li><a class="<?php echo item() == 'about-us' ? 'active' : '';?>" href="<?php echo base_url()?>pages/edit/about-us">About US</a></li>
                                         <li><a class="<?php echo item() == 'useful-stuff' ? 'active' : '';?>" href="<?php echo base_url()?>pages/edit/useful-stuff">Useful Stuff</a></li>
                                         <li><a class="<?php echo item() == 'privacy-policy' ? 'active' : '';?>" href="<?php echo base_url()?>pages/edit/privacy-policy">Privacy Policy</a></li>

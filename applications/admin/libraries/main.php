@@ -17,6 +17,16 @@ class Main {
             $this->data['user_id'] = $_SESSION['username']['user_id'];
             $this->data['user'] = $_SESSION['username'];
             $this->data['user']['role'] = $_SESSION['username']['role'];
+            $configTable = array(
+                
+                'addBaseUrl' => base_url() . controller() . '/create',
+                'editBaseUrl' => base_url() . controller() . '/edit',
+                'deleteBaseUrl' => base_url() . controller() . '/delete',
+                'pageBaseUrl' => base_url() . controller() . 'page',
+                'editParam' => 'id',
+                'deleteParam' => 'id'
+            );
+            $this->data['configTable'] = $configTable;
         }
     }
 

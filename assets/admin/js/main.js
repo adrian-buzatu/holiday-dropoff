@@ -47,6 +47,15 @@
                         this.loadController(pagesUrl, callback);
 
                     }
+                    case 'camps': {
+                        campsUrl = this.assetsUrl + "js/controllers/camps.js";
+                        callback = function() {
+                            var camps = new Camps();
+                            camps.setDatePicker();
+                        }
+                        this.loadController(campsUrl, callback);
+
+                    }
                 }
             }
         }

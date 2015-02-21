@@ -10,7 +10,12 @@
         }
 
     }
-
+    
+    function base_path() {
+        $CI = & get_instance();
+        return $CI->config->slash_item('base_path');
+    }
+    
     function controller() {
         $CI = &get_instance();
         return $CI->uri->segment(1);

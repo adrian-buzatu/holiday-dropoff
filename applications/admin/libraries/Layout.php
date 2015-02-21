@@ -33,4 +33,9 @@ class Layout
             $this->obj->load->view($this->layout, $loadedData, false);
         }
     }
+    
+    public function table($tableConfig, $view = 'templates/table.php'){
+        $output = $this->obj->load->view($view, $tableConfig, true);
+        return $output;
+    }
 }

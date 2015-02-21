@@ -10,7 +10,8 @@ class Users_Model extends CI_Model {
     function checkUser($username) {
         $sql = "SELECT * FROM `users` WHERE `username`='" . addslashes($username) . "' "
                 . "AND `status` = 1 "
-                . "AND `role` = 1";
+                . "AND `role` = 1 "
+                . "LIMIT 1";
         $result = $this->db->query($sql);
         if ($result->num_rows() == 0)
             return true;
@@ -24,7 +25,8 @@ class Users_Model extends CI_Model {
                 . "WHERE `username`='" . addslashes($username) . "' "
                 . "AND `password`='" . $password . "' "
                 . "AND `role` = 1 "
-                . "AND `status` = 1";
+                . "AND `status` = 1 "
+                . "LIMIT 1";
         $result = $this->db->query($sql);
         if ($result->num_rows() == 0)
             return false;
