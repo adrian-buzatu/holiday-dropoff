@@ -211,7 +211,7 @@ a {
 	padding:0px;
 }
 .navigation ul li a.home {
-	background:url(../images/home.png) no-repeat;
+	background:url('../images/home.png') no-repeat;
 	width:130px;
 	float:left;
 	margin:0 0 0 35px;
@@ -226,6 +226,7 @@ a {
 .navigation ul li .home:hover {
 	color:#000
 }
+
 .navigation ul li a.about {
 	background:url(../images/about-us.png) no-repeat;
 	width:130px;
@@ -604,7 +605,6 @@ a {
 	-webkit-border-radius: 10px; /* Safari and Chrome */
 	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
 	color:#67c6e9;
-	height: 225px;
 }
 .bannerbox img {
 	float:left;
@@ -1235,7 +1235,7 @@ a {
 	padding:0 17px 20px 17px;
 }
 .bookonline-middle-content {
-price-heading-text float:right;
+        float:right;
 	width:648px;
 	margin:18px 0 0 0px;
 }
@@ -1297,7 +1297,7 @@ img {
 	-moz-border-radius: 10px; /* Firefox */
 	-webkit-border-radius: 10px; /* Safari and Chrome */
 	border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
-	background:#ffffff; padding-left:15px; height:46px; line-height:46px; margin-bottom:10px;"
+	background:#ffffff; padding-left:15px; height:46px; line-height:46px; margin-bottom:10px;
 }
 
 .afnamebg{width:430px; height:25px; background:url(../images/afnamebg.png)left top no-repeat; border:none; padding:3px; margin-bottom:10px; margin-top:10px;}	
@@ -1588,7 +1588,7 @@ img {
 	padding-left:10px;
 }
 .myaccount-middle-content {
-price-heading-text float:right;
+float:right;
 	width:656px;
 }
 .myaccount-heading-text {
@@ -1623,7 +1623,7 @@ price-heading-text float:right;
 	width:688px;
 }
 .contactus-right-content1 {
-price-heading-text float:right;
+    float:right;
 	width:700px;
 }
 .cnameinput {
@@ -1725,7 +1725,7 @@ width:622px; background:#eaeaea; border:#eaeaea solid 1px;
 /*photo gallery - Maps style start here*/
 
 .photogallery-right-content1 {
-price-heading-text float:right;
+float:right;
 	width:660px;
 }
 
