@@ -65,6 +65,26 @@
                         this.loadController(couponsUrl, callback);
 
                     }
+                    case 'testimonials': {
+                        testimonialsUrl = this.assetsUrl + "js/controllers/testimonials.js";
+                        callback = function() {
+                            var testimonials = new Testimonials();
+                            testimonials.setMceIconsPath(me.assetsUrl);
+                            testimonials.bindMceToEl('content');
+                        }
+                        this.loadController(testimonialsUrl, callback);
+
+                    }
+                    case 'news': {
+                        newsUrl = this.assetsUrl + "js/controllers/news.js";
+                        callback = function() {
+                            var news = new News();
+                            news.setMceIconsPath(me.assetsUrl);
+                            news.bindMceToEl('content');
+                        }
+                        this.loadController(newsUrl, callback);
+
+                    }
                 }
             }
         }
