@@ -11,7 +11,7 @@
         <script src="<?php echo asset_url();?>js/jquery-1.11.2.min.js" type="text/javascript"></script>
         <script src="<?php echo asset_url();?>js/jquery.ui.js" type="text/javascript"></script>
         <script src="<?php echo asset_url();?>js/main.js" type="text/javascript"></script>
-        <?php if(controller() == 'pages'):?>
+        <?php if(in_array(controller(), array('pages', 'news', 'testimonials'))):?>
             <script src="<?php echo asset_url();?>js/nicEdit.js" type="text/javascript"></script>
         <?php endif;?>
     </head>
@@ -45,7 +45,7 @@
                                         <li><a class="<?php echo item() == 'holyay-drop-off-camps' ? 'active' : '';?>" href="<?php echo base_url()?>pages/edit/holyay-drop-off-camps">Holiday Drop Off Camps</a></li>
                                         <li><a class="<?php echo item() == 'sitemap' ? 'active' : '';?>" href="<?php echo base_url()?>pages/edit/sitemap">Sitemap</a></li>
                                         <li><a class="<?php echo item() == 'prices' ? 'active' : '';?>" href="<?php echo base_url()?>pages/edit/prices">Prices</a></li>
-                                        <li><a class="" href="#">News</a></li>
+                                        <li><a class="<?php echo controller() == 'news' ? 'active' : '';?>" href="<?php echo base_url()?>news">News</a></li>
                                         <div class="top_heading_red">Misc</div>
                                         <li><a class="<?php echo controller() == 'banners' ? 'active' : '';?>" href="<?php echo base_url()?>banners">Home Banners</a></li>
                                         <li><a class="<?php echo controller() == 'gallerycategories' ? 'active' : '';?>" href="<?php echo base_url()?>gallerycategories">Gallery Categories</a></li>
@@ -53,7 +53,7 @@
                                         <li><a class="<?php echo controller() == 'videos' ? 'active' : '';?>" href="<?php echo base_url()?>videos">My Video</a></li>
                                         <li><a class="" href="#">Order</a></li>
                                         <li><a href="<?php echo base_url()?>coupons" class="<?php echo controller() == 'coupons' ? 'active' : '';?>">Coupon</a></li>
-                                        <li><a class="" href="#">Testimonial</a></li>              
+                                        <li><a class="<?php echo controller() == 'testimonials' ? 'active' : '';?>" href="<?php echo base_url()?>testimonials">Testimonial</a></li>              
                                         <li><a class="<?php echo controller() == 'users' ? 'active' : '';?>" href="<?php echo base_url()?>users">Users</a></li>
                                         <li><a class="<?php echo controller() == 'csv' ? 'active' : '';?>" href="<?php echo base_url()?>csv">Download CSV</a></li>
                                         <li><a href="<?php echo base_url()?>account/change_password">Change Password</a></li>
