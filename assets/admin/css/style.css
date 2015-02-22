@@ -550,4 +550,16 @@ input.multipleimg-submit {
 .form_error{
     color: #FF0000;
     font-weight: bold; 
+    min-width: 150px;
+}
+.form_error.img_form_error{
+    width: 250px;
+}
+.banner_image_admin{
+    width: 62px;
+    height: auto;
+}
+
+.form_label{
+    width: 106px !important;
 }
