@@ -56,6 +56,15 @@
                         this.loadController(campsUrl, callback);
 
                     }
+                    case 'coupons': {
+                        couponsUrl = this.assetsUrl + "js/controllers/coupons.js";
+                        callback = function() {
+                            var coupons = new Coupons();
+                            coupons.setDatePicker();
+                        }
+                        this.loadController(couponsUrl, callback);
+
+                    }
                 }
             }
         }
