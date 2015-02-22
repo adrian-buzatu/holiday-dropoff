@@ -51,8 +51,8 @@ class Users_Model extends CI_Model {
         return $output;
     }
     
-    function update($up, $where){
-        $this->db->update('users', $up, $where);
+    function update($up, $id){
+        $this->db->update('users', $up, array('id' => $id));
         return true;
     }
     
@@ -63,10 +63,49 @@ class Users_Model extends CI_Model {
                 . "AND `role` = 1 "
                 . "LIMIT 1";
         $result = $this->db->query($sql);
-        if ($result->num_rows() == 0)
-            return false;
-        else
-            return true;
+        if ($result->num_rows() == 0){
+            return false;            
+        }
+        else{
+            return true;            
+        }
+    }
+    
+    function getFrontUsers(){
+        $sql = "SELECT * FROM `users` WHERE `role` = 3";
+        $result = $this->db->query($sql);
+        if ($result->num_rows() == 0){
+            return false;            
+        } else {
+            return $result->result_array();
+        }
+    }
+    
+    function one($id){
+        $sql = "SELECT * "
+                . "FROM `users` WHERE `id` = '". $id . "'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows() == 0){
+            return false;            
+        } else {
+            $row = $result->result_array();
+            return $row[0];
+        }
+    }
+    
+    function getCountriesForForm(){
+        $sql = "SELECT * FROM `countries`";
+        $result = $this->db->query($sql);
+        if ($result->num_rows() == 0){
+            return false;            
+        } else {
+            $rows = $result->result_array();
+            $countriesForForm = array();
+            foreach($rows as $row){
+                $countriesForForm[$row['id']] = $row['name'];
+            }
+            return $countriesForForm;
+        }
     }
 
 }

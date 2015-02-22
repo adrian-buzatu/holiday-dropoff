@@ -1,28 +1,28 @@
 <?php
 
-class Campgroups extends CI_Controller {
+class Gallerycategories extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
         $this->data = $this->main->data;
-        $this->load->model('Camp_Groups_Model', 'Camp_Groups');
+        $this->load->model('Gallery_Categories_Model', 'Gallery_Categories');
     }
     
     public function index()
     {        
         $configTable = $this->data['configTable'];
         $configTableCustom = array(
-            'title' => 'Camp Groups',
+            'title' => 'Gallery Categories',
             'headers' => array('Title'),
             'displayedFields' => array('name'), 
-            'data' => $this->Camp_Groups->get(),
+            'data' => $this->Gallery_Categories->get(),
             'links' => array(
                 'name' => $configTable['editBaseUrl']. ',id'
             )
         );
         $configTable = array_merge($configTableCustom, $configTable);
         $this->data['list'] = $this->layout->table($configTable);
-        $this->layout->view('camp_groups/index.php', $this->data);
+        $this->layout->view('gallery_categories/index.php', $this->data);
     }
     
     public function create(){
@@ -35,21 +35,20 @@ class Campgroups extends CI_Controller {
             
         } else {
             $name = $this->input->post('name', true);
-            $campGroup = array(
+            $galleryCategory = array(
                 'name' => $name,
-                'status' => 1,
                 
             );
             $this->data['success'] = true;
-            $this->Camp_Groups->add($campGroup);
+            $this->Gallery_Categories->add($galleryCategory);
         }
-        $this->layout->view('camp_groups/create.php', $this->data);
+        $this->layout->view('gallery_categories/create.php', $this->data);
     }
     
     public function edit($id){
         
         $this->data['success'] = false;
-        $camp = $this->Camp_Groups->getOne($id);
+        $camp = $this->Gallery_Categories->getOne($id);
         $this->data['name'] = $camp['name'];
         $this->data['id'] = $id;
         $this->form_validation->set_error_delimiters('<div class="form_error">', '</div>');
@@ -60,19 +59,18 @@ class Campgroups extends CI_Controller {
             
         } else {
             $name = $this->input->post('name', true);
-            $campGroup = array(
+            $galleryCategory = array(
                 'name' => $name,
-                'status' => 1,
                 
             );
             $this->data['success'] = true;
-            $this->Camp_Groups->update($campGroup, array('id' => $id));
+            $this->Gallery_Categories->update($galleryCategory, array('id' => $id));
         }
-        $this->layout->view('camp_groups/edit.php', $this->data);
+        $this->layout->view('gallery_categories/edit.php', $this->data);
     }
     
     public function delete($id){
-        $this->Camp_Groups->delete($id);
-        redirect('admin/campgroups');
+        $this->Gallery_Categories->delete($id);
+        redirect('gallerycategories');
     }
 }

@@ -11,35 +11,36 @@
  *
  * @author shade
  */
-class Banners extends CI_Controller {
+class Gallery extends CI_Controller {
     
      public function __construct() {
         parent::__construct();
         $this->data = $this->main->data;
-        $this->load->model('Banners_Model', 'Banners');
+        $this->load->model('Gallery_Model', 'Gallery');
     }
     public function index()
     {        
         $configTable = $this->data['configTable'];
         $configTableCustom = array(
-            'title' => 'Banners',
-            'headers' => array('Image', 'Title'),
-            'displayedFields' => array('image', 'title'),
+            'title' => 'Gallery',
+            'headers' => array('Image', 'Category', 'Title'),
+            'displayedFields' => array('src', 'category', 'title'),
             'fieldTemplate' => array(
-                'image' => "<img class='banner_image_admin' src='" .  front_url(). "assets/front/images/banners/{image}'>"
+                'src' => "<img class='banner_image_admin' src='" .  front_url(). "assets/front/images/banners/{src}'>"
             ),
-            'data' => $this->Banners->get(),
+            'data' => $this->Gallery->get(),
             'links' => array(
                 'title' => $configTable['editBaseUrl']. ',id'
             )
         );
         $configTable = array_merge($configTableCustom, $configTable);
         $this->data['list'] = $this->layout->table($configTable);
-        $this->layout->view('banners/index.php', $this->data);
+        $this->layout->view('gallery/index.php', $this->data);
     }
     
     public function create(){
         $this->data['success'] = false;
+        $this->data['galleryCategories'] = $this->Gallery->getGalleryCategoriesForForm();
         $this->form_validation->set_error_delimiters('<div class="form_error">', '</div>');
         $this->form_validation->set_rules('title', 'Title', 'required');
         if (empty($_FILES['image']['name']))
@@ -65,29 +66,31 @@ class Banners extends CI_Controller {
             } else {
                 $fileData = $this->upload->data();
                 chmod($fileData['full_path'],0777);
-                $banner = array(
+                $galleryPhoto = array(
                     'title' => $this->input->post('title', true),
-                    'image' => $name
+                    'gallery_category_id' => (int)$this->input->post('gallery_category_id', true),
+                    'src' => $name
                 );
                 $this->data['success'] = true;
-                $this->Banners->add($banner);
+                $this->Gallery->add($galleryPhoto);
             }
             
         }
-        $this->layout->view('banners/create.php', $this->data);
+        $this->layout->view('gallery/create.php', $this->data);
     }
     
     public function edit($id){
         $this->data['success'] = false;
+        $this->data['galleryCategories'] = $this->Gallery->getGalleryCategoriesForForm();
         $this->form_validation->set_error_delimiters('<div class="form_error">', '</div>');
         $this->form_validation->set_rules('title', 'Title', 'required');
-        $this->data['banner'] = $this->Banners->one($id);
+        $this->data['banner'] = $this->Gallery->one($id);
         $this->form_validation->set_message("required", "%s required");
         $this->data['id'] = $id;
         if ($this->form_validation->run() == false) {
             
         } else {
-            $banner = array();
+            $galleryPhoto = array();
             $this->data['success'] = true;
             if (!empty($_FILES['image']['name'])){
                 $file = $_FILES['image'];
@@ -104,24 +107,25 @@ class Banners extends CI_Controller {
                 } else {
                     $fileData = $this->upload->data();
                     chmod($fileData['full_path'], 0777);
-                    $banner['image'] = $name;                   
+                    $galleryPhoto['src'] = $name;                   
                     
                     
                 }
             }
             if($this->data['success'] == true){
-                $banner['title'] = $this->input->post('title', true);
-                $this->Banners->update($banner, $id);
+                $galleryPhoto['title'] = $this->input->post('title', true);
+                $galleryPhoto['gallery_category_id'] = (int)$this->input->post('gallery_category_id', true);
+                $this->Gallery->update($galleryPhoto, $id);
             }
             
             
             
         }
-        $this->layout->view('banners/edit.php', $this->data);
+        $this->layout->view('gallery/edit.php', $this->data);
     }
     
     function delete($id){
-        $this->Banners->delete($id);
-        redirect('banners');
+        $this->Gallery->delete($id);
+        redirect('gallery');
     }
 }

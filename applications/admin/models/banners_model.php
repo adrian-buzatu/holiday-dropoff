@@ -21,12 +21,12 @@ class Banners_Model extends CI_Model {
     }
     
     function update($banner, $id){
-        $this->db->update('baners', $update, array('id' => $id));
+        $this->db->update('banners', $banner, array('id' => $id));
         return true;
     }
     
-    function delete($banner, $id){
-        $this->db->delete('baners', $update, array('id' => $id));
+    function delete($id){
+        $this->db->delete('banners', array('id' => $id));
         return true;
     }
     

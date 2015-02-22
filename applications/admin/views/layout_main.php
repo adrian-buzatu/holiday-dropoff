@@ -44,17 +44,17 @@
                                         <li><a class="<?php echo item() == 'work-for-us' ? 'active' : '';?>" href="<?php echo base_url()?>pages/edit/work-for-us">Work for Us</a></li>
                                         <li><a class="<?php echo item() == 'holyay-drop-off-camps' ? 'active' : '';?>" href="<?php echo base_url()?>pages/edit/holyay-drop-off-camps">Holiday Drop Off Camps</a></li>
                                         <li><a class="<?php echo item() == 'sitemap' ? 'active' : '';?>" href="<?php echo base_url()?>pages/edit/sitemap">Sitemap</a></li>
-                                        <li><a class="" href="<?php echo base_url()?>pages/edit/privacy-policy">Prices</a></li>
+                                        <li><a class="<?php echo item() == 'prices' ? 'active' : '';?>" href="<?php echo base_url()?>pages/edit/prices">Prices</a></li>
                                         <li><a class="" href="#">News</a></li>
                                         <div class="top_heading_red">Misc</div>
                                         <li><a class="<?php echo controller() == 'banners' ? 'active' : '';?>" href="<?php echo base_url()?>banners">Home Banners</a></li>
-                                        <li><a class="" href="#">Gallery Categories</a></li>
-                                        <li><a class="" href="#">My Photos</a></li>
-                                        <li><a class="" href="#">My Video</a></li>
+                                        <li><a class="<?php echo controller() == 'gallerycategories' ? 'active' : '';?>" href="<?php echo base_url()?>gallerycategories">Gallery Categories</a></li>
+                                        <li><a class="<?php echo controller() == 'gallery' ? 'active' : '';?>" href="<?php echo base_url()?>gallery">My Photos</a></li>
+                                        <li><a class="<?php echo controller() == 'videos' ? 'active' : '';?>" href="<?php echo base_url()?>videos">My Video</a></li>
                                         <li><a class="" href="#">Order</a></li>
-                                        <li><a class="" href="#">Coupon</a></li>
+                                        <li><a href="<?php echo base_url()?>coupons" class="<?php echo controller() == 'coupons' ? 'active' : '';?>">Coupon</a></li>
                                         <li><a class="" href="#">Testimonial</a></li>              
-                                        <li><a class="" href="#">Users</a></li>
+                                        <li><a class="<?php echo controller() == 'users' ? 'active' : '';?>" href="<?php echo base_url()?>users">Users</a></li>
                                         <li><a class="<?php echo controller() == 'csv' ? 'active' : '';?>" href="<?php echo base_url()?>csv">Download CSV</a></li>
                                         <li><a href="<?php echo base_url()?>account/change_password">Change Password</a></li>
                                         <li><a href="<?php echo base_url()?>logout">Logout</a></li>

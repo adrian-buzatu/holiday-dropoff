@@ -73,6 +73,6 @@ class Campgroups extends CI_Controller {
     
     public function delete($id){
         $this->Camp_Groups->delete($id);
-        redirect('admin/campgroups');
+        redirect('campgroups');
     }
 }

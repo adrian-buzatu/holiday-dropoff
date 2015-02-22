@@ -35,9 +35,8 @@ class Camps extends CI_Controller {
         $this->data['success'] = false;
         $this->data['campGroups'] = $this->Camps->getCampGroupsForForm();
         $this->form_validation->set_error_delimiters('<div class="form_error">', '</div>');
-        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('name', 'Name', 'required|is_unique[camps.name]');
         $this->form_validation->set_rules('price[]', 'Price', 'required|numeric');
-        $this->form_validation->set_rules('start_date', 'Name', 'required|is_unique[camp_groups.name]');
         $this->form_validation->set_message("is_unique", "%s is already Taken");
         $this->form_validation->set_message("required", "%s required");
         if ($this->form_validation->run() == false) {
@@ -70,9 +69,8 @@ class Camps extends CI_Controller {
         $this->data['id'] = $id;
         $this->form_validation->set_error_delimiters('<div class="form_error">', '</div>');
         $this->form_validation->set_error_delimiters('<div class="form_error">', '</div>');
-        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('name', 'Name', 'required|is_unique[camps.name]');
         $this->form_validation->set_rules('price[]', 'Price', 'required|numeric');
-        $this->form_validation->set_rules('start_date', 'Name', 'required|is_unique[camp_groups.name]');
         $this->form_validation->set_message("is_unique", "%s is already Taken");
         $this->form_validation->set_message("required", "%s required");
         if ($this->form_validation->run() == false) {
@@ -101,6 +99,6 @@ class Camps extends CI_Controller {
     
     public function delete($id){
         $this->Camps->delete($id);
-        redirect('admin/camps');
+        redirect('camps');
     }
 }
