@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Holiday Drop Off</title>
         <link href="<?php echo asset_url()?>css//style.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo asset_url()?>js/jquery-1.11.2.min"></script>
         <script type="text/javascript" src="<?php echo asset_url()?>js/fadeslideshow.js"></script>
     </head>
     <body>
