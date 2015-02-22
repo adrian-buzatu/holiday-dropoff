@@ -47,7 +47,7 @@
                                         <li><a class="" href="<?php echo base_url()?>pages/edit/privacy-policy">Prices</a></li>
                                         <li><a class="" href="#">News</a></li>
                                         <div class="top_heading_red">Misc</div>
-                                        <li><a class="" href="#">Home Banners</a></li>
+                                        <li><a class="<?php echo controller() == 'banners' ? 'active' : '';?>" href="<?php echo base_url()?>banners">Home Banners</a></li>
                                         <li><a class="" href="#">Gallery Categories</a></li>
                                         <li><a class="" href="#">My Photos</a></li>
                                         <li><a class="" href="#">My Video</a></li>
@@ -55,9 +55,9 @@
                                         <li><a class="" href="#">Coupon</a></li>
                                         <li><a class="" href="#">Testimonial</a></li>              
                                         <li><a class="" href="#">Users</a></li>
-                                        <li><a class="" href="#">Download CSV</a></li>
-                                        <li><a href="#">Change Password</a></li>
-                                        <li><a href="#">Logout</a></li>
+                                        <li><a class="<?php echo controller() == 'csv' ? 'active' : '';?>" href="<?php echo base_url()?>csv">Download CSV</a></li>
+                                        <li><a href="<?php echo base_url()?>account/change_password">Change Password</a></li>
+                                        <li><a href="<?php echo base_url()?>logout">Logout</a></li>
                                     </ul>
                                 </div>
                             </div>

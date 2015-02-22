@@ -15,7 +15,9 @@
                             <td>Camp Group</td>
                             <td>
                                 <select name="camp_group_id">
-                                    <option value="32">Easter Camp</option>					
+                                    <?php foreach($campGroups as $id => $campGroup):?>
+                                        <option value="<?php echo $id?>"><?php echo $campGroup?></option>	
+                                    <?php endforeach;?>				
                                 </select>
                             </td>
                         </tr>
@@ -25,53 +27,151 @@
                                 <input type="text" name="name" 
                                        value="<?php echo set_value('name') == '' ? $camp['name'] :set_value('name')?>" />
                             </td>
+                            <td colspan="2">
+                                <?php if (form_error('name') != ""): ?>
+                                    <div class="form_error">
+                                        <?php echo form_error('name'); ?>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                         <tr>
                             <td>Start Date :</td>
                             <td>
-                                <input type="text" name="start_date" id="start_date" value="" readonly="true" maxlength="10" class="inputbox"></td>
+                                <input type="text" name="start_date" id="start_date" 
+                                    value="<?php echo set_value('start_date') == '' ? date("m/d/Y", $camp['start_date']) :set_value('start_date')?>" readonly="true" maxlength="10" class="inputbox">
+                            </td>
+                            <td colspan="2">
+                                <?php if (form_error('start_date') != ""): ?>
+                                    <div class="form_error">
+                                        <?php echo form_error('start_date'); ?>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                         <tr>
                             <td>End Date :
-                            </td><td><input type="text" name="end_date" id="end_date" value="" readonly="true" maxlength="10" class="inputbox"></td>
+                            </td>
+                            <td>
+                                <input type="text" name="end_date" id="end_date" 
+                                value="<?php echo set_value('end_date') == '' ? date("m/d/Y", $camp['end_date']) :set_value('end_date')?>" readonly="true" maxlength="10" class="inputbox">
+                            </td>
+                            <td colspan="2">
+                                <?php if (form_error('end_date') != ""): ?>
+                                    <div class="form_error">
+                                        <?php echo form_error('end_date'); ?>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                         <tr>
                             <td>Monday Price :
-                            </td><td><input type="text" name="price[1]" value=""></td>
+                            </td>
+                            <td>
+                                <input type="text" name="price[1]" 
+                                       value="<?php echo set_value('price[1]') == '' ? $camp['prices'][1] :set_value('price[1]')?>">
+                            </td>
+                            <td colspan="2">
+                                <?php if (form_error('price[1]') != ""): ?>
+                                    <div class="form_error">
+                                        <?php echo form_error('price[1]'); ?>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                         <tr>
                             <td>Tuesday Price :
-                            </td><td><input type="text" name="price[2]" value=""></td>
+                            </td>
+                            <td>
+                                <input type="text" name="price[2]"
+                                value="<?php echo set_value('price[2]') == '' ? $camp['prices'][2] :set_value('price[2]')?>">
+                            </td>
+                            <td colspan="2">
+                                <?php if (form_error('price[2]') != ""): ?>
+                                    <div class="form_error">
+                                        <?php echo form_error('price[2]'); ?>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                         <tr>
                             <td>Wednesday Price :
-                            </td><td><input type="text" name="price[3]" value=""></td>
+                            </td><td><input type="text" name="price[3]" value="<?php echo set_value('price[3]') == '' ? $camp['prices'][3] :set_value('price[3]')?>"></td>
+                            <td colspan="2">
+                                <?php if (form_error('price[3]') != ""): ?>
+                                    <div class="form_error">
+                                        <?php echo form_error('price[3]'); ?>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                         <tr>
                             <td>Thursday Price :
-                            </td><td><input type="text" name="price[4]" value=""></td>
+                            </td><td><input type="text" name="price[4]" value="<?php echo set_value('price[4]') == '' ? $camp['prices'][4] :set_value('price[4]')?>"></td>
+                            <td colspan="2">
+                                <?php if (form_error('price[4]') != ""): ?>
+                                    <div class="form_error">
+                                        <?php echo form_error('price[4]'); ?>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                         <tr>
                             <td>Friday Price :
-                            </td><td><input type="text" name="price[5]" value=""></td>
+                            </td><td><input type="text" name="price[5]" value="<?php echo set_value('price[5]') == '' ? $camp['prices'][5] :set_value('price[5]')?>"></td>
+                            <td colspan="2">
+                                <?php if (form_error('price[5]') != ""): ?>
+                                    <div class="form_error">
+                                        <?php echo form_error('price[5]'); ?>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                         <tr>
                             <td>Saturday Price :
-                            </td><td><input type="text" name="price[6]" value=""></td>
+                            </td><td><input type="text" name="price[6]" value="<?php echo set_value('price[6]') == '' ? $camp['prices'][6] :set_value('price[6]')?>"></td>
+                            <td colspan="2">
+                                <?php if (form_error('price[6]') != ""): ?>
+                                    <div class="form_error">
+                                        <?php echo form_error('price[6]'); ?>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                         <tr>
                             <td>Sunday Price :
-                            </td><td><input type="text" name="price[7]" value=""></td>
+                            </td><td><input type="text" name="price[7]" value="<?php echo set_value('price[7]') == '' ? $camp['prices'][7] :set_value('price[7]')?>"></td>
+                            <td colspan="2">
+                                <?php if (form_error('price[7]') != ""): ?>
+                                    <div class="form_error">
+                                        <?php echo form_error('price[7]'); ?>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                         <tr>
                             <td>Book All Price :
-                            </td><td><input type="text" name="price[8]" value=""></td>
+                            </td><td><input type="text" name="price[8]" value="<?php echo set_value('price[8]') == '' ? $camp['prices'][8] :set_value('price[8]')?>"></td>
+                            <td colspan="2">
+                                <?php if (form_error('price[8]') != ""): ?>
+                                    <div class="form_error">
+                                        <?php echo form_error('price[8]'); ?>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                         <tr>
                             <td>Extra Details :
                             </td>
                             <td>
-                                <textarea name="details" id="details" rows="5" cols="50"></textarea>
+                                <textarea name="details" id="details" rows="5" cols="50"><?php echo set_value('details') == '' ? $camp['details'] :set_value('details')?></textarea>
+                            </td>
+                            <td colspan="2">
+                                <?php if (form_error('details') != ""): ?>
+                                    <div class="form_error">
+                                        <?php echo form_error('details'); ?>
+                                    </div>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     </tbody>

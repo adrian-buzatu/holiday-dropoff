@@ -50,5 +50,23 @@ class Users_Model extends CI_Model {
         }
         return $output;
     }
+    
+    function update($up, $where){
+        $this->db->update('users', $up, $where);
+        return true;
+    }
+    
+    function checkOldPass($pass, $id){
+        $sql = "SELECT * FROM `users` WHERE `password`='" . $pass . "' "
+                . "AND `id` = '". (int)$id ."'"
+                . "AND `status` = 1 "
+                . "AND `role` = 1 "
+                . "LIMIT 1";
+        $result = $this->db->query($sql);
+        if ($result->num_rows() == 0)
+            return false;
+        else
+            return true;
+    }
 
 }

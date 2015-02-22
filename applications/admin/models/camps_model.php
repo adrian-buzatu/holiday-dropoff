@@ -26,7 +26,7 @@ class Camps_Model  extends CI_Model {
     }
     
     function add($camp){
-        $this->db->insert('camp', $campGroup);
+        $this->db->insert('camps', $camp);
         return $this->db->insert_id();
     }
     
@@ -45,7 +45,7 @@ class Camps_Model  extends CI_Model {
     }
     
     function getOne($id){
-        $result = $this->db->get_where('camp', array('id' => $id), 1);
+        $result = $this->db->get_where('camps', array('id' => $id), 1);
         if($result->num_rows() == 0){
             return false;
         }
@@ -56,12 +56,12 @@ class Camps_Model  extends CI_Model {
     }
     
     function update($campGroup, $where){
-        $this->db->update('camp', $campGroup, $where);
+        $this->db->update('camps', $campGroup, $where);
         return true;
     }
     
     function delete($id){
-        $this->db->delete('camp', array('id' => $id));
+        $this->db->delete('camps', array('id' => $id));
         return true;
     }
     
@@ -69,7 +69,7 @@ class Camps_Model  extends CI_Model {
         $result = $this->
                 db->
                 order_by('camp_price_type', 'asc')->
-                get_where('camp_prices', array('camp_id' => $campId), 1);
+                get_where('camp_prices', array('camp_id' => $campId));
         if($result->num_rows() == 0){
             return false;
         }
@@ -77,6 +77,19 @@ class Camps_Model  extends CI_Model {
         $output = array();
         foreach($rows as $row){
             $output[$row['camp_price_type']] = $row['price'];
+        }
+        return $output;
+    }
+    
+    function getCampGroupsForForm(){
+        $result = $this->db->get('camp_groups');
+        if($result->num_rows() == 0){
+            return false;
+        }
+        $campGroups = $result->result_array();
+        $output = array();
+        foreach ($campGroups as $item){
+            $output[$item['id']] = $item['name'];
         }
         return $output;
     }

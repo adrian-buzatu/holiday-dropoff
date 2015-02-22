@@ -19,10 +19,10 @@ class Main {
             $this->data['user']['role'] = $_SESSION['username']['role'];
             $configTable = array(
                 
-                'addBaseUrl' => base_url() . controller() . '/create',
-                'editBaseUrl' => base_url() . controller() . '/edit',
-                'deleteBaseUrl' => base_url() . controller() . '/delete',
-                'pageBaseUrl' => base_url() . controller() . 'page',
+                'addBaseUrl' => base_url() . controller() . '/create/',
+                'editBaseUrl' => base_url() . controller() . '/edit/',
+                'deleteBaseUrl' => base_url() . controller() . '/delete/',
+                'pageBaseUrl' => base_url() . controller() . '/page/',
                 'editParam' => 'id',
                 'deleteParam' => 'id'
             );

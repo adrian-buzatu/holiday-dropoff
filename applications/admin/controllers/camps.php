@@ -13,8 +13,13 @@ class Camps extends CI_Controller {
         $configTable = $this->data['configTable'];
         $configTableCustom = array(
             'title' => 'Camps',
-            'headers' => array('Title', 'Start Date', 'End Date', 'Extra Date', 'Creation Date'),
-            'displayedFields' => array('name'), 
+            'headers' => array('Title', 'Start Date', 'End Date', 'Extra Details', 'Creation Date'),
+            'displayedFields' => array('name', 'start_date', 'end_date', 'details', 'date_created'),
+            'fieldFunctions' => array(
+                'start_date' => 'echo date("Y-m-d", {field});',
+                'end_date' => 'echo date("Y-m-d", {field});',
+                'date_created' => 'echo date("Y-m-d", {field});'
+            ),
             'data' => $this->Camps->get(),
             'links' => array(
                 'name' => $configTable['editBaseUrl']. ',id'
@@ -28,6 +33,7 @@ class Camps extends CI_Controller {
     public function create(){
         
         $this->data['success'] = false;
+        $this->data['campGroups'] = $this->Camps->getCampGroupsForForm();
         $this->form_validation->set_error_delimiters('<div class="form_error">', '</div>');
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('price[]', 'Price', 'required|numeric');
@@ -44,19 +50,20 @@ class Camps extends CI_Controller {
                 'end_date' => strtotime($this->input->post('end_date', true)),
                 'date_created' => time(),
                 'date_updated' => time(),
-                'camp_group_id' => $this->input->post('camp_group_id'),
+                'details' => $this->input->post('details', true),
+                'camp_group_id' => (int)$this->input->post('camp_group_id', true),
                 'status' => 1,
                 
             );
             $this->data['success'] = true;
             $campId = $this->Camps->add($campGroup);
-            $this->Camps->addPrices($this->input->post('price'), $campId);
+            $this->Camps->addCampPrices($this->input->post('price'), $campId);
         }
         $this->layout->view('camps/create.php', $this->data);
     }
     
     public function edit($id){
-        
+        $this->data['campGroups'] = $this->Camps->getCampGroupsForForm();
         $this->data['success'] = false;
         $camp = $this->Camps->getOne($id);
         $this->data['camp'] = $camp;
@@ -79,12 +86,15 @@ class Camps extends CI_Controller {
                 'date_created' => time(),
                 'date_updated' => time(),
                 'camp_group_id' => $this->input->post('camp_group_id'),
+                'details' => $this->input->post('details', true),
+                'camp_group_id' => (int)$this->input->post('camp_group_id', true),
                 'status' => 1,
+                'created_by' => 1,
                 
             );
             $this->data['success'] = true;
             $this->Camps->update($campGroup, array('id' => $id));
-            $this->Camps->addPrices($this->input->post('price'), $id);
+            $this->Camps->addCampPrices($this->input->post('price'), $id);
         }
         $this->layout->view('camps/edit.php', $this->data);
     }

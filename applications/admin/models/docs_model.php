@@ -45,5 +45,33 @@ class Docs_Model extends CI_Model {
         }
         return true;
     }
-    //put your code here
+   
+    public function getCsv(){
+        $query = $this->db->get_where('docs', array('type' => 'CSV'));
+        if($query->num_rows == 0){
+            return false;
+        }
+        $flyer = $query->result_array();
+        return $flyer[0];
+    }
+    
+    public function setCsv($csv){
+        if($this->getCsv() == false){
+            $insert = array(
+                'file' => $csv,
+                'type' => 'CSV'
+            );
+            $this->db->insert('docs', $insert);
+        } else {
+            $csvDB = $this->getCsv();
+            $up = array(
+                'file' => $csv
+            );
+            $where = array(
+                'id' => $csvDB['id']
+            );
+            $this->db->update('docs', $up, $where);
+        }
+        return true;
+    }
 }
