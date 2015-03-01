@@ -41,6 +41,14 @@
 $route['default_controller'] = "homepage";
 $route['404_override'] = '';
 
+$route['(:any)'] = 'pages/view/$1';
+$route['our-camps'] = "ourcamps";
+$route['contact-us'] = "contactus";
+$route['contact-us/process'] = "contactus/process";
+$route['contact-us'] = "contactus";
+$route['login'] = "login";
+$route['login/forgot'] = "login/forgot";
+$route['register'] = "register";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

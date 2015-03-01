@@ -19,6 +19,15 @@ input, button, textarea {font-family:"Century Gothic";}
 	font-size:16px;
 	color:#FFF;
 }
+.hide{
+    display: none;
+}
+#successMsgHeader{
+    	font-size:24px;
+        font-weight:bold;
+        color:#FFFFFF; 
+        padding:30px 0 0 30px;
+}
  @font-face {
  font-family:'Century Gothic';
  src: url('../font/GOTHIC.TTF') format('truetype');
@@ -1061,12 +1070,12 @@ a {
 
 /*prices style start here*/
 
-.price-heading-text {
+.prices-heading-text {
 	float:left;
 	width:650px;
 	padding:20px 0 0 0;
 }
-.price-right-content {
+.prices-right-content {
 	float:right;
 	width:650px;
 	border:#231f20 solid 1px;
@@ -1076,7 +1085,7 @@ a {
 	background:#8350a0;
 	padding:0 17px 20px 17px;
 }
-.price-middle-content {
+.prices-middle-content {
 	float:right;
 	width:630px;
 	margin:18px 0 0 0px;
@@ -1116,7 +1125,7 @@ a {
 }
 /*aboutus style start here*/
 
-.aboutus-right-content {
+.about-us-right-content {
 	float:right;
 	width:650px;
 	border:#000000 solid 1px;
@@ -1126,7 +1135,7 @@ a {
 	background:#57b947;
 	padding:0 17px 20px 17px;
 }
-.aboutus-middle-content {
+.about-us-middle-content, .prices-middle-content {
 	float:right; 
 	width:630px; height:811px; overflow:auto;
 	margin:18px 0 0 0px;
@@ -1142,7 +1151,7 @@ a {
 	font-weight:bold;
 	color:#333333;
 }
-.aboutus-middle-content p{ margin:0px; padding-top:10px; line-height:18px;}
+.about-us-middle-content p{ margin:0px; padding-top:10px; line-height:18px;}
 /*our campus style start here*/
 
 .ourcampus-right-content {
@@ -1204,7 +1213,7 @@ a {
 	background:#e2c729;
 	padding:0 17px 0 17px;
 }
-.usesttuff-middle-content {
+.useful-stuff-middle-content {
 	float:right;
 	width:630px; height:815px; overflow:auto;
 	margin:18px 0 20px 0px;
@@ -1220,7 +1229,7 @@ a {
 	font-weight:bold;
 	color:#333333;
 }
-.usesttuff-middle-content p { margin:0px; padding-top:10px;}
+.useful-stuff-middle-content p { margin:0px; padding-top:10px;}
 /*bookonline style start here*/
 
 

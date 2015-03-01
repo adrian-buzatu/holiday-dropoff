@@ -33,7 +33,7 @@ class Pages extends CI_Controller {
         if ($this->form_validation->run() == false) {
             
         } else {
-            $content = $this->input->post('content', true);
+            $content = $this->input->post('content');
             $content_raw = strip_tags($content);
             $up = array(
                 'title' => $page['title'],
