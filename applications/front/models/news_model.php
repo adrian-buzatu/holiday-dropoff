@@ -26,8 +26,8 @@ class News_Model extends CI_Model {
         return $query->result_array();
     }
     
-    public function one($id){
-        $query = $this->db->get_where('news', array('id' => $id), 1);
+    public function one($slug){
+        $query = $this->db->get_where('news', array('slug' => $slug), 1);
         if($query->num_rows == 0){
             return false;
         }

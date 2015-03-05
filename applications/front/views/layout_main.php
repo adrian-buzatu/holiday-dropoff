@@ -7,6 +7,7 @@
         <link href="<?php echo asset_url()?>css/style.css" rel="stylesheet" type="text/css" />
         <?php if(controller() != 'our-camps'):?>
         <script type="text/javascript" src="<?php echo asset_url()?>js/jquery-1.11.2.min"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
         <?php endif;?>
         <?php if(controller() == "contact-us"):?>
             <link rel="stylesheet" href="<?php echo asset_url()?>css/style2.css" />
@@ -17,174 +18,32 @@
             <link href="<?php echo asset_url()?>css/SpryTabbedPanels2.css" rel="stylesheet" type="text/css" />
             <link href="<?php echo asset_url()?>css/SpryTabbedPanels3.css" rel="stylesheet" type="text/css" />
             <link href="<?php echo asset_url()?>css/SpryTabbedPanels4.css" rel="stylesheet" type="text/css" />
-            <script type="text/javascript">
-                function valid(event)
-                {   
-                    var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-                    //alert("h");
-                    if(document.frmPage.name.value == "")
-                    {
-                        alert("Please Enter Name");
-                        document.getElementById('name').focus();
-                        return false;	
-                    }
-
-
-                    if(document.frmPage.email.value.length < 1)
-                    {
-                        alert("You cannot leave the Email Field Empty");
-                        document.getElementById('email').focus();
-                        return false;	
-                    }
-                    if(!regex.test(document.frmPage['email'].value))
-                    {
-                        alert("Invalid email address format");
-                        document.getElementById('email').focus();	
-                        return false;
-                    }
-                    if(document.frmPage.subject.value == "")
-                    {
-                        alert("Please Enter Subject");
-                        document.getElementById('subject').focus();
-                        return false;	
-                    }
-                    if(document.frmPage.msg.value == "")
-                    {
-                        alert("Please Enter Message");
-                        document.getElementById('msg').focus();	
-                        return false;	
-                    }
-                    var $ = jQuery.noConflict();
-                    event.preventDefault();
-                    $.ajax({
-                        url: "<?php echo base_url()?>contact-us/process",
-                        method: 'POST',
-                        dataType: "json",
-                        data: "subject=" + $("#subject").val()+ "&email=" + $("#email").val() + "&msg=" + $("#msg").val() + "&name=" + $("#name").val(),
-                        success: function(){
-                            $("#frmPage").fadeOut('slow', function(){
-                                $("#contactSuccessMsg").height($("#frmPage").outer)
-                                $("#contactSuccessMsg").fadeIn('slow', function(){
-                                    setTimeout(function(){
-                                        $("#contactSuccessMsg").fadeOut('slow', function(){
-                                            $("#frmPage").fadeIn();
-                                        });
-                                    }, 3000);
-                                });
-                            });
-                            
-                        }
-                    });
-
-                } 
-            </script>
+            
+        <?php endif;?>
+        <?php if(controller() == "profile"):?>
+            <script src="<?php echo asset_url() ?>js/SpryTabbedPanels.js" type="text/javascript"></script>
+            <link href="<?php echo asset_url() ?>css/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
+            <link href="<?php echo asset_url() ?>css/SpryTabbedPanels2.css" rel="stylesheet" type="text/css" />
+            <link href="<?php echo asset_url() ?>css/SpryTabbedPanels3.css" rel="stylesheet" type="text/css" />
+            <link href="<?php echo asset_url() ?>css/jquery.ui.css" rel="stylesheet" type="text/css" />
+            <script src="<?php echo asset_url() ?>js/jquery.ui.js" type="text/javascript"></script>
+            <script src="<?php echo asset_url() ?>js/jquery.ui.datepicker.js" type="text/javascript"></script>
+            <script src="<?php echo asset_url() ?>js/profile.js" type="text/javascript"></script>
         <?php endif;?>
         <?php if(controller() == 'our-camps'):?>
             <script src="<?php echo asset_url()?>js/SpryTabbedPanels.js" type="text/javascript"></script>
             <script type="text/javascript" src="<?php echo asset_url()?>js/jquery_002.js"></script>
             <link href="<?php echo asset_url()?>css/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
             <link rel="stylesheet" href="<?php echo asset_url()?>css/text.css" type="text/css" media="screen">
-            <script type="text/javascript">
-                var $ = jQuery.noConflict();
-                $(function() {
-                    //caching
-                    //next and prev buttons
-                    if (typeof $ == 'undefined') $ = jQuery.noConflict();
-                    var $cn_next	= $('#cn_next');
-                    var $cn_prev	= $('#cn_prev');
-                    //wrapper of the left items
-                    var $cn_list 	= $('#cn_list');
-                    var $pages		= $cn_list.find('.cn_page');
-                    //how many pages
-                    var cnt_pages	= $pages.length;
-                    //the default page is the first one
-                    var page		= 1;
-                    //list of news (left items)
-                    var $items 		= $cn_list.find('.cn_item');
-                    //the current item being viewed (right side)
-                    var $cn_preview = $('#cn_preview');
-                    //index of the item being viewed. 
-                    //the default is the first one
-                    var current		= 1;
-
-                    /*
-                    for each item we store its index relative to all the document.
-                    we bind a click event that slides up or down the current item
-                    and slides up or down the clicked one. 
-                    Moving up or down will depend if the clicked item is after or
-                    before the current one
-                    */
-                    $items.each(function(i) {
-                        var $item = $(this);
-                        $item.data('idx', i + 1);
-
-                        $item.bind('click', function() {
-                            var $this = $(this);
-                            $cn_list.find('.selected').removeClass('selected');
-                            $this.addClass('selected');
-                            var idx = $(this).data('idx');
-                            var $current = $cn_preview.find('.cn_content:nth-child(' + current + ')');
-                            var $next = $cn_preview.find('.cn_content:nth-child(' + idx + ')');
-
-                            if (idx > current) {
-                                $current.stop().animate({'top': '-300px'}, 600, 'easeOutBack', function() {
-                                    $(this).css({'top': '310px'});
-                                });
-                                $next.css({'top': '310px'}).stop().animate({'top': '5px'}, 600, 'easeOutBack');
-                            }
-                            else if (idx < current) {
-                                $current.stop().animate({'top': '310px'}, 600, 'easeOutBack', function() {
-                                    $(this).css({'top': '310px'});
-                                });
-                                $next.css({'top': '-300px'}).stop().animate({'top': '5px'}, 600, 'easeOutBack');
-                            }
-                            current = idx;
-                        });
-                    });
-
-                    /*
-                     shows next page if exists:
-                     the next page fades in
-                     also checks if the button should get disabled
-                     */
-                    $cn_next.bind('click', function(e) {
-                        var $this = $(this);
-                        $cn_prev.removeClass('disabled');
-                        ++page;
-                        if (page == cnt_pages)
-                            $this.addClass('disabled');
-                        if (page > cnt_pages) {
-                            page = cnt_pages;
-                            return;
-                        }
-                        $pages.hide();
-                        $cn_list.find('.cn_page:nth-child(' + page + ')').fadeIn();
-                        e.preventDefault();
-                    });
-                    /*
-                     shows previous page if exists:
-                     the previous page fades in
-                     also checks if the button should get disabled
-                     */
-                    $cn_prev.bind('click', function(e) {
-                        var $this = $(this);
-                        $cn_next.removeClass('disabled');
-                        --page;
-                        if (page == 1)
-                            $this.addClass('disabled');
-                        if (page < 1) {
-                            page = 1;
-                            return;
-                        }
-                        $pages.hide();
-                        $cn_list.find('.cn_page:nth-child(' + page + ')').fadeIn();
-                        e.preventDefault();
-                    });
-
-                });
-            </script>
+            
         <?php endif;?>
         <script type="text/javascript" src="<?php echo asset_url()?>js/fadeslideshow.js"></script>
+        <?php if(controller() == 'booking'):?>
+            <script src="<?php echo asset_url() ?>js/SpryTabbedPanels.js" type="text/javascript"></script>
+            <script src="<?php echo asset_url() ?>js/booking.js" type="text/javascript"></script>
+            <link href="<?php echo asset_url() ?>css/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
+            <link href="<?php echo asset_url() ?>css/SpryTabbedPanels2.css" rel="stylesheet" type="text/css" />
+        <?php endif;?>
     </head>
     <body>
         <div id="wrapper">
@@ -195,9 +54,13 @@
                             <div class="logo"><a href="<?php echo base_url()?>"><img src="<?php echo asset_url()?>images/logo.png"></a></div>
                             <div class="loginbox">
                                 <div class="login">
-                                    <!-- <font class="welcomemsg">Welcome, <b></b></font>-->
-                                    <div class="myaccount"><a href="mydetails.php">My Account</a></div>
-                                    <div class="sigunup"><a href="<?php echo base_url()?>logout">Sign Out</a></div>
+                                    <?php if(isset($user_id)):?>
+                                        <div class="myaccount"><a href="<?php echo base_url()?>profile">My Account</a></div>
+                                        <div class="sigunup"><a href="<?php echo base_url()?>logout">Sign Out</a></div>
+                                    <?php else:?>
+                                        <div class="myaccount"><a href="<?php echo base_url()?>register">Sign Up Now</a></div>
+                                        <div class="sigunup"><a href="<?php echo base_url()?>login">Log In</a></div>
+                                    <?php endif?>
                                 </div>
                                 <div class="mailbox">
                                     <div class="envelop"><img src="<?php echo asset_url()?>images/envelop.png"></div>
@@ -286,11 +149,11 @@
                         <div class="rightpart">
                             <h2>Latest HDO News</h2>
                             <ul>
-                                <li><a href="news.php?newsID=2">Parents Feedback</a></li><li><a href="news.php?newsID=15">FAQs</a></li><li><a href="news.php?newsID=20">What to bring</a></li>      </ul>
+                                <li><a href="<?php echo base_url()?>news/parents-feedback">Parents Feedback</a></li><li><a href="<?php echo base_url()?>news/faq">FAQs</a></li><li><a href="<?php echo base_url()?>news/what-to-bring">What to bring</a></li>      </ul>
                         </div>
                         <div class="middilepart">
                             <ul>
-                                <li><a href="news.php?newsID=17">Discounts + Pricing</a></li><li><a href="news.php?newsID=27">Press releases</a></li><li><a href="news.php?newsID=26">New Sports</a></li>      </ul>
+                                <li><a href="<?php echo base_url()?>news/discounts-and-pricing">Discounts + Pricing</a></li><li><a href="<?php echo base_url()?>news/press-releases">Press releases</a></li><li><a href="<?php echo base_url()?>news/new-sports">New Sports</a></li>      </ul>
                         </div>
                         <div class="footer-text-part3">
                             <h2>Join Us on Facebook</h2>
@@ -301,7 +164,7 @@
                         <div class="c1"></div>
                     </div>
                     <div class="c1"></div>
-                    <div class="footertext"><a href="termcondition.php">Terms and conditions</a> | <a href="privacy.php">Privacy Policy</a> | <a href="contactus.php">Contact Us</a> | <a href="contactus.php">Site Map</a> | <a href="workforus.php">Work for Us</a></div>
+                    <div class="footertext"><a href="<?php echo base_url()?>terms-and-conditions">Terms and conditions</a> | <a href="<?php echo base_url()?>privacy-policy">Privacy Policy</a> | <a href="<?php echo base_url()?>contact-us">Contact Us</a> | <a href="<?php echo base_url()?>sitemap">Site Map</a> | <a href="<?php echo base_url()?>work-for-us">Work for Us</a></div>
                 </div>
             </div>
         </div>

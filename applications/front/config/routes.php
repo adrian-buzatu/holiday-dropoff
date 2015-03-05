@@ -40,7 +40,8 @@
 
 $route['default_controller'] = "homepage";
 $route['404_override'] = '';
-
+$route['news'] = 'news';
+$route['news/(:any)'] = 'news/view/$1';
 $route['(:any)'] = 'pages/view/$1';
 $route['our-camps'] = "ourcamps";
 $route['contact-us'] = "contactus";
@@ -49,6 +50,12 @@ $route['contact-us'] = "contactus";
 $route['login'] = "login";
 $route['login/forgot'] = "login/forgot";
 $route['register'] = "register";
-
+$route['logout'] = "logout";
+$route['profile'] = "profile";
+$route['profile/add_child'] = "profile/add_child";
+$route['profile/update_child'] = "profile/update_child";
+$route['profile/delete_child'] = "profile/delete_child";
+$route['profile/get_child'] = "profile/get_child";
+$route['booking'] = "booking";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

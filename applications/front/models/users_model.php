@@ -33,7 +33,7 @@ class Users_Model extends CI_Model {
             $array = $array[0];
             $_SESSION['username']['user_id'] = $array['id'];
             $_SESSION['username']['user'] = $array['username'];
-
+            $_SESSION['username']['email'] = $array['email'];
             $_SESSION['username']['role'] = $array['role'];
             return true;
         }
@@ -52,6 +52,11 @@ class Users_Model extends CI_Model {
     function update($up, $id){
         $this->db->update('users', $up, array('id' => $id));
         return true;
+    }
+    
+    function add($user){
+        $this->db->insert('users', $user);
+        return $this->db->insert_id();
     }
     
     function checkOldPass($pass, $id){
@@ -90,6 +95,18 @@ class Users_Model extends CI_Model {
         }
     }
     
+    function oneFromMail($email){
+        $sql = "SELECT * "
+                . "FROM `users` WHERE `email` = '". $email . "'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows() == 0){
+            return false;            
+        } else {
+            $row = $result->result_array();
+            return $row[0];
+        }
+    }
+    
     function getCountriesForForm(){
         $sql = "SELECT * FROM `countries`";
         $result = $this->db->query($sql);
@@ -103,6 +120,120 @@ class Users_Model extends CI_Model {
             }
             return $countriesForForm;
         }
+    }
+    
+    function checkMail($mail) {
+        $sql = "SELECT * FROM `users` WHERE `email`='" . addslashes($mail) . "'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows() == 0) {
+
+            return true;
+        } else
+            return false;
+    }
+    
+    function checkUsername($username) {
+        $sql = "SELECT * FROM `users` WHERE `username`='" . addslashes($username) . "'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows() == 0) {
+
+            return true;
+        } else
+            return false;
+    }
+    
+    function getUserChildren($id){
+        $sql = "
+            SELECT * FROM `children` c
+            JOIN `user_children` uc ON (uc.`child_id` = c.`id`)
+            WHERE uc.`user_id` = '". (int)$id ."'
+            ";
+        $result = $this->db->query($sql);
+        if ($result->num_rows() == 0) {
+            return false;
+        } else {
+            return $result->result_array();
+        }
+    }
+    
+    function removeChild($user_id, $child_id){
+        $this->db->delete('user_children', array('child_id' => $child_id, 'user_id' => $user_id));
+        return true;
+    }
+    
+    function updateChild($childData, $id){
+        $this->db->update('children', $childData, array('id' => $id));
+        return true;
+    }
+    
+    function addChild($childData, $id){
+        $this->db->insert('children', $childData);
+        $childId = $this->db->insert_id();
+        $childUser = array('child_id' => $childId, 'user_id' => $id);
+        $this->db->insert('user_children', $childUser);
+        return $childId;
+    }
+    
+    function getOneChild($id){
+        $sql = "
+            SELECT * FROM `children` c
+            WHERE c.`id` = '". (int)$id ."'
+            ";
+        $result = $this->db->query($sql);
+        if ($result->num_rows() == 0) {
+            return false;
+        } else {
+            $row = $result->result_array();
+            return $row[0];
+        }
+    }
+    
+    // Generates a strong password of N length containing at least one lower case letter,
+    // one uppercase letter, one digit, and one special character. The remaining characters
+    // in the password are chosen at random from those four sets.
+    //
+    // The available characters in each set are user friendly - there are no ambiguous
+    // characters such as i, l, 1, o, 0, etc. This, coupled with the $add_dashes option,
+    // makes it much easier for users to manually type or speak their passwords.
+    //
+    // Note: the $add_dashes option will increase the length of the password by
+    // floor(sqrt(N)) characters.
+
+    function generatePass($length = 9, $add_dashes = false, $available_sets = 'luds') {
+        $sets = array();
+        if (strpos($available_sets, 'l') !== false)
+            $sets[] = 'abcdefghjkmnpqrstuvwxyz';
+        if (strpos($available_sets, 'u') !== false)
+            $sets[] = 'ABCDEFGHJKMNPQRSTUVWXYZ';
+        if (strpos($available_sets, 'd') !== false)
+            $sets[] = '23456789';
+        if (strpos($available_sets, 's') !== false)
+            $sets[] = '!@#$%&*?';
+
+        $all = '';
+        $password = '';
+        foreach ($sets as $set) {
+            $password .= $set[array_rand(str_split($set))];
+            $all .= $set;
+        }
+
+        $all = str_split($all);
+        for ($i = 0; $i < $length - count($sets); $i++)
+            $password .= $all[array_rand($all)];
+
+        $password = str_shuffle($password);
+
+        if (!$add_dashes)
+            return $password;
+
+        $dash_len = floor(sqrt($length));
+        $dash_str = '';
+        while (strlen($password) > $dash_len) {
+            $dash_str .= substr($password, 0, $dash_len) . '-';
+            $password = substr($password, $dash_len);
+        }
+        $dash_str .= $password;
+        return $dash_str;
     }
 
 }

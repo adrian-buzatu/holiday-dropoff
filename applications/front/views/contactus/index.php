@@ -42,7 +42,7 @@
                                     <td class="cmassage" valign="top"><textarea name="msg" id="msg" cols="" rows=""></textarea></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4" align="right"><input type="image" name="image" src="<?php echo asset_url()?>images/cosendbt.png" id="submit" style="margin-right:8px;" value="Submit" onclick="return valid(event);" /></td>
+                                    <td colspan="4" align="right"><input type="image" name="image" src="<?php echo asset_url() ?>images/cosendbt.png" id="submit" style="margin-right:8px;" value="Submit" onclick="return valid(event);" /></td>
                                     <td><!--<a href="contact afttersent.html" onclick="return valid(name,email,subject,msg);"><img src="images/cosendbt.png" alt="" /></a>--></td>
                                 </tr>
                                 <tr>
@@ -104,7 +104,7 @@
                 <div class="TabbedPanelsContent3">
                     <div class="workforus-right-content-middile" style="height:842px; overflow:auto;">
                         <div class="workforus-image" style="margin:0px; padding:0px; margin-top:20px;">
-                            <img width="622" height="317" src="<?php echo asset_url();?>images/uploads/035452121113.jpg"/>                      </div>
+                            <img width="622" height="317" src="<?php echo asset_url(); ?>images/uploads/035452121113.jpg"/>                      </div>
                         <p>
                             &nbsp;</p>
                         <div>
@@ -135,7 +135,68 @@
     </div>
 </div>
 <script type="text/javascript">
+    function valid(event)
+    {
+        var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        //alert("h");
+        if (document.frmPage.name.value == "")
+        {
+            alert("Please Enter Name");
+            document.getElementById('name').focus();
+            return false;
+        }
+
+
+        if (document.frmPage.email.value.length < 1)
+        {
+            alert("You cannot leave the Email Field Empty");
+            document.getElementById('email').focus();
+            return false;
+        }
+        if (!regex.test(document.frmPage['email'].value))
+        {
+            alert("Invalid email address format");
+            document.getElementById('email').focus();
+            return false;
+        }
+        if (document.frmPage.subject.value == "")
+        {
+            alert("Please Enter Subject");
+            document.getElementById('subject').focus();
+            return false;
+        }
+        if (document.frmPage.msg.value == "")
+        {
+            alert("Please Enter Message");
+            document.getElementById('msg').focus();
+            return false;
+        }
+        var $ = jQuery.noConflict();
+        event.preventDefault();
+        $.ajax({
+            url: "<?php echo base_url() ?>contact-us/process",
+            method: 'POST',
+            dataType: "json",
+            data: "subject=" + $("#subject").val() + "&email=" + $("#email").val() + "&msg=" + $("#msg").val() + "&name=" + $("#name").val(),
+            success: function() {
+                $("#frmPage").fadeOut('slow', function() {
+                    $("#contactSuccessMsg").height($("#frmPage").outer)
+                    $("#contactSuccessMsg").fadeIn('slow', function() {
+                        setTimeout(function() {
+                            $("#contactSuccessMsg").fadeOut('slow', function() {
+                                $("#frmPage").fadeIn();
+                            });
+                        }, 3000);
+                    });
+                });
+
+            }
+        });
+
+    }
+</script>
+<script type="text/javascript">
 <!--
-var TabbedPanels4 = new Spry.Widget.TabbedPanels("TabbedPanels4",0);
+    var TabbedPanels4 = new Spry.Widget.TabbedPanels("TabbedPanels4", 0);
 //-->
 </script>
