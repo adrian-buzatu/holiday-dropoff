@@ -113,10 +113,10 @@
                                     <?php endforeach;?>  
                                 </div>
                                 <div class="gallery2"> 
-                                    <a href="photogallery.php">
+                                    <a href="javascript:void(1)" class="gallery_global_link">
                                         <?php foreach($galleryPics as $loop => $gallery):?>
-                                        <div class="gallery-img<?php echo $loop < 4 ? ($loop % 4) + 1 : 4;?>">
-                                            <img width="66" height="66" src="<?php echo asset_url() ?>images/banners/<?php echo $gallery['src']?>" />
+                                        <div class="gallery-img">
+                                            <img class="gallery_front_thumb" src="<?php echo asset_url() ?>images/banners/<?php echo $gallery['src']?>" />
                                         </div>
                                         <?php endforeach;?>
                                         <div class="gallery-img5">See the latest Holiday Drop Off<br>

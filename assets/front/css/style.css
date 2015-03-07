@@ -1820,6 +1820,8 @@ img {
     border-radius: 10px 10px 10px 10px;
     padding:10px;
     width: 200px;
+    position: fixed;
+    top: 358px;
 }
 .total {
     background:#FFFFFF;
@@ -1872,4 +1874,125 @@ img {
 	border-left:#666666 solid 1px;
 	padding-top:3px;
 	padding-bottom:5px;
+}
+.child_name_table{
+    background:#3e52a3; 
+    font-size: 18px; 
+    height: 32px; 
+    width:644px;  
+    border-bottom:solid 2px #FFFFFF; 
+    line-height: 27px; 
+    margin-left:-10px;
+}
+.book_for_child_name{
+    font-weight:bold; 
+    text-decoration:underline; 
+    color:#000000; 
+    font-size: 20px;
+}
+.booking_cell{
+    font-size:13px;  	
+    border:#333333 solid 1px;
+    -moz-border-radius: 10px; /* Firefox */
+    -webkit-border-radius: 10px; /* Safari and Chrome */
+    border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+    background:#3e52a3; 
+    margin-top:10px;
+}
+.camp_cell{
+    font-size:16px; 
+    padding-bottom:5px;
+}
+
+@media screen and (orientation: portrait) {
+  .gallery_front_thumb{
+        max-width: 66px;
+        height: auto;
+    }
+    .gallery-img {
+        float:left;
+        max-width: 66px;
+        height: auto;
+        margin:23px 0 0 15px;
+        border:#9b9556 solid 1px;
+        background:#FFFFFF;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .gallery_front_thumb{
+        max-height: 66px;
+        width: auto;
+    }
+    .gallery-img {
+        float:left;
+        max-height: 66px;
+        width: auto;
+        margin:23px 0 0 15px;
+        border:#9b9556 solid 1px;
+        background:#FFFFFF;
+    }
+    
+}
+.gallery_global_link{
+    display: block;
+}
+.check_all_wrapper{
+    background:#FFFFFF;
+    border-bottom:#666666 solid 1px; 
+    border-right:#666666 solid 1px; 
+    padding-left:10px; 
+    border-left:#666666 solid 1px; 
+    padding-top:3px; 
+    padding-bottom:5px;
+}
+.confirm_booking_submit{
+     height:40px; 
+     cursor:pointer;
+     color: rgb(0, 0, 0); 
+     text-decoration: none; 
+     border: 0px none; 
+     background: none repeat scroll 0% 0% transparent; 
+     font-weight: bold; 
+     font-size: 16px;
+}
+.normal_extended_box{
+     font-size:14px;  	
+     border:#333333 solid 1px;
+     -moz-border-radius: 10px;
+     /* Firefox */-webkit-border-radius: 10px; 
+     /* Safari and Chrome */	
+     border-radius: 10px; 
+     /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */	
+     background:#f7f5be; 
+     padding-left:15px; 
+     height:24px; 
+     line-height:24px; 
+     margin-bottom:10px;
+}
+.add_holder{
+     color:#FFFFFF; 
+     cursor:pointer;
+}
+.booking_calendar_headers{
+    color:#FFFFFF;
+    font-size: 12px;
+    width: 119px;
+    height: 33px;
+}
+
+.pay_now{
+    background: none repeat scroll 0% 0% transparent; 
+    border: 0px none; 
+    color: rgb(0, 0, 0); 
+    cursor: pointer; 
+    font-weight: bold; 
+    height: 39px; 
+    font-size: 16px;
+    
+}
+.child_style{
+    font-size:16px;  
+    border-top: #999999 dotted 1px;
+    padding:10px 0 15px 0;
 }

@@ -17,6 +17,27 @@ class Booking_Model extends CI_Model {
         parent::__construct();
     }
     
-    
-    
+    function addOrder($order){
+        $this->db->insert('order', $order);
+        return $this->db->insert_id();
+    }
+    function addOrderDetails($order_details){
+        $this->db->insert('order_details', $order_details);
+        return $this->db->insert_id();
+    }
+    function updateOrderTotal($orderId, $total){
+        $this->db->update('order', array('total' => $total), array('id' => $orderId));
+        return true;
+    }
+    function getChildrenFromOrder($childrenIds){
+        $sql = "SELECT * "
+                . "FROM `children` c "
+                . "WHERE c.`id` IN (". $childrenIds . ")";
+        $result = $this->db->query($sql);
+        if ($result->num_rows() == 0) {
+            return false;
+        } else {
+            return $result->result_array();
+        }
+    }
 }

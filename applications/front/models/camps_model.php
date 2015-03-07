@@ -17,7 +17,7 @@ class Camps_Model  extends CI_Model {
         parent::__construct();
     }
     
-    function get($perPage = 25, $page = 1){
+    function get(){
         $result = $this->db->get('camps');
         if($result->num_rows() == 0){
             return false;
@@ -25,26 +25,8 @@ class Camps_Model  extends CI_Model {
         return $result->result_array();
     }
     
-    function add($camp){
-        $this->db->insert('camps', $camp);
-        return $this->db->insert_id();
-    }
     
-    function addCampPrices($pricesArray, $campId){
-        $this->db->delete('camp_prices', array('camp_id' => $campId));
-        foreach($pricesArray as $weekDay => $price){
-            $this->db->insert('camp_prices', 
-                array(
-                    'camp_id' => $campId, 
-                    'camp_price_type' => $weekDay,
-                    'price' => $price
-                )
-            );
-        }
-        return true;
-    }
-    
-    function getOne($id){
+    function one($id){
         $result = $this->db->get_where('camps', array('id' => $id), 1);
         if($result->num_rows() == 0){
             return false;
@@ -55,15 +37,6 @@ class Camps_Model  extends CI_Model {
         return $row;
     }
     
-    function update($campGroup, $where){
-        $this->db->update('camps', $campGroup, $where);
-        return true;
-    }
-    
-    function delete($id){
-        $this->db->delete('camps', array('id' => $id));
-        return true;
-    }
     
     function getCampaignPrices($campId){
         $result = $this->
@@ -75,9 +48,14 @@ class Camps_Model  extends CI_Model {
         }
         $rows = $result->result_array();
         $output = array();
+        $totalPriceRaw = 0;
         foreach($rows as $row){
-            $output[$row['camp_price_type']] = $row['price'];
+            $output[trim($row['camp_price_type'])] = $row['price'];
+            if($row['camp_price_type'] != 8){
+                $totalPriceRaw += $row['price'];
+            }
         }
+        $output[9] = $totalPriceRaw - $output[8];
         return $output;
     }
     
