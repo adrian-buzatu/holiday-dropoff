@@ -125,7 +125,7 @@
                                     </td>
                                 </tr>
                             <tr>
-                                <td colspan="3" class="hide">
+                                <td colspan="3">
                                     <?php echo $add_friend?>
                                 </td>
 
@@ -140,7 +140,7 @@
         </div>
         <div class="bottomblock">
             <input type="hidden" name="txttotal_price" id="txttotal_price" />
-            <div class="total" id="total_price1">Total Charge: &pound;0.00</div>
+            <div class="total" id="total_price1">Total Charge: &pound;<span id="total_num_bottom">0.00</span></div>
             <div class="c1"></div>
             <div align="right" style="color:#fff;">Discounts will be show on the next page</div>
             <div class="oncart11" style="display:none;">Update Cart</div>

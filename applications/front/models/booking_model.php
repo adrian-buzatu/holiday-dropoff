@@ -40,4 +40,9 @@ class Booking_Model extends CI_Model {
             return $result->result_array();
         }
     }
+    
+    function updateOrder($order_id, $order_array){
+        $this->db->update('order', $order_array, array('id' => $order_id));
+        return true;
+    }
 }

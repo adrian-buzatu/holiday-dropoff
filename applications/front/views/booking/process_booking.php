@@ -8,10 +8,12 @@
     <form method="post" action="https://www.sandbox.paypal.com/webscr">
         <input type="hidden" name="camp_id" value="<?php echo $camp_id?>" />
         <input type="hidden" name="cmd" value="_xclick">
-	<input type="hidden" name="business" value="sandbox.mail@test.com">
+	<input type="hidden" name="business" value="Paypal-facilitator@holidaydropoff.com">
 	<input type="hidden" name="currency_code" value="GBP">
 	<input type="hidden" name="item_name" value="<?php echo $selected_camp['name']?>">
+        <input type="hidden" name="notify_url" value="<?php echo base_url()?>booking/process_paypal">
         <input type="hidden" name="return" value="<?php echo base_url()?>booking/success">
+        <input type="hidden" name="cancel" value="<?php echo base_url()?>booking/cancel">
         <input type="hidden" name="amount" value="<?php echo $total?>">
         <div class="bookonline-middle-content">
             <div id="TabbedPanels2" class="TabbedPane2s">

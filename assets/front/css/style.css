@@ -1996,3 +1996,32 @@ img {
     border-top: #999999 dotted 1px;
     padding:10px 0 15px 0;
 }
+.add_friend_btn_holder{
+    font-weight:normal; 
+    padding:13px 0 13px 20px;
+}
+#add_friend_table{
+    background: none repeat scroll 0% 0% rgb(244, 235, 34); 
+    border-bottom: 2px solid rgb(102, 102, 102); 
+}
+.add_friend_text{
+    font-size:18px; 
+    height:32px; 
+    line-height:27px; 
+}
+.add_friend_text a{
+    color: #333;
+}
+#addfrndmsg{
+    color:#000; 
+    font-size:12px;
+}
+.border_friend_table{
+    border-bottom: #999999 dotted 2px; 
+    padding:0px 0 15px 0;
+}
+.birthdate_friend_table_container{
+     height:32px;   
+     padding:5px; 
+     padding-right:13px;
+}

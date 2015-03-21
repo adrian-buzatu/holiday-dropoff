@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -39,10 +38,19 @@
         <?php endif;?>
         <script type="text/javascript" src="<?php echo asset_url()?>js/fadeslideshow.js"></script>
         <?php if(controller() == 'booking'):?>
+            <link href="<?php echo asset_url() ?>css/jquery.ui.css" rel="stylesheet" type="text/css" />
+            <script src="<?php echo asset_url() ?>js/jquery.ui.js" type="text/javascript"></script>
+            <script src="<?php echo asset_url() ?>js/jquery.ui.datepicker.js" type="text/javascript"></script>
             <script src="<?php echo asset_url() ?>js/SpryTabbedPanels.js" type="text/javascript"></script>
             <script src="<?php echo asset_url() ?>js/booking.js" type="text/javascript"></script>
             <link href="<?php echo asset_url() ?>css/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
             <link href="<?php echo asset_url() ?>css/SpryTabbedPanels2.css" rel="stylesheet" type="text/css" />
+        <?php endif;?>
+        <?php if(controller() == 'gallery'):?>
+            <script src="<?php echo asset_url() ?>js/jquery.lightSlider.js" type="text/javascript"></script>
+            <script src="<?php echo asset_url() ?>js/gallery.js" type="text/javascript"></script>
+            <link href="<?php echo asset_url()?>css/lightSlider.css" rel="stylesheet" type="text/css" />
+            <link href="<?php echo asset_url()?>css/SpryTabbedPanels5.css" rel="stylesheet" type="text/css" />
         <?php endif;?>
     </head>
     <body>
@@ -78,7 +86,7 @@
                                     <li><a href="<?php echo base_url()?>our-camps" class="our-camps">Our Camps</a></li>
                                     <li><a href="<?php echo base_url()?>useful-stuff" class="useful-stuff">Useful Stuff</a></li>
                                     <li><a href="<?php echo base_url()?>prices" class="prices">Prices</a></li>
-                                    <li><a href="book-online.php" class="bookonline">Book Online</a></li>
+                                    <li><a href="<?php echo base_url()?>booking" class="bookonline">Book Online</a></li>
                                     <li><a href="<?php echo base_url()?>contact-us" class="contact-us">Contact Us</a></li>
                                 </ul>
                             </div>

@@ -13,7 +13,7 @@ class Gallery_Model extends CI_Model {
         return $this;
     }
     
-    public function get($type = 'Image'){
+    public function get($type = 'Image', $galleryCategoryId = 0){
         if ($this->_limit == false){
             $limit = "";
         } elseif(is_numeric($this->_limit)) {
@@ -29,6 +29,9 @@ class Gallery_Model extends CI_Model {
                 . "FROM `gallery` g "
                 . "JOIN `gallery_categories` gc ON(gc.`id` = g.`gallery_category_id`) "
                 . "WHERE g.`type` = '" .$type. "'";
+        if($galleryCategoryId > 0){
+            $sql .= " AND gc.`id` = ". $galleryCategoryId;
+        }
         $result = $this->db->query($sql);
         if($result->num_rows() == 0){
             return false;

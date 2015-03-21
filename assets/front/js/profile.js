@@ -40,7 +40,7 @@ function addChild()
 function showbooking(id)
 {
     //alert("hello");
-    window.location = "mydetails.php?CampID=" + id;
+    window.location = "booking/" + id;
 }
 var $ = jQuery.noConflict();
 $(document).ready(function(){

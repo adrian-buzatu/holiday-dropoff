@@ -6,6 +6,6 @@
         </span>
     </div>
     <div>
-        Payment finished succesfully.
+        Example: Thank you for your payment. Your transaction has been completed and a receipt for your purchase has been emailed to you. You may log in to your account at <a href="https://www.sandbox.paypal.com/uk/">www.sandbox.paypal.com/uk</a> to view details of this transaction.
     </div>
 </div>

@@ -33,6 +33,18 @@ function parent_url() {
     return $CI->config->slash_item('parent_url');
 }
 
+function get_paypal_credentials($sandbox = false){
+    if($sandbox !== false){
+        $sandbox = "sandbox_";
+    }
+    $CI = &get_instance();
+    return array(
+        'client_id' => $CI->config->item($sandbox. 'client_id'),
+        'secret' => $CI->config->item($sandbox. 'secret'),
+        'identity_token' => $CI->config->item($sandbox. 'identity_token')
+    );
+}
+
 function pr($object, $die = false) {
     echo "<pre>";
     var_dump($object);
