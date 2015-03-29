@@ -15,7 +15,7 @@
                                     <td><div class="photogallerysearch_text">Choose HDO camp</div></td>
                                     <td> 
                                         <div class="demo">
-                                            <select name="cate"  class="photogallery_category_browser">
+                                            <select name="cate"  class="photogallery_category_browser" rel="<?php echo $tab?>">
                                                 <option value="0">Please Select Category</option>						  
 
                                                 <?php foreach ($categories as $category): ?>
@@ -32,70 +32,47 @@
                     <br style="clear:both;">  
                     <div id="container">
                         <!------------------------------------- THE IMG CONTENT ------------------------------------------------->
-                        <div id="images">
+                        <div id="images" class="<?php echo ($tab != 'images') ? 'hide' : ''?>">
                             <h3> Images </h3>
                             <div id="images_list">
-                                <ul>
-                                    <?php foreach ($images as $image):?>
-                                        <li data-thumb="<?php echo asset_url()?>images/banners/<?php echo $image['src']?>" 
-                                            data-src="<?php echo asset_url()?>images/banners/<?php echo $image['src']?>">
-                                            <img src="<?php echo asset_url()?>images/banners/<?php echo $image['src']?>" />
-                                        </li>
-                                    <?php endforeach;?>
-                                </ul>
+                                <?php if(is_array($images)):?>
+                                    <ul>
+                                        <?php foreach ($images as $image):?>
+                                            <li data-thumb="<?php echo asset_url()?>images/banners/<?php echo $image['src']?>" 
+                                                data-src="<?php echo asset_url()?>images/banners/<?php echo $image['src']?>">
+                                                <img src="<?php echo asset_url()?>images/banners/<?php echo $image['src']?>" />
+                                            </li>
+                                        <?php endforeach;?>
+                                    </ul>
+                                <?php else:?>
+                                No images found!
+                                <?php endif;?>
                             </div>
                         </div>
-                        <div id="videos" class="hide">
+                        <div id="videos" class="<?php echo ($tab != 'videos') ? 'hide' : ''?>">
                             <h3>Videos</h3>
-                            <ul>
-                                <li>
-                                    
-                                </li>
-                            </ul>
+                            <div id="video_list">
+                                <?php if(is_array($videos)):?>
+                                    <ul>
+                                        <?php foreach ($videos as $video):?>
+                                            <li>
+                                                <a href="<?php echo $video['src']?>"><?php echo $video['title']?></a>
+                                            </li>
+                                        <?php endforeach;?>
+                                    </ul>
+                                <?php else:?>
+                                    No videos found!
+                                <?php endif;?>
+                            </div>
                         </div>
                         <div class="c1"></div>
                     </div>
 
                 </div>
-                <div class="TabbedPanelsContent14" class="hide">
-                    <div id="container" style="height:auto;">
-                        <!------------------------------------- THE CONTENT ------------------------------------------------->
-
-                        <br style="clear:both;">
-                        <div>
-                            <ul class="videoshow">
-
-<!--                                <li><iframe width="170" src="http://www.youtube.com/embed/AfsiNfWApzk"></iframe></li>
-
-                                <li><iframe width="170" src="http://www.youtube.com/embed/imezQ1CQuM0"></iframe></li>
-
-                                <li><iframe width="170" src="http://www.youtube.com/embed/imezQ1CQuM0"></iframe></li>
-
-                                <li><iframe width="170" src="http://www.youtube.com/embed/imezQ1CQuM0"></iframe></li>
-
-                                <li><iframe width="170" src="http://www.youtube.com/embed/imezQ1CQuM0"></iframe></li>
-
-                                <li><iframe width="170" src="http://www.youtube.com/embed/imezQ1CQuM0"></iframe></li>
-
-                                <li><iframe width="170" src="http://www.youtube.com/embed/imezQ1CQuM0"></iframe></li>
-
-                                <li><iframe width="170" src="http://www.youtube.com/embed/imezQ1CQuM0"></iframe></li>
-
-                                <li><iframe width="170" src="http://www.youtube.com/embed/imezQ1CQuM0"></iframe></li>-->
-                            </ul>
-                        </div>
-
-                        <!------------------------------------- END OF THE CONTENT ------------------------------------------------->
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
+                
             </div>
             <div class="c1"></div>
         </div>
     </div>
-    <script type="text/javascript">
-    <!--
-        //var TabbedPanels6 = new Spry.Widget.TabbedPanels("TabbedPanels6", 0);
-    //-->
-    </script>
+</div>
+ 

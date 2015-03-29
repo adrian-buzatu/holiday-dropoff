@@ -15,7 +15,7 @@
                         <tr style=" ">
                             <td colspan="2">
                                 <div>
-                                    <textarea name="content" id="content" rows="5" cols="50">
+                                    <textarea name="content" id="content" style="width: 725px;">
                                         <?php echo $page['content'];?>
                                     </textarea>
                                 </div>

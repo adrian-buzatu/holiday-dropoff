@@ -19,11 +19,12 @@ class Gallery  extends CI_Controller {
         $this->load->model('Gallery_Categories_Model', 'Gallery_Categories');
     }
     
-    public function index($category = 0){
+    public function index($category = 0, $tab = 'images'){
         $categories = $this->data['categories'] = $this->Gallery_Categories->get();
         if($category == 0){
             $category = $categories[0]['id'];
         }
+        $this->data['tab'] = $tab;
         $this->data['images'] = $this->Gallery->get('Image', $category);
         $this->data['videos'] = $this->Gallery->get('Video', $category);
         $this->layout->view('gallery/index', $this->data);

@@ -103,30 +103,7 @@
                 </div>
                 <div class="TabbedPanelsContent3">
                     <div class="workforus-right-content-middile" style="height:842px; overflow:auto;">
-                        <div class="workforus-image" style="margin:0px; padding:0px; margin-top:20px;">
-                            <img width="622" height="317" src="<?php echo asset_url(); ?>images/uploads/035452121113.jpg"/>                      </div>
-                        <p>
-                            &nbsp;</p>
-                        <div>
-                            <span style="font-size:12px;">If you can . . . .<br />
-                                <br />
-                                Make children laugh<br />
-                                <br />
-                                Keep children safe<br />
-                                <br />
-                                Have fun yourself<br />
-                                <br />
-                                Work well as part of a team<br />
-                                <br />
-                                Create amazing memories<br />
-                                <br />
-                                Then join our team!<br />
-                                <br />
-                                Fancy spending your Easter or summer making friends, making memories and making money? We are passionate about giving every child such an amazing experience they can&#39;t wait to come back, and we want you to be a part of that.<br />
-                                <br />
-                                Have a look round the site to find out more about what we do and what role might be perfect for you this Easter or summer.<br />
-                                <br />
-                                Any questions, just let us know!</span></div>
+                        <?php echo $workForUs['content'];?>
                     </div>
                 </div>
             </div>

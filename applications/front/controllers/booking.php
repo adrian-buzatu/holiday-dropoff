@@ -52,7 +52,8 @@ class Booking extends CI_Controller {
     }
 
     function process_booking() {
-        $daysBooked = $_POST['days_booked'];
+        $friend = false;
+        $daysBooked = isset($_POST['days_booked']) ? $_POST['days_booked'] : array();
         $daysExtendedBooked = isset($_POST['days_extended_booked']) ? $_POST['days_extended_booked'] : array();
         //$order_
         $order = array(
@@ -66,17 +67,18 @@ class Booking extends CI_Controller {
         $_SESSION['order_id'] = $orderId;
         $total = 0;
         $discount = array(
-            '2' => '0.25',
+            '2' => '0.75',
             '3' => '0.5'
         );
         $finalChildren = array();
+        $dayCount = 0;
         foreach ($daysBooked as $day => $children) {
             $count = 0;
             foreach ($children as $child => $day) {
                 $finalChildren[] = $child;
                 $count ++;
-                $currentPrice = (count($children) > 1 && count($children < 4)) ?
-                        $prices[$day] - ($discount[count($children)] * $prices[$day]) :
+                $currentPrice = ($count > 1 && $count < 4) ?
+                        ($discount[$count] * $prices[$day]) :
                         $prices[$day];
                 $orderDetails = array(
                     'order_id' => $orderId,
@@ -85,19 +87,20 @@ class Booking extends CI_Controller {
                     'price' => $currentPrice
                 );
                 $total += $currentPrice;
-                if ($count == 7) {
+                if ($dayCount == 7) {
                     $total -= $prices[9];
                 }
-                $this->Booking->addOrderDetails($orderDetails);
+                //$this->Booking->addOrderDetails($orderDetails);
             }
+            $dayCount++;
         }
-
         foreach ($daysExtendedBooked as $day => $children) {
             $count = 0;
+            $friend = FALSE;
             foreach ($children as $child) {
                 $count ++;
-                $currentPrice = (count($children) > 1 && count($children < 4)) ?
-                        $prices[$day] - ($discount[count($children)] * $prices[$day]) :
+                $currentPrice = $currentPrice = ($count > 1 && $count < 4) ?
+                        ($discount[$count] * $prices[$day]) :
                         $prices[$day];
                 $currentPrice += 5;
                 $orderDetails = array(
@@ -123,48 +126,82 @@ class Booking extends CI_Controller {
             );
             if(!empty($_POST['friend_days_booked']) || !empty($_POST['friend_days_extended_booked'])){
                 $count = 0;
-                foreach($_POST['friend_days_booked'] as $did  => $day){
-                    $count ++;
-                    $currentPrice = $prices[$day];
-                    $orderDetails = array(
-                        'order_id' => $orderId,
-                        'child_id' => -1,
-                        'day' => $day,
-                        'friend' => serialize($friend),
-                        'price' => $currentPrice
-                    );
-                    $total += $currentPrice;
-                    if ($count == 7) {
-                        $total -= $prices[9];
+                if(isset($_POST['friend_days_booked'])){
+                    foreach($_POST['friend_days_booked'] as $did  => $day){
+                        $count ++;
+                        $currentPrice = $prices[$day];
+                        $orderDetails = array(
+                            'order_id' => $orderId,
+                            'child_id' => -1,
+                            'day' => $day,
+                            'friend' => serialize($friend),
+                            'price' => $currentPrice
+                        );
+                        $total += $currentPrice;
+                        if ($count == 7) {
+                            $total -= $prices[9];
+                        }
+                        $this->Booking->addOrderDetails($orderDetails);
+                        $friend = true;
                     }
-                    $this->Booking->addOrderDetails($orderDetails);
                 }
                 $count = 0;
-                foreach($_POST['friend_days_extended_booked'] as $did  => $day){
-                    $count ++;
-                    $currentPrice = $prices[$day];
-                    $currentPrice += 5;
-                    $orderDetails = array(
-                        'order_id' => $orderId,
-                        'child_id' => -1,
-                        'day' => $day,
-                        'friend' => serialize($friend),
-                        'price' => $currentPrice
-                    );
-                    $total += $currentPrice;
-                    if ($count == 7) {
-                        $total -= $prices[9];
+                if(isset($_POST['friend_days_extended_booked'])){
+                    foreach ($_POST['friend_days_extended_booked'] as $did => $day) {
+                        $count ++;
+                        $currentPrice = $prices[$day];
+                        $currentPrice += 5;
+                        $orderDetails = array(
+                            'order_id' => $orderId,
+                            'child_id' => -1,
+                            'day' => $day,
+                            'friend' => serialize($friend),
+                            'price' => $currentPrice
+                        );
+                        $total += $currentPrice;
+                        if ($count == 7) {
+                            $total -= $prices[9];
+                        }
+                        $this->Booking->addOrderDetails($orderDetails);
                     }
-                    $this->Booking->addOrderDetails($orderDetails);
                 }
+                
+            }
+        }
+        $couponPost = $this->input->post('txtcoupon_code', true);
+        $coupon = $this->Booking->checkCoupon($couponPost);
+        $this->data['discount'] = 0;
+        
+        if($coupon !== false){
+            $discountAmount = $coupon['amount'];
+            $discountType = $coupon['type']; 
+            if($discountType == 1){
+                $total -= $discountAmount;
+                $this->data['discount'] = $discountAmount;
+            } else {
+                $this->data['discount'] = ($discountAmount / 100) * $total;
+                $total -= ($discountAmount / 100) * $total;
+                
             }
         }
         $this->Booking->updateOrderTotal($orderId, $total);
         $this->data['total'] = $total;
         $this->data['camp_id'] = (int) $_POST['camp_id'];
-        $this->data['discount'] = 0;
+        
         $this->data['selected_camp'] = $this->Camps->one((int) $_POST['camp_id']);
-        $this->data['children'] = $this->Booking->getChildrenFromOrder(implode(",", $finalChildren));
+        
+        if(!empty($finalChildren)){
+            $this->data['children'] = $this->Booking->getChildrenFromOrder(implode(",", $finalChildren));
+        } else {
+            $this->data['children'] = array();
+        }
+        if($friend == true){
+            $this->data['friend'] = array(
+                'first_name' => $this->input->post('first_name', true),
+                'last_name' => $this->input->post('last_name', true),
+            );
+        }
+        
         $this->layout->view('booking/process_booking', $this->data);
     }
 

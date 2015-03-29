@@ -69,7 +69,10 @@ class Camps extends CI_Controller {
         $this->data['id'] = $id;
         $this->form_validation->set_error_delimiters('<div class="form_error">', '</div>');
         $this->form_validation->set_error_delimiters('<div class="form_error">', '</div>');
-        $this->form_validation->set_rules('name', 'Name', 'required|is_unique[camps.name]');
+        
+        if(!empty($_POST) && $camp['name'] != $_POST['name']){
+            $this->form_validation->set_rules('name', 'Name', 'required|is_unique[camps.name]');
+        }
         $this->form_validation->set_rules('price[]', 'Price', 'required|numeric');
         $this->form_validation->set_message("is_unique", "%s is already Taken");
         $this->form_validation->set_message("required", "%s required");

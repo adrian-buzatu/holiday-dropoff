@@ -35,6 +35,11 @@
                                                 <td class="child_style"><?php echo $child['first_name']?> <?php echo $child['last_name']?> </td>
                                             </tr>
                                         <?php endforeach;?>
+                                        <?php if(isset($friend)):?>
+                                            <tr>
+                                                <td class="child_style"><?php echo $friend['first_name'] ?> <?php echo $friend['last_name'] ?> </td>
+                                            </tr>
+                                        <?php endif;?>
                                     </table>
                                 </td>
                             </tr>
@@ -77,7 +82,7 @@
             <div style="clear:both;"></div>
             <div class="total">Discount: &pound;<?php echo $discount?></div>
             <div style="clear:both;"></div>
-            <div class="total">Total Amount: &pound;<?php echo $total - $discount?></div>
+            <div class="total">Total Without Discount: &pound;<?php echo $total + $discount?></div>
             <div class="c1"></div>
             <div class="">
                 <input type="hidden" name="discount_amount" value="0.00" />

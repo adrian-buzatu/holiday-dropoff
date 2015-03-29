@@ -21,6 +21,7 @@ class Main {
                 
                 'addBaseUrl' => base_url() . controller() . '/create/',
                 'editBaseUrl' => base_url() . controller() . '/edit/',
+                'viewBaseUrl' => base_url() . controller() . '/view/',
                 'deleteBaseUrl' => base_url() . controller() . '/delete/',
                 'pageBaseUrl' => base_url() . controller() . '/page/',
                 'editParam' => 'id',

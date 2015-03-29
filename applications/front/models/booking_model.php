@@ -45,4 +45,19 @@ class Booking_Model extends CI_Model {
         $this->db->update('order', $order_array, array('id' => $order_id));
         return true;
     }
+    
+    function checkCoupon($code){
+        $sql = "SELECT * "
+                . "FROM `coupons` c "
+                . "WHERE c.`code` = '". $code . "'"
+                . "AND c.`start_date` <= ". time()
+                . " AND c.`end_date` >= ". time();
+        $result = $this->db->query($sql);
+        if ($result->num_rows() == 0) {
+            return false;
+        } else {
+            $res = $result->result_array();
+            return $res[0];
+        }
+    }
 }

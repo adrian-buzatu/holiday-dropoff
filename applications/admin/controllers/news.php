@@ -23,8 +23,8 @@ class News extends CI_Controller {
         $configTable = $this->data['configTable'];
         $configTableCustom = array(
             'title' => 'News',
-            'headers' => array('Content'),
-            'displayedFields' => array('content_raw'),
+            'headers' => array('Title', 'Content'),
+            'displayedFields' => array('title', 'content_raw'),
             
             'data' => $this->News->get(),
             'links' => array(
@@ -65,7 +65,13 @@ class News extends CI_Controller {
                         'title' => $this->input->post('title', true),
                         'slug' => url_title($this->input->post('title'), '-'),
                         'content' => $this->input->post('content'),
-                        'content_raw' => trim(strip_tags($this->input->post('content', true))),
+                        'content_raw' => trim(
+                                strip_tags(
+                                    preg_replace(
+                                        "/&#?[a-z0-9]+;/i","", $this->input->post('content', true)
+                                    )
+                                )
+                        ),
                         'image' => $name
                     );
                     $this->data['success'] = true;
@@ -105,7 +111,13 @@ class News extends CI_Controller {
                 'title' => $this->input->post('title', true),
                 'slug' => url_title($this->input->post('title'), '-'),     
                 'content' => $this->input->post('content'),
-                'content_raw' => trim(strip_tags($this->input->post('content', true))),
+                'content_raw' => trim(
+                        strip_tags(
+                            preg_replace(
+                                "/&#?[a-z0-9]+;/i","", $this->input->post('content', true)
+                            )
+                        )
+                ),
             );
             if (!empty($_FILES['image']['name'])){
                 $file = $_FILES['image'];

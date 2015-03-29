@@ -11,7 +11,7 @@ function base_path() {
     
 function controller() {
     $CI = &get_instance();
-    return $CI->uri->segment(1);
+    return $CI->uri->segment(1) == '' ? 'home' : $CI->uri->segment(1);
 }
 
 function section() {

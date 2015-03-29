@@ -62,7 +62,30 @@ a {
     padding:0px;
     background:url(../images/bg-img-h.png) center top no-repeat;
 }
-#wrap {background:url(../images/blue_bg.png) top left repeat-x;}
+#wrap {
+    overflow: hidden;
+}
+#wrap.page-home, #wrap.page-gallery, #wrap.page-register{
+    background:url(../images/blue_bg.png) top left repeat-x;
+}
+#wrap.page-about-us, #wrap.page-news{
+    background:url(../images/green_bg.png) top left repeat-x;
+}
+#wrap.page-our-camps{
+    background:url(../images/red_bg.png) top left repeat-x;
+}
+#wrap.page-useful-stuff{
+    background:url(../images/yellow_bg.png) top left repeat-x;
+}
+#wrap.page-prices{
+    background:url(../images/parple_bg.png) top left repeat-x;
+}
+#wrap.page-booking, #wrap.page-login{
+    background:url(../images/orenge_bg.png) top left repeat-x;
+}
+#wrap.page-contact-us{
+    background:url(../images/ordark.png) top left repeat-x;
+}
 #green {background:url(../images/green_bg.png) top left repeat-x;}
 #red {background:url(../images/red_bg.png) top left repeat-x;}
 #yellow {background:url(../images/yellow_bg.png) top left repeat-x;}
@@ -333,43 +356,43 @@ a {
     background:url(../images/contact-us.png) no-repeat;
     color:#000
 }
-.menubottomco1 {
+.menubottomco-home, .menubottomco1-gallery, .menubottomco1-register {
     float:left;
     width:1030px;
     height:14px;
     background:#70d0f4;
 }
-.menubottomco2 {
+.menubottomco-about-us, .menubottomco-news {
     float:left;
     width:1030px;
     height:14px;
     background:#57b947;
 }
-.menubottomco3 {
+.menubottomco-our-camps {
     float:left;
     width:1030px;
     height:14px;
     background:#ed2024;
 }
-.menubottomco4 {
+.menubottomco-useful-stuff {
     float:left;
     width:1030px;
     height:14px;
     background:#e2c729;
 }
-.menubottomco5 {
+.menubottomco-prices {
     float:left;
     width:1030px;
     height:14px;
     background:#8350a0;
 }
-.menubottomco6 {
+.menubottomco-booking, .menubottomco-login {
     float:left;
     width:1030px;
     height:14px;
     background:#e94925;
 }
-.menubottomco7 {
+.menubottomco-contact-us {
     float:left;
     width:1030px;
     height:14px;

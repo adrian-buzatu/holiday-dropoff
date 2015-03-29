@@ -16,9 +16,11 @@ class Contactus extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->data = $this->main->data;
+        $this->load->model('Pages_Model', 'Pages');
     }
     
     public function index(){
+        $this->data['workForUs'] = $this->Pages->getBySlug('work-for-us');
         $this->layout->view('contactus/index.php', $this->data);
     }
     

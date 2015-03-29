@@ -45,82 +45,90 @@
                                         <tr>
                                             <td style="line-height: 14px;"  colspan="4">&nbsp;</td>
                                         </tr>
-                                        <tr>
-                                            <td colspan="4">
-                                            <?php foreach($children as $child):?>
-                                                <table class="child_name_table" rel="<?php echo $child['id']?>">
-                                                    <tr>
-                                                        <td class="add_holder">
-                                                            <img src="<?php echo asset_url() ?>images/add+.png"  alt="" /><?php echo $child['first_name']. " ".$child['last_name'] ?>                               
-                                                            <input type="hidden" name="txt_children_tmp_value_<?php echo $child['id']?>" id="txt_children_tmp_value_<?php echo $child['id']?>" value="<?php echo $child['id']?>"  />
-                                                            <input type="hidden" name="txt_children_tmpEXT_value_<?php echo $child['id']?>" id="txt_children_tmpEXT_value_<?php echo $child['id']?>" value="<?php echo $child['id']?>"  />
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                <table id="children_area_<?php echo $child['id']?>" class="hide" >
-                                                    <tr>
-                                                        <td class="book_for_child_name">Book Camp For: <?php echo $child['first_name']. " ".$child['last_name'] ?>   </td>
-                                                    </tr>
-                                                </table>
-                                                <table id="children_booking_area_<?php echo $child['id']?>" class="hide" >
-                                                    <tr>
-                                                        <td class="camp_cell" colspan="4" style=""><?php echo $selected_camp['name']?> <?php echo date('m/d/Y', $selected_camp['start_date'])?> - <?php echo date('m/d/Y', $selected_camp['end_date'])?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="booking_cell" colspan="4" align="center" style=" ">
-                                                            <table id="children_tbl0" width="620" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
-                                                                <tr>
-                                                                    <td width="174">&nbsp;</td>
-                                                                    <?php for($i = $selected_camp['start_date']; 
-                                                                            $i < $selected_camp['end_date']; 
-                                                                            $i = strtotime('+1 day', $i)):?>
-                                                                        <td align="center" valign="bottom" class="booking_calendar_headers"><?php echo date("D d M", $i)?></td>
-                                                                    <?php endfor;?>
+                                        <?php if(is_array($children)):?>
+                                            <tr>
+                                                <td colspan="4">
+                                                <?php foreach($children as $child):?>
+                                                    <table class="child_name_table" rel="<?php echo $child['id']?>">
+                                                        <tr>
+                                                            <td class="add_holder">
+                                                                <img src="<?php echo asset_url() ?>images/add+.png"  alt="" /><?php echo $child['first_name']. " ".$child['last_name'] ?>                               
+                                                                <input type="hidden" name="txt_children_tmp_value_<?php echo $child['id']?>" id="txt_children_tmp_value_<?php echo $child['id']?>" value="<?php echo $child['id']?>"  />
+                                                                <input type="hidden" name="txt_children_tmpEXT_value_<?php echo $child['id']?>" id="txt_children_tmpEXT_value_<?php echo $child['id']?>" value="<?php echo $child['id']?>"  />
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <table id="children_area_<?php echo $child['id']?>" class="hide" >
+                                                        <tr>
+                                                            <td class="book_for_child_name">Book Camp For: <?php echo $child['first_name']. " ".$child['last_name'] ?>   </td>
+                                                        </tr>
+                                                    </table>
+                                                    <table id="children_booking_area_<?php echo $child['id']?>" class="hide" >
+                                                        <tr>
+                                                            <td class="camp_cell" colspan="4" style=""><?php echo $selected_camp['name']?> <?php echo date('m/d/Y', $selected_camp['start_date'])?> - <?php echo date('m/d/Y', $selected_camp['end_date'])?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="booking_cell" colspan="4" align="center" style=" ">
+                                                                <table id="children_tbl<?php echo $child['id']?>" width="620" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
+                                                                    <tr>
+                                                                        <td width="174">&nbsp;</td>
+                                                                        <?php for($i = $selected_camp['start_date']; 
+                                                                                $i < $selected_camp['end_date']; 
+                                                                                $i = strtotime('+1 day', $i)):?>
+                                                                            <td align="center" valign="bottom" class="booking_calendar_headers <?php echo ($prices[date('w', $i) != 0 ? date('w', $i) : 7] == 0) ? 'hide' : ''?>"><?php echo date("D d M", $i)?></td>
+                                                                        <?php endfor;?>
 
-                                                                </tr>
-                                                                <tr>
-                                                                    <td width="169" class="tdclassf" style="text-align:center;" >Normal Day</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td width="169" class="tdclassf" style="text-align:center;" >Normal Day</td>
+                                                                            <?php
+                                                                            for ($i = $selected_camp['start_date']; $i < $selected_camp['end_date']; $i = strtotime('+1 day', $i)):
+                                                                                ?>
+
+                                                                                <td width="89" rowspan="2" align="center" class="tdclasso <?php echo ($prices[date('w', $i) != 0 ? date('w', $i) : 7] == 0) ? 'hide' : 'show'?>">
+                                                                                    <input type="checkbox" class="normal_check booking_checkbox" rel="extended" child="<?php echo $child['id']?>"
+                                                                                           name="days_booked[<?php echo date('w', $i) != 0 ? date('w', $i) : 7 ?>][<?php echo $child['id']?>]" id="" value="<?php echo date('w', $i) != 0 ? date('w', $i) : 7 ?>" />
+                                                                                            Book </td>
+                                                                            <?php endfor; ?>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td valign="top" class="check_all_wrapper" style="">
+                                                                            <input type="checkbox" child="<?php echo $child['id']?>" name="bool_all_normal[<?php echo $child['id']?>]" class="book_all_days book_all_days_normal" rel="normal,extended" />
+                                                                            Book all days</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td width="169" class="tdclassf" style="text-align:center;" >Extended Day</td>
                                                                         <?php
-                                                                        for ($i = $selected_camp['start_date']; $i < $selected_camp['end_date']; $i = strtotime('+1 day', $i)):
-                                                                            ?>
+                                                                            for ($i = $selected_camp['start_date']; $i < $selected_camp['end_date']; $i = strtotime('+1 day', $i)):
+                                                                                ?>
 
-                                                                            <td width="89" rowspan="2" align="center" class="tdclasso">
-                                                                                <input type="checkbox" class="normal_check booking_checkbox" rel="extended"
-                                                                                       name="days_booked[<?php echo date('w', $i) != 0 ? date('w', $i) : 7 ?>][<?php echo $child['id']?>]" id="" value="<?php echo date('w', $i) != 0 ? date('w', $i) : 7 ?>" />
-                                                                                        Book </td>
-                                                                        <?php endfor; ?>
-
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="check_all_wrapper" style="">
-                                                                        <input type="checkbox" name="radio" class="book_all_days book_all_days_normal" rel="normal,extended" />
-                                                                        Book all days</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td width="169" class="tdclassf" style="text-align:center;" >Extended Day</td>
-                                                                    <?php
-                                                                        for ($i = $selected_camp['start_date']; $i < $selected_camp['end_date']; $i = strtotime('+1 day', $i)):
-                                                                            ?>
-
-                                                                            <td width="89" rowspan="2" align="center" class="tdclasso extended">
-                                                                                <input type="checkbox"  class="extended_check booking_checkbox" rel="normal"
-                                                                                    name="days_extended_booked[<?php echo date('w', $i) != 0 ? date('w', $i) : 7 ?>][<?php echo $child['id']?>]" id="" value="<?php echo date('w', $i) != 0 ? date('w', $i) : 7 ?>" />
-                                                                                        Book </td>
-                                                                        <?php endfor; ?>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td valign="top" class="check_all_wrapper">
-                                                                        <input type="checkbox" name="radio" class="book_all_days book_all_days_extended" rel="extended,normal" />
-                                                                        Book all days</td>
-                                                                </tr>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="4">&nbsp;</td>
-                                                    </tr>
-                                                </table>
-                                            <?php endforeach;?>
+                                                                                <td width="89" rowspan="2" align="center" class="tdclasso extended <?php echo ($prices[date('w', $i) != 0 ? date('w', $i) : 7] == 0) ? 'hide' : 'show'?>">
+                                                                                    <input type="checkbox"  class="extended_check booking_checkbox" rel="normal" child="<?php echo $child['id']?>"
+                                                                                        name="days_extended_booked[<?php echo date('w', $i) != 0 ? date('w', $i) : 7 ?>][<?php echo $child['id']?>]" id="" value="<?php echo date('w', $i) != 0 ? date('w', $i) : 7 ?>" />
+                                                                                            Book </td>
+                                                                            <?php endfor; ?>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td valign="top" class="check_all_wrapper">
+                                                                            <input type="checkbox" child="<?php echo $child['id']?>" name="bool_all_extended[<?php echo $child['id']?>]" class="book_all_days book_all_days_extended" rel="extended,normal" child="<?php echo $child['id']?>" />
+                                                                            Book all days</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="4">&nbsp;</td>
+                                                        </tr>
+                                                    </table>
+                                                <?php endforeach;?>
+                                                </td>
+                                            </tr>
+                                        <?php else:?>
+                                            <tr>
+                                                <td>You added no children</td>
+                                            </tr>
+                                        <?php endif;?>
                                         </table>
                                     </td>
                                 </tr>

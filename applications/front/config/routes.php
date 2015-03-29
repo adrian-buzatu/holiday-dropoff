@@ -50,6 +50,7 @@ $route['booking/process_paypal'] = "booking/process_paypal";
 $route['booking/(:any)'] = 'booking/index/$1';
 $route['gallery'] = 'gallery';
 $route['gallery/(:any)'] = 'gallery/index/$1';
+$route['gallery/(:any)/(:any)'] = 'gallery/index/$1/$2';
 $route['(:any)'] = 'pages/view/$1';
 $route['our-camps'] = "ourcamps";
 $route['contact-us'] = "contactus";

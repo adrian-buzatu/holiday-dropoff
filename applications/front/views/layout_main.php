@@ -42,20 +42,25 @@
             <script src="<?php echo asset_url() ?>js/jquery.ui.js" type="text/javascript"></script>
             <script src="<?php echo asset_url() ?>js/jquery.ui.datepicker.js" type="text/javascript"></script>
             <script src="<?php echo asset_url() ?>js/SpryTabbedPanels.js" type="text/javascript"></script>
-            <script src="<?php echo asset_url() ?>js/booking.js" type="text/javascript"></script>
+            <script src="<?php echo asset_url() ?>js/booking.js" type="text/javascript"></script>            
             <link href="<?php echo asset_url() ?>css/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
             <link href="<?php echo asset_url() ?>css/SpryTabbedPanels2.css" rel="stylesheet" type="text/css" />
         <?php endif;?>
         <?php if(controller() == 'gallery'):?>
             <script src="<?php echo asset_url() ?>js/jquery.lightSlider.js" type="text/javascript"></script>
+            <script src="<?php echo asset_url() ?>js/colorbox.js" type="text/javascript"></script>
+            <script src="<?php echo asset_url() ?>js/jquery.youtubevideogallery.js" type="text/javascript"></script>
             <script src="<?php echo asset_url() ?>js/gallery.js" type="text/javascript"></script>
+            <link href="<?php echo asset_url()?>css/colorbox.css" rel="stylesheet" type="text/css" />
             <link href="<?php echo asset_url()?>css/lightSlider.css" rel="stylesheet" type="text/css" />
+            <link href="<?php echo asset_url()?>css/youtube-video-gallery.css" rel="stylesheet" type="text/css" />
+            <link href="<?php echo asset_url()?>css/youtube-video-gallery-legacy-ie.css" rel="stylesheet" type="text/css" />
             <link href="<?php echo asset_url()?>css/SpryTabbedPanels5.css" rel="stylesheet" type="text/css" />
         <?php endif;?>
     </head>
     <body>
         <div id="wrapper">
-            <div id="wrap">
+            <div id="wrap"  class="page-<?php echo controller()?>">
                 <div id="page">
                     <!--header-->
                         <div class="header">
@@ -92,7 +97,7 @@
                             </div>
                         </div>
                     <!--end header-->
-                    <div class="menubottomco1"></div>
+                    <div class="menubottomco-<?php echo controller()?>"></div>
                     <div class="container">
                         <div class="middlepart1">
                             <div class="middleleft">
@@ -121,7 +126,7 @@
                                     <?php endforeach;?>  
                                 </div>
                                 <div class="gallery2"> 
-                                    <a href="javascript:void(1)" class="gallery_global_link">
+                                    <a href="<?php echo base_url()?>gallery" class="gallery_global_link">
                                         <?php foreach($galleryPics as $loop => $gallery):?>
                                         <div class="gallery-img">
                                             <img class="gallery_front_thumb" src="<?php echo asset_url() ?>images/banners/<?php echo $gallery['src']?>" />
