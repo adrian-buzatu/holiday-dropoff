@@ -19,9 +19,11 @@
             datePicker: $('.datepicker'),
             bookAll: $('.book_all_days'),
             bookOne: $(".booking_checkbox"),
+            bookOneStromg: '.booking_checkbox',
             childTable: $('.child_name_table'),
             childrenAreaPrefix: '#children_area_',
             childrenBookingAreaPrefix: '#children_booking_area_',
+            bookAllDaysPrefix: '.book_all_days_',
             bookingParentPrefix: '#children_tbl',
             addFriendTriggerEl: $('.add_friend'),
             friendElement: $("#friend"),
@@ -109,15 +111,15 @@
                 me.day = $(this).val();
                 var target = $(this).attr('rel');
                 me.checkboxType = (target == 'extended' ? 'normal' : 'extended');
-                if(typeof $(this).attr('child') !== 'undefined'){
+                if(!me.helpers.isUndefined($(this).attr('child'))){
                     me.childId = $(this).attr('child');
                 } else {
                     me.childId = 0;
                 }
-                
-                if(typeof $(this).attr('checked') != 'undefined'){
-                    me.setParent($(me.accesors.bookingParentPrefix + me.childId));
+                me.setParent($(me.accesors.bookingParentPrefix + me.childId));
                     var parent = me.accesors.currentParent;
+                if(!$(this).hasClass("js_checked")){
+                    
                     //When I book a normal day, the same extended day should be unchecked and vice-versa.
                     me.uncheckMirrorEl(parent.find('.' + target + '_check'));
                     $(this).addClass('js_checked');
@@ -131,23 +133,75 @@
                     me.updateTotals(-1);
                     me.removeChildFromBookDay();
                     $(this).removeClass('js_checked');
+                    parent.find(me.accesors.dynClasses.check_all.replace('{type}', me.checkboxType))
+                            .removeAttr('checked');
                 }
                 
+            });
+            this.accesors.bookAll.click(function(){   
+                var type_raw = $(this).attr('rel');
+                type_arr = type_raw.split(",");
+                me.checkboxType = type_arr[0];
+                if(!me.helpers.isUndefined($(this).attr('child'))){
+                    me.childId = $(this).attr('child');
+                } else {
+                    me.childId = 0;
+                }
+                me.setParent($(me.accesors.bookingParentPrefix + me.childId));
+                var checkbox_class_generic = me.accesors.dynClasses.checkbox_element;
+                var checkbox_class = checkbox_class_generic.replace('{type}', me.checkboxType);
+                var parent = me.accesors.currentParent;
+                var book_all_to_uncheck = type_arr[1];
+                if(!me.helpers.isUndefined($(this).attr('checked'))){
+                    parent.find(checkbox_class + '.js_checked').each(function() {
+                        me.day = $(this).val();
+                        me.updateTotals(-1);
+                        me.removeChildFromBookDay();
+                        $(this).removeClass('js_checked');
+                    });
+                    parent.find(me.accesors.bookOneString).removeAttr('checked');
+                    parent.find(me.accesors.bookOneString).removeClass('js_checked');
+                    $(me.accesors.bookAllDaysPrefix + book_all_to_uncheck).removeAttr('checked');
+                    $(me.accesors.bookAllDaysPrefix + book_all_to_uncheck).removeClass('js_checked');
+                    parent.find('td.show ' + checkbox_class).each(function(){   
+                        $(this).attr('checked', 'checked');
+                        $(this).addClass('js_checked');
+                        me.day = $(this).val();
+                        me.addChildToBookDay();
+                        if(me.helpers.isUndefined(me.partialSum[me.childId])){
+                            me.partialSum[me.childId] = 0;
+                        }
+                        me.updateTotals();
+                    });
+                } else {
+                    console.log(parent.find('td.show ' + checkbox_class))
+                    parent.find('td.show ' + checkbox_class).each(function(){   
+                        
+                        me.day = $(this).val();
+                        me.updateTotals(-1);
+                        me.removeChildFromBookDay();
+                        $(this).removeAttr('checked');
+                        $(this).removeClass('js_checked');
+                    });
+                    parent.find(me.accesors.dynClasses.check_all.replace('{type}', me.checkboxType))
+                            .removeAttr('checked');
+                }
             });
         },
         makePrice: function(){
             
             var children_booked = this.daysChecked[this.day].length;
+            var output = this.priceList[this.day] * 1;
             if(this.helpers.between(children_booked, [2, 3]) !== false){
                 var discount = this.discounts[children_booked];
-                if(this.type !== "extended"){
-                    return discount * this.priceList[this.day] * 1;
-                } else {
-                    return (discount * this.priceList[this.day] * 1) + this.accesors.extendedDaysFee.val();
-                }
+                output *= discount;
                 
             }
-            return this.priceList[this.day] * 1;
+            if (this.checkboxType === "extended") {
+                output += this.accesors.extendedDaysFee.val() * 1;
+            }
+                
+            return output;
         },
         updateTotals: function(sign){
             
@@ -157,19 +211,20 @@
             var type = this.checkboxType;
             var checkbox_class_generic = this.accesors.dynClasses.checkbox_element;
             var checkbox_class = checkbox_class_generic.replace('{type}', type);
+            var check_all_generic = this.accesors.dynClasses.check_all;
+            var check_all_class = check_all_generic.replace('{type}', type);
             var parent = this.accesors.currentParent;
             var day_booked_real_price = this.makePrice();
             this.partialSum[this.childId] += day_booked_real_price * sign;
             this.total += day_booked_real_price * sign;
+            
             this.totalDiscount += this.getDayDiscount(day_booked_real_price) * sign;
-
             if(parent.find(checkbox_class + '.js_checked').length === 
                     parent.find('td.show ' + checkbox_class).length) {
-                console.log("here");
                 this.total -= this.priceList[this.discountAllDaysIndex] * sign;
                 this.partialSum[this.childId] -= this.priceList[this.discountAllDaysIndex] * sign;
-            }
-            
+                parent.find(check_all_class).attr("checked", "checked");
+            } 
             this.updateTotalElements();
         },
         getDayDiscount: function(reduced_price){
@@ -197,7 +252,14 @@
         uncheckMirrorEl: function($mirrorCheckboxes){
             var me = this;
             $mirrorCheckboxes.each(function(){
-                if($(this).val() == me.day){
+                if($(this).val() == me.day && $(this).hasClass('js_checked')){
+                    me.removeChildFromBookDay();
+                    me.total -= me.makePrice();
+                    if(me.checkboxType === 'extended'){
+                        me.total += me.accesors.extendedDaysFee.val() * 1;
+                    } else {
+                        me.total -= me.accesors.extendedDaysFee.val() * 1;
+                    }
                     $(this).removeAttr('checked');
                     $(this).removeClass('js_checked');
                 } 
