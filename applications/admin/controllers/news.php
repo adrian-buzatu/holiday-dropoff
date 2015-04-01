@@ -148,4 +148,9 @@ class News extends CI_Controller {
         $this->News->delete($id);
         redirect('news');
     }
+    
+    function delete_image($newsId = 0){
+        $this->News->update(array('image' => ''), $newsId);
+        redirect('news/edit/'. $newsId);
+    }
 }

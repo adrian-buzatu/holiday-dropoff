@@ -31,7 +31,10 @@
                             </td>
                             <td class="form_banner_image">
                                 <input type="file" name="image">
-                                <img src="<?php echo front_url()?>assets/front/images/<?php echo $testimonial['image']?>" width="62" align="top">
+                                <?php if($testimonial['image'] !== ''):?>
+                                    <img src="<?php echo front_url()?>assets/front/images/<?php echo $testimonial['image']?>" width="62" align="top">
+                                    <a href="<?php echo base_url()?>news/delete_image/<?php echo $id?>">Delete Image</a>
+                                <?php endif;?>
                             </td>
                             <td colspan="2">
                                 <?php if (isset($error)): ?>
