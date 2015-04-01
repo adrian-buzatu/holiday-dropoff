@@ -3,7 +3,7 @@
         <img src="<?php echo asset_url()?>images/myaccounttitle.png" alt="" /> 
         <span> 
             <a href="<?php echo base_url()?>logout"><img src="<?php echo asset_url()?>images/signoutbt.png" alt="" /></a> 
-            <a href="#"><img src="<?php echo asset_url()?>images/bookoninebt.png" alt="" /> </a>
+            <a href="<?php echo base_url()?>booking"><img src="<?php echo asset_url()?>images/bookoninebt.png" alt="" /> </a>
         </span>
     </div>
     <div style="color:#FFFFFF;">Children must be registered prior to booking online</div>
@@ -28,7 +28,8 @@
                         </tr>
                         <tr>
                             <td>                          
-                                <form action="<?php echo base_url()?>profile" method="post">
+                                <form action="<?php echo base_url()?>profile" method="post" id="profile_form">
+                                    <?php echo validation_errors(); ?>
                                     <div class="mydetail-right-content">
                                         <div class="formdetails"><span>Title:</span>
                                             <p>
@@ -39,19 +40,24 @@
                                                 </select>
                                             </p>
                                         </div>
-                                        <div class="formdetails"><span>Forename:</span>
+                                        <div class="formdetails"><span>Forename<sup>*</sup>:</span>
                                             <p>
-                                                <input name="forename" type="text" value="<?php echo $me['first_name']?>" />
+                                                <input name="first_name" type="text" value="<?php echo $me['first_name']?>" />
                                             </p>
                                         </div>
-                                        <div class="formdetails"><span>Surname:</span>
+                                        <div class="formdetails"><span>Surname<sup>*</sup>:</span>
                                             <p>
-                                                <input name="surname" type="text" value="<?php echo $me['last_name']?>" />
+                                                <input name="last_name" type="text" value="<?php echo $me['last_name']?>" />
                                             </p>
                                         </div>
-                                        <div class="formdetails"><span>Username:</span>
+                                        <div class="formdetails"><span>Username<sup>*</sup>:</span>
                                             <p>
                                                 <input name="username" type="text" value="<?php echo $me['username']?>" readonly />
+                                            </p>
+                                        </div>
+                                        <div class="formdetails"><span>Current Password:</span>
+                                            <p>
+                                                <input name="old_password" type="password" value="" />
                                             </p>
                                         </div>
                                         <div class="formdetails"><span>Password:</span>
@@ -64,7 +70,7 @@
                                                 <input name="password" type="password" value="" />
                                             </p>
                                         </div>
-                                        <div class="formdetails"><span>Email address:</span>
+                                        <div class="formdetails"><span>Email address<sup>*</sup>:</span>
                                             <p>
                                                 <input name="email" type="text" value="<?php echo $me['email']?>" />
                                             </p>
@@ -74,32 +80,32 @@
                                                 <input name="landline" type="text" value="<?php echo $me['landline']?>" />
                                             </p>
                                         </div>
-                                        <div class="formdetails"><span>Mobile phone number:</span>
+                                        <div class="formdetails"><span>Mobile phone number<sup>*</sup>:</span>
                                             <p>
-                                                <input name="mobile" type="text" value="<?php echo $me['phone_number']?>" />
+                                                <input name="phone_number" type="text" value="<?php echo $me['phone_number']?>" />
                                             </p>
                                         </div>
-                                        <div class="formdetails"><span>Address line 1:</span>
+                                        <div class="formdetails"><span>Address line 1<sup>*</sup>:</span>
                                             <p>
-                                                <input name="add1" type="text" value="<?php echo $me['address1']?>" />
+                                                <input name="address1" type="text" value="<?php echo $me['address1']?>" />
                                             </p>
                                         </div>
                                         <div class="formdetails"><span>Address line 2:</span>
                                             <p>
-                                                <input name="add2" type="text" value="<?php echo $me['address2']?>" />
+                                                <input name="address2" type="text" value="<?php echo $me['address2']?>" />
                                             </p>
                                         </div>
                                         <div class="formdetails"><span>Address line 3:</span>
                                             <p>
-                                                <input name="add3" type="text" value="<?php echo $me['address3']?>" />
+                                                <input name="address3" type="text" value="<?php echo $me['address3']?>" />
                                             </p>
                                         </div>
-                                        <div class="formdetails"><span>Postcode:</span>
+                                        <div class="formdetails"><span>Postcode<sup>*</sup>:</span>
                                             <p>
-                                                <input name="postcode" type="text" value="<?php echo $me['zip']?>" />
+                                                <input name="zip" type="text" value="<?php echo $me['zip']?>" />
                                             </p>
                                         </div>
-                                        <div class="formdetails"><span>Country</span>
+                                        <div class="formdetails"><span>Country<sup>*</sup>:</span>
                                             <p>
                                                 <select name="country_id">
                                                     <?php foreach($countries as $id => $country):?>
@@ -112,9 +118,9 @@
                                                 </select>
                                             </p>
                                         </div>
-                                        <div class="formdetails"><span>Where did you hear about us:</span>
+                                        <div class="formdetails"><span>Where did you hear about us<sup>*</sup>:</span>
                                             <p>
-                                                <input name="ref" type="text" value="<?php echo $me['reference']?>" />
+                                                <input name="reference" type="text" value="<?php echo $me['reference']?>" />
                                             </p>
                                         </div>
                                         <div>
@@ -315,193 +321,7 @@
                     </table>
                 </div>
                 <div class="TabbedPanelsContent3">
-                    <table width="642" border="0" align="center" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td width="185" align="center" style="padding-top:40px; padding-bottom:42px;">Select Camp :</td>
-                            <td width="237" class=""><select    onchange="showbooking(this.value);">
-                                    <option value="0">Summer Camp</option>
-                                    <option value="35">januari camp - 2014-01-27 2014-01-31</option>                          </select>
-                                <div class="photogallerysearch">
-                                    <div class="demo"> </div>
-                                </div></td>
-                            <td width="248">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3"></td>
-                            <td width="1"></td>
-                        </tr>
-                        <tr>
-                            <td height="30" colspan="4" align="right" valign="top" style="padding-right:20px;">Extended days are shown in <span>RED</span></td>
-                        </tr>
-                        <tr>
-                            <td colspan="3"><table width="654" border="0" align="center" cellpadding="0" cellspacing="0" style="background:#f9f5b1; padding-left:15px;">
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
-                                                <tr>
-                                                    <td style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;">Finn Ashworth</td>
-                                                    <td align="right" style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;"><span>Pending</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2" >Camp : Start Date: 27 Jan 2014- Days :Mon &nbsp; - Mon</td>
-                                                </tr>
-                                            </table></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
-                                                <tr>
-                                                    <td style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;">Mieke Ashworth</td>
-                                                    <td align="right" style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;"><span>Pending</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2" >Camp : Start Date: 27 Jan 2014- Days :Mon &nbsp; - Mon</td>
-                                                </tr>
-                                            </table></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
-                                                <tr>
-                                                    <td style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;">Noortje Ashworth</td>
-                                                    <td align="right" style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;"><span>Pending</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2" >Camp : Start Date: 27 Jan 2014- Days :Mon &nbsp; - Mon</td>
-                                                </tr>
-                                            </table></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
-                                                <tr>
-                                                    <td style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;">Finn Ashworth</td>
-                                                    <td align="right" style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;"><span>Pending</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2" >Camp : Start Date: 02 Dec 2009- Days :Wed,Thu,Fri,EXT_Thu &nbsp; - Wed,Thu,Fri,<span>Thu</span></td>
-                                                </tr>
-                                            </table></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
-                                                <tr>
-                                                    <td style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;">Mieke Ashworth</td>
-                                                    <td align="right" style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;"><span>Pending</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2" >Camp : Start Date: 02 Dec 2009- Days :Wed,Thu,Fri,EXT_Thu &nbsp; - Wed,Thu,Fri,<span>Thu</span></td>
-                                                </tr>
-                                            </table></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
-                                                <tr>
-                                                    <td style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;">Finn Ashworth</td>
-                                                    <td align="right" style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;"><span>Pending</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2" >Camp : Start Date: 02 Dec 2009- Days :Wed,Thu,Fri,EXT_Thu &nbsp; - Wed,Thu,Fri,<span>Thu</span></td>
-                                                </tr>
-                                            </table></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
-                                                <tr>
-                                                    <td style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;">Mieke Ashworth</td>
-                                                    <td align="right" style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;"><span>Pending</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2" >Camp : Start Date: 02 Dec 2009- Days :Wed,Thu,Fri,EXT_Thu &nbsp; - Wed,Thu,Fri,<span>Thu</span></td>
-                                                </tr>
-                                            </table></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
-                                                <tr>
-                                                    <td style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;">Finn Ashworth</td>
-                                                    <td align="right" style="font-size:15px;  border-top: #999999 dotted 1px;padding:10px 0 15px 0;"><span>Pending</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2" >Camp : Start Date: 19 Dec 2013- Days :Thu &nbsp; - Thu</td>
-                                                </tr>
-                                            </table></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
-                                                <tr>
-                                                    <td width="115"><a href="#"><img src="<?php echo asset_url()?>images/printbt.png" alt="" /></a></td>
-                                                    <td width="523"><div style="position:relative; background:url(images/amountbt2.png) top left no-repeat; line-height:25px; text-align:right; width:182px; padding-right:10px;">&pound;182.5</div></td>
-                                                </tr>
-                                            </table></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </table></td>
-                        </tr>
-                        <tr>
-                            <td height="33" colspan="3">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" style="padding-left:30px;"><img src="<?php echo asset_url()?>images/changebt.png" alt="" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" style="font-size:18px; font-weight:normal; color:#666666; padding:10px 0 0 30px;">Please note that bookings can’t be changed<br/>
-                                or cancelled 3 days prior to booking </td>
-                        </tr>
-                        <tr>
-                            <td height="33" colspan="3">&nbsp;</td>
-                        </tr>
-                    </table>
+                    <div>Under development</div>
                 </div>
             </div>
         </div>

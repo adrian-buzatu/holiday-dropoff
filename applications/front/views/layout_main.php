@@ -159,15 +159,27 @@
                 <div class="c1"></div>
                 <div class="main-footer">
                     <div class="footer-news-content">
-                        <div class="rightpart">
-                            <h2>Latest HDO News</h2>
-                            <ul>
-                                <li><a href="<?php echo base_url()?>news/parents-feedback">Parents Feedback</a></li><li><a href="<?php echo base_url()?>news/faq">FAQs</a></li><li><a href="<?php echo base_url()?>news/what-to-bring">What to bring</a></li>      </ul>
+                        <?php foreach($news as $loop => $item):?>
+                            <?php if($loop === 0):?>
+                                <div class="rightpart">
+                                    <h2>Latest HDO News</h2>
+                                    <ul>
+                            <?php endif;?>
+                            <?php if($loop > 2 && $loop === count($news) / 2):?>
+                                </ul>
+                                </div>
+                                <div class="middilepart">
+                                    
+                                    <ul>
+                            <?php endif;?>
+                            <li>
+                                <a href="<?php echo base_url()?>news/<?php echo $item['slug']?>"><?php echo $item['title']?></a>
+                            </li>
+                            
+                        <?php endforeach;?>
+                            </ul>
                         </div>
-                        <div class="middilepart">
-                            <ul>
-                                <li><a href="<?php echo base_url()?>news/discounts-and-pricing">Discounts + Pricing</a></li><li><a href="<?php echo base_url()?>news/press-releases">Press releases</a></li><li><a href="<?php echo base_url()?>news/new-sports">New Sports</a></li>      </ul>
-                        </div>
+                        
                         <div class="footer-text-part3">
                             <h2>Join Us on Facebook</h2>
                             <p> See all the latest Holiday Drop Off photos on our Facebook page
@@ -177,7 +189,9 @@
                         <div class="c1"></div>
                     </div>
                     <div class="c1"></div>
-                    <div class="footertext"><a href="<?php echo base_url()?>terms-and-conditions">Terms and conditions</a> | <a href="<?php echo base_url()?>privacy-policy">Privacy Policy</a> | <a href="<?php echo base_url()?>contact-us">Contact Us</a> | <a href="<?php echo base_url()?>sitemap">Site Map</a> | <a href="<?php echo base_url()?>work-for-us">Work for Us</a></div>
+                    <div class="footertext">
+                        <a href="<?php echo base_url()?>terms-and-conditions">Terms and conditions</a> | <a href="<?php echo base_url()?>privacy-policy">Privacy Policy</a> | <a href="<?php echo base_url()?>contact-us">Contact Us</a> | <a href="<?php echo base_url()?>sitemap">Site Map</a> | <a href="<?php echo base_url()?>work-for-us">Work for Us</a>
+                    </div>
                 </div>
             </div>
         </div>

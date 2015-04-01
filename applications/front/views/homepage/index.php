@@ -42,29 +42,7 @@
     <div class="welcome2">Holiday Boredom solved!</div>
     <div class="icon2"> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> </div>
     <div class="body-main-content">
-        <div class="bodycontent1">
-            <p>
-                Holiday Drop Off is a great way for children to learn new sports in a fun and exciting environment. &#39;HDO&#39; believe that sport should be enjoyed by all and have created a sports camp for children between the ages of Rising 4 -14 years old..<br />
-                &#39;HDO&#39; is a sports camp which is taught by coaches of various sporting backgrounds, helping develop sporting techniques or simply introducing children to sports they are yet to learn.<br />
-                <br />
-                Places are limited so its best to book in advance. Although you can turn up on the day (depending on availability) &#39;HDO&#39; have great discounts when booking online...<br />
-                <br />
-                To take advantage of the first class coaching in an admirable sporting facility, book online now and don&#39;t miss out.</p>
-            <p>
-                &nbsp;</p>
-            <p>
-                <img alt="" src="https://scontent-a-lhr.xx.fbcdn.net/hphotos-prn1/935249_527113407324075_272446065_n.jpg" style="width: 200px; height: 267px;" /><img alt="" src="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-prn1/935469_527502617285154_733424246_n.jpg" style="width: 200px; height: 267px;" /></p>
-            <p>
-                &nbsp;</p>
-            <p>
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
-            <p>
-                &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
-            <p>
-                &nbsp;</p>
-            <p>
-                <a href="http://storiesandsavings.com/test/holiday/book-online.php">Next Camp is the Xmas Camp - Click here to book now</a>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
-        </div>
+        <?php echo $page['content']?>
     </div>
 </div>
 <div class="middlecontant3">

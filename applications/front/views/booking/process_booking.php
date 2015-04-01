@@ -47,11 +47,7 @@
                             <tr>
                                 <td height="40" colspan="2">Please note: You will receive confirmation of this booking by email</td>
                             </tr>
-                            <tr>
-                                <td colspan="2">
-                                    Please note: Pressing the back button will delete all selected dates
-                                </td>
-                            </tr>
+                            
                             <tr>
                                 <td colspan="2">&nbsp;</td>
                             </tr>

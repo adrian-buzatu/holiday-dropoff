@@ -18,7 +18,11 @@ class News_Model extends CI_Model {
     }
     
     function get(){
-        $sql = "SELECT `id`, SUBSTR(`content_raw`, 1, 50) as `content_raw` FROM `news`";
+        $sql = "SELECT `id`, SUBSTR(`content_raw`, 1, 50) as `content_raw`,"
+                . "`title`, "
+                . "`slug`"
+                . " FROM `news`"
+                . " LIMIT 6";
         $query = $this->db->query($sql);
         if($query->num_rows == 0){
             return false;

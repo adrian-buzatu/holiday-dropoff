@@ -20,15 +20,18 @@ class Profile extends CI_Controller {
         $this->form_validation->set_rules('last_name', '"Last Name"', 'required');
         $this->form_validation->set_rules('username', '"Username"', 'required|callback_username_unique');
         $this->form_validation->set_rules('zip', '"Zip"', 'required');
+        $this->form_validation->set_rules('country_id', '"Country"', 'required');
         $this->form_validation->set_rules('landline', '"Landline"', 'required');
         $this->form_validation->set_rules('reference', '"Reference"', 'required');
         $this->form_validation->set_rules('address1', '"Address 1"', 'required');
         if($this->input->post('password') != ""){
+            $this->form_validation->set_rules('old_password', '"Old Password"', 'min_length[4]|callback_valid_password');
             $this->form_validation->set_rules('password', '"Password"', 'min_length[4]');
             $this->form_validation->set_rules('passconf', '"Password Conf"', 'matches[password]');
         }
         $this->form_validation->set_rules('phone_number', '"Phone Number"', 'required');
         $this->form_validation->set_rules('email', '"Mail"', 'valid_email|required|callback_mail_unique');
+        $this->form_validation->set_error_delimiters('<div class="errorFrm">', '</div>');
         if ($this->form_validation->run() == false) {
             $this->data['success'] = false;
             $this->layout->view('profile', $this->data);
@@ -44,13 +47,14 @@ class Profile extends CI_Controller {
                 'address1' => $this->input->post('address1', true),
                 'address2' => $this->input->post('address2', true),
                 'address3' => $this->input->post('address3', true),
+                'country_id' => $this->input->post('country_id', true),
                 'zip' => $this->input->post('zip', true),
                 'reference' => $this->input->post('reference', true),
             );
             if($this->input->post('password') != ""){
                 $user['password'] = sha1($this->input->post('password'));
             }
-            $this->Users->up($user, (int)$this->data['user_id']);
+            $this->Users->update($user, (int)$this->data['user_id']);
             
             $this->data['user'] = $_SESSION['username'];
             redirect('profile');
@@ -116,6 +120,16 @@ class Profile extends CI_Controller {
             $child['notes'] = '';
         }
         echo json_encode(array('success' => true, 'data' => $child));
+    }
+    
+    function valid_password(){
+        $pass = sha1($this->input->post('old_password'));
+        $me = $this->Users->one((int)$this->data['user_id']);
+        if($me['password'] !== $pass){
+            $this->form_validation->set_message('valid_password', 'The current password is wrong');
+            return false;
+        } 
+        return true;
     }
 
 }

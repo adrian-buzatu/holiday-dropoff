@@ -2,101 +2,110 @@
     <div class="ourcampus-right-content">
         <div class="login-heading-text1">
             <h1>Sign up</h1>
+            <?php if($showForm == true):?>
+            
             <p>To create an account with us, please complete the form below</p>
-            <form id="signup" method="post" action="<?php echo base_url()?>register">
-                <?php echo validation_errors(); ?>
-                <div class="signup-right-content">
-                    <div class="formdetails"><span>Title:</span>
-                        <p>
-                            <select name="title" id="title">
-                                <option value="Mr.">Mr.</option>
-                                <option value="Mrs.">Mrs.</option>
-                                <option value="Ms.">Ms.</option>
-                            </select>
-                        </p>
-                    </div>
-                    <div class="formdetails"><span>Forename:</span>
-                        <p>
-                            <input name="first_name" type="text" id="forename" value="<?php echo set_value('first_name')?>" />
-                        </p>
-                    </div>
-                    <div class="formdetails"><span>Surname:</span>
-                        <p>
-                            <input name="last_name" type="text" id="surname" value="<?php echo set_value('last_name')?>" />
-                        </p>
-                    </div>
-                    <div class="formdetails"><span>Username:</span>
-                        <p>
-                            <input name="username" type="text" id="username"  value="<?php echo set_value('username')?>" />
-                        </p>
-                    </div>
-                    <div class="formdetails"><span>Password:</span>
-                        <p>
-                            <input name="password" type="password" id="password1" />
-                        </p>
-                    </div>
-                    <div class="formdetails"><span>Re-enter password:</span>
-                        <p>
-                            <input name="passconf" type="password" id="password2" />
-                        </p>
-                    </div>
-                    <div class="formdetails"><span>Email address:</span>
-                        <p>
-                            <input name="email" type="text" id="email"  value="<?php echo set_value('email')?>" />
-                        </p>
-                    </div>
-                    <div class="formdetails"><span>Daytime phone number:</span>
-                        <p>
-                            <input name="landline" type="text" id="landline"  value="<?php echo set_value('landline')?>" />
-                        </p>
-                    </div>
-                    <div class="formdetails"><span>Mobile phone number:</span>
-                        <p>
-                            <input name="phone_number" type="text" id="mobile"  value="<?php echo set_value('phone_number')?>" />
-                        </p>
-                    </div>
-                    <div class="formdetails"><span>Address line 1:</span>
-                        <p>
-                            <input name="address1" type="text" id="add1" value="<?php echo set_value('address1')?>" />
-                        </p>
-                    </div>
-                    <div class="formdetails"><span>Address line 2:</span>
-                        <p>
-                            <input name="address2" type="text" id="add2" value="<?php echo set_value('address2')?>" />
-                        </p>
-                    </div>
-                    <div class="formdetails"><span>Address line 3:</span>
-                        <p>
-                            <input name="address3" type="text" id="add3" value="<?php echo set_value('address3')?>" />
-                        </p>
-                    </div>
-                    <div class="formdetails"><span>Postcode:</span>
-                        <p>
-                            <input name="zip" type="text" id="postcode" <?php echo set_value('zip')?> />
-                        </p>
-                    </div>
-                    <div class="formdetails"><span>Country</span>
-                        <p>
-                            <select name="country_id">
-                                <?php foreach($countries as $id => $country):?>
-                                    <option 
-                                        <?php if(set_value('country_id') == $id):?>selected<?php endif;?>
-                                        value="<?php echo $id?>"><?php echo $country?></option>
-                                <?php endforeach;?>
+            
+                <form id="signup" method="post" action="<?php echo base_url()?>register">
+                    <?php echo validation_errors(); ?>
+                    <div class="signup-right-content">
+                        <div class="formdetails"><span>Title:</span>
+                            <p>
+                                <select name="title" id="title">
+                                    <option value="Mr.">Mr.</option>
+                                    <option value="Mrs.">Mrs.</option>
+                                    <option value="Ms.">Ms.</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div class="formdetails"><span>Forename<sup>*</sup>:</span>
+                            <p>
+                                <input name="first_name" type="text" id="forename" value="<?php echo set_value('first_name')?>" />
+                            </p>
+                        </div>
+                        <div class="formdetails"><span>Surname<sup>*</sup>:</span>
+                            <p>
+                                <input name="last_name" type="text" id="surname" value="<?php echo set_value('last_name')?>" />
+                            </p>
+                        </div>
+                        <div class="formdetails"><span>Username<sup>*</sup>:</span>
+                            <p>
+                                <input name="username" type="text" id="username"  value="<?php echo set_value('username')?>" />
+                            </p>
+                        </div>
+                        <div class="formdetails"><span>Password<sup>*</sup>:</span>
+                            <p>
+                                <input name="password" type="password" id="password1" />
+                            </p>
+                        </div>
+                        <div class="formdetails"><span>Re-enter password<sup>*</sup>:</span>
+                            <p>
+                                <input name="passconf" type="password" id="password2" />
+                            </p>
+                        </div>
+                        <div class="formdetails"><span>Email address<sup>*</sup>:</span>
+                            <p>
+                                <input name="email" type="text" id="email"  value="<?php echo set_value('email')?>" />
+                            </p>
+                        </div>
+                        <div class="formdetails"><span>Daytime phone number<sup>*</sup>:</span>
+                            <p>
+                                <input name="landline" type="text" id="landline"  value="<?php echo set_value('landline')?>" />
+                            </p>
+                        </div>
+                        <div class="formdetails"><span>Mobile phone number:</span>
+                            <p>
+                                <input name="phone_number" type="text" id="mobile"  value="<?php echo set_value('phone_number')?>" />
+                            </p>
+                        </div>
+                        <div class="formdetails"><span>Address line 1<sup>*</sup>:</span>
+                            <p>
+                                <input name="address1" type="text" id="add1" value="<?php echo set_value('address1')?>" />
+                            </p>
+                        </div>
+                        <div class="formdetails"><span>Address line 2:</span>
+                            <p>
+                                <input name="address2" type="text" id="add2" value="<?php echo set_value('address2')?>" />
+                            </p>
+                        </div>
+                        <div class="formdetails"><span>Address line 3:</span>
+                            <p>
+                                <input name="address3" type="text" id="add3" value="<?php echo set_value('address3')?>" />
+                            </p>
+                        </div>
+                        <div class="formdetails"><span>Postcode<sup>*</sup>:</span>
+                            <p>
+                                <input name="zip" type="text" id="postcode" value="<?php echo set_value('zip')?>" />
+                            </p>
+                        </div>
+                        <div class="formdetails"><span>Country<sup>*</sup>:</span>
+                            <p>
+                                <select name="country_id">
+                                    <?php foreach($countries as $id => $country):?>
+                                        <option 
+                                            <?php if(set_value('country_id') == $id):?>selected<?php endif;?>
+                                            value="<?php echo $id?>"><?php echo $country?></option>
+                                    <?php endforeach;?>
 
-                            </select>
-                        </p>
+                                </select>
+                            </p>
+                        </div>
+                        <div class="formdetails"><span>Where did you hear about us<sup>*</sup>:</span>
+                            <p>
+                                <input name="reference" type="text" id="ref" value="<?php echo set_value('reference')?>" />
+                            </p>
+                        </div>
+                        <div id="submit_holder">
+                            <input type="submit" class="signupbt" value="Sign Up"  onclick="event.preventDefault(); return signup();"  />
+                        </div>
                     </div>
-                    <div class="formdetails"><span>Where did you hear about us:</span>
-                        <p>
-                            <input name="reference" type="text" id="ref" <?php echo set_value('reference')?> />
-                        </p>
-                    </div>
-                    <div id="submit_holder">
-                        <input type="submit" class="signupbt" value="Sign Up"  onclick="event.preventDefault(); return signup();"  />
-                    </div>
+                </form>
+            <?php else:?>
+                <div class="login-heading-text1">
+                    <p>Your account has been created successfully.</p>
+                        <p>Please <a href="<?php echo base_url()?>">click here</a> to login</p>
                 </div>
-            </form>
+            <?php endif;?>
         </div>
     </div>
     <div class="c1"></div>

@@ -89,16 +89,12 @@
                 <div class="TabbedPanelsContent2">
                     <div class="findus-right-content-middile" style="height:750px; overflow:auto;">
                         <h1>Holiday Drop Off <br/>
-                            Dulwich College</h1>
+                            </h1>
                         <div class="mapcollection" style="margin:0px; padding:0px;">
-                            <iframe width="622" height="285" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.in/maps?f=q&source=s_q&hl=en&geocode=&q=Pond+Cottages+Dulwich+London+SE21+7LD+UK&sll=51.486949,-0.056587&sspn=0.285616,0.837021&ie=UTF8&hq=&hnear=Pond+Cottages,+London+Borough+of+Southwark,+London+SE21,+United+Kingdom&t=m&z=14&ll=51.440718,-0.083089&output=embed"></iframe>
+                            <iframe width="622" height="285" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.in/maps?f=q&source=s_q&hl=en&geocode=&q=<?php echo $addressUrl; ?>&output=embed"></iframe>
                             <br />
-                            <small><a href="https://maps.google.co.in/maps?f=q&source=embed&hl=en&geocode=&q=Pond+Cottages+Dulwich+London+SE21+7LD+UK&sll=51.486949,-0.056587&sspn=0.285616,0.837021&ie=UTF8&hq=&hnear=Pond+Cottages,+London+Borough+of+Southwark,+London+SE21,+United+Kingdom&t=m&z=14&ll=51.440718,-0.083089" style="color:#0000FF;text-align:left">View Larger Map</a></small> </div>
-                        <p>Dulwich College Sports Club<br/>
-                            Pond Cottage<br/>
-                            Dulwich <br/>
-                            London<br/>
-                            SE21 7LD</p>
+                            <small><a href="https://maps.google.co.in/maps?f=q&source=embed&hl=en&geocode=&q=<?php echo $addressUrl?>" style="color:#0000FF;text-align:left">View Larger Map</a></small> </div>
+                            <p><?php echo nl2br($address)?></p>
                     </div>
                 </div>
                 <div class="TabbedPanelsContent3">

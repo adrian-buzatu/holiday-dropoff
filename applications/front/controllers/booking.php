@@ -18,13 +18,14 @@ class Booking extends CI_Controller {
         $this->data = $this->main->data;
         $this->load->model('Camps_Model', 'Camps');
         $this->load->model('Booking_Model', 'Booking');
-    }
-
-    public function index($camp_id = 0) {
         if (!isset($_SESSION['username'])) {
             redirect('login');
             exit;
         }
+    }
+
+    public function index($camp_id = 0) {
+        
         $camp_selected = 0;
         $camps = $this->Camps->get();
 

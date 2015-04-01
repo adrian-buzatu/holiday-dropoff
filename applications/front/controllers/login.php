@@ -17,7 +17,14 @@ class Login extends CI_Controller {
             
         }
         else{
-            redirect('');
+            $redirect ='';
+            if($_SESSION['username']['first_login'] == 1){
+                $redirect = 'profile';
+                $this->Users->update(array('first_login' => 0), $_SESSION['username']['user_id']);
+                $_SESSION['username']['first_login'] = 0;
+            }
+            
+            redirect($redirect);
             
         }
     }
@@ -35,8 +42,8 @@ class Login extends CI_Controller {
             $newPass = $this->Users->generatePass(7, true);
             $this->db->update('users', array('password' => sha1($newPass)), array('id' => $id));
             $message = "<p>Dear ". $user['username']. "</p>".
-                    "<p>Here is a newly generated password: ". $newPass.".<br /> It is recommended that you change it after login</p>".
-                    "<p><br /><br />With respect,<br /> The Holiday Drop-off team</p>";
+                    "<p>Here is a newly generated password: ". $newPass."<br /> It is recommended that you change it after login</p>".
+                    "<p><br /><br />Kind regards, <br /> The Holiday Drop Off team</p>";
             //echo $id;die;
             $headers = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";

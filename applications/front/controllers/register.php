@@ -13,6 +13,7 @@ class Register extends CI_Controller {
         $this->form_validation->set_rules('last_name', '"Last Name"', 'required');
         $this->form_validation->set_rules('username', '"Username"', 'required|callback_username_unique');
         $this->form_validation->set_rules('zip', '"Zip"', 'required');
+        $this->form_validation->set_rules('country_id', '"Country"', 'required');
         $this->form_validation->set_rules('landline', '"Landline"', 'required');
         $this->form_validation->set_rules('reference', '"Reference"', 'required');
         $this->form_validation->set_rules('address1', '"Address 1"', 'required');
@@ -23,10 +24,10 @@ class Register extends CI_Controller {
         $this->data['countries'] = $this->Users->getCountriesForForm();
         $this->form_validation->set_error_delimiters('<div class="errorFrm">', '</div>');
         if ($this->form_validation->run() == false) {
-            $this->data[controller() . '_frmLoad'] = true;
-            $this->layout->view('register', $this->data);
+            $this->data['showForm'] = true;
+            
         } else {
-            $this->data[controller() . '_frmLoad'] = false;
+            $this->data['showForm'] = false;
             $user = array(
                 'email' => $this->input->post('email', true),
                 'first_name' => $this->input->post('first_name', true),
@@ -50,12 +51,14 @@ class Register extends CI_Controller {
             $to = $this->input->post('email');
             $subject = "Holyday Dropoff - New Account Confirmation";
             $message = "<p>Dear ". $user['first_name']. " " .$user['last_name']. "</p>".
-                    "<p>You account has been succesfully created.<br /> You can now log in using the chosen credentials</p>".
-                    "<p><br /><br />With respect,<br /> The Holiday Drop-off team</p>";
+                    "<p>You account has been succesfully created.<br /> "
+                    . "You can now log in using the chosen credentials</p>".
+                    "<p><br /><br />Kind regards, <br /> The Holiday Drop Off team</p>";
             mail($to, $subject, $message, $headers);
-            redirect('login');
+            
+            //redirect('login');
         }
-        
+        $this->layout->view('register', $this->data);
     }
 
     

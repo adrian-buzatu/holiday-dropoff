@@ -35,6 +35,7 @@ class Users_Model extends CI_Model {
             $_SESSION['username']['user'] = $array['username'];
             $_SESSION['username']['email'] = $array['email'];
             $_SESSION['username']['role'] = $array['role'];
+            $_SESSION['username']['first_login'] = $array['first_login'];
             return true;
         }
     }
@@ -85,7 +86,8 @@ class Users_Model extends CI_Model {
     
     function one($id){
         $sql = "SELECT * "
-                . "FROM `users` WHERE `id` = '". $id . "'";
+                . "FROM `users` WHERE `id` = '". $id . "'"
+                . " LIMIT 1";
         $result = $this->db->query($sql);
         if ($result->num_rows() == 0){
             return false;            
@@ -97,7 +99,8 @@ class Users_Model extends CI_Model {
     
     function oneFromMail($email){
         $sql = "SELECT * "
-                . "FROM `users` WHERE `email` = '". $email . "'";
+                . "FROM `users` WHERE `email` = '". $email . "' "
+                . "LIMIT 1";
         $result = $this->db->query($sql);
         if ($result->num_rows() == 0){
             return false;            
@@ -123,7 +126,7 @@ class Users_Model extends CI_Model {
     }
     
     function checkMail($mail) {
-        $sql = "SELECT * FROM `users` WHERE `email`='" . addslashes($mail) . "'";
+        $sql = "SELECT * FROM `users` WHERE `email`='" . addslashes($mail) . "' LIMIT 1";
         $result = $this->db->query($sql);
         if ($result->num_rows() == 0) {
 
@@ -133,7 +136,7 @@ class Users_Model extends CI_Model {
     }
     
     function checkUsername($username) {
-        $sql = "SELECT * FROM `users` WHERE `username`='" . addslashes($username) . "'";
+        $sql = "SELECT * FROM `users` WHERE `username`='" . addslashes($username) . "' LIMIT 1";
         $result = $this->db->query($sql);
         if ($result->num_rows() == 0) {
 
@@ -177,8 +180,8 @@ class Users_Model extends CI_Model {
     function getOneChild($id){
         $sql = "
             SELECT * FROM `children` c
-            WHERE c.`id` = '". (int)$id ."'
-            ";
+            WHERE c.`id` = '". (int)$id ."' 
+            LIMIT 1";
         $result = $this->db->query($sql);
         if ($result->num_rows() == 0) {
             return false;

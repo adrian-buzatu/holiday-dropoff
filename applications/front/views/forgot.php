@@ -39,8 +39,11 @@
                     </tr>
                 </table>
             <?php else:?>
-                <p>Please check your email in a few seconds.</br>
-                    Afterwards, login with the new password..</p>
+                <p>
+                    <div>A new password has now been sent to you.</div>
+                    <div>Please check your email in a few seconds.</div>
+                    <div>Note: If the email has not been received, please check your junk box.</div>
+                </p>
             <?php endif;?>
         </div>
     </div>

@@ -17,10 +17,31 @@ class Contactus extends CI_Controller {
         parent::__construct();
         $this->data = $this->main->data;
         $this->load->model('Pages_Model', 'Pages');
+        $this->load->model('Settings_Model', 'Settings');
     }
     
     public function index(){
         $this->data['workForUs'] = $this->Pages->getBySlug('work-for-us');
+        $address = $this->data['address'] = $this->Settings->getAddress();
+        $address_no_br = trim(preg_replace('/\s+/', ' ', $address));
+        $address_gmap = urlencode($address_no_br);
+        $url = "http://maps.google.com/maps/api/geocode/json?sensor=false&address={$address_gmap}";
+        // get the json response
+        $resp_json = file_get_contents($url);
+
+        // decode the json
+        $resp = json_decode($resp_json, true);
+
+        // response status will be 'OK', if able to geocode given address 
+        if ($resp['status'] = 'OK') {
+            //pr($resp['results'][0], 1);
+            // get the important data
+            $lati = $resp['results'][0]['geometry']['location']['lat'];
+            $longi = $resp['results'][0]['geometry']['location']['lng'];
+            $this->data['addressUrl'] = 
+                    $resp['results'][0]['formatted_address']."&t=m&z=14&ll=". $lati. ",". $longi;
+
+        }
         $this->layout->view('contactus/index.php', $this->data);
     }
     
