@@ -61,7 +61,7 @@
                                 <?php endif; ?>
                             </td>
                         </tr>
-                        <tr>
+<!--                        <tr>
                             <td>Monday Price :
                             </td>
                             <td>
@@ -172,6 +172,32 @@
                                     </div>
                                 <?php endif; ?>
                             </td>
+                        </tr>-->
+                        <tr>
+                            
+                            <td>
+                                <a href="javascript:void(0);" id="set_camp_prices">Set Camp Prices</a>
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td colspan="2">
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            
+                            <td>
+                                <div id="camp_prices_holder">
+                                    
+                                </div>
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td colspan="2">
+                                &nbsp;
+                            </td>
                         </tr>
                         <tr>
                             <td>Extra Details :
@@ -190,7 +216,7 @@
                     </tbody>
                 </table>
                 <br>
-                <input type="hidden" name="txtcampid" value="0">
+                <input type="hidden" name="camp_id" value="0">
                 <input type="submit" name="Submit" value="Submit" class="button9">
             </form>
         <?php else: ?>

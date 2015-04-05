@@ -15,7 +15,7 @@
             <script src="<?php echo asset_url();?>js/nicEdit.js" type="text/javascript"></script>
         <?php endif;?>
     </head>
-    <body id="<?php echo controller();?>" rel="<?php echo asset_url()?>">
+    <body id="<?php echo controller();?>" rel="<?php echo asset_url()?>" base-url="<?php echo base_url()?>">
         <div id="wrapper">
             <div id="wrap">
                 <div id="page"><div class="logo"><img src="<?php echo asset_url()?>images/logo.png" alt="" /></div>

@@ -66,7 +66,7 @@ class Camps extends CI_Controller {
         $this->data['success'] = false;
         $camp = $this->Camps->getOne($id);
         $this->data['camp'] = $camp;
-        $this->data['id'] = $id;
+        $this->data['campId'] = $id;
         $this->form_validation->set_error_delimiters('<div class="form_error">', '</div>');
         $this->form_validation->set_error_delimiters('<div class="form_error">', '</div>');
         
@@ -103,5 +103,24 @@ class Camps extends CI_Controller {
     public function delete($id){
         $this->Camps->delete($id);
         redirect('camps');
+    }
+    
+    public function set_prices(){
+        $this->data['startDate'] = strtotime($this->input->post('start_date', true));
+        $this->data['endDate'] = strtotime($this->input->post('end_date', true));
+        $camp = $this->Camps->getOne((int)$this->input->post('camp_id'));
+        if($camp === false){
+            $this->data['camp'] = array();
+        } else {
+            $this->data['camp'] = $camp['prices'];
+        }
+        
+        $html = $this->load->view('camps/partial/camp_prices', $this->data, true);
+        echo json_encode(
+            array(
+                'success' => true,
+                'output' => $html,
+            )
+        );
     }
 }

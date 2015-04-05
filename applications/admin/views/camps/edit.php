@@ -9,7 +9,7 @@
             </div>
         </h3>
         <?php if($success == false):?>
-        <form method="post" action="<?php echo base_url()?>camps/edit/<?php echo $id?>" _lpchecked="1">
+        <form method="post" action="<?php echo base_url()?>camps/edit/<?php echo $campId?>" _lpchecked="1">
                 <table>
                     <tbody><tr>
                             <td>Camp Group</td>
@@ -64,7 +64,7 @@
                                 <?php endif; ?>
                             </td>
                         </tr>
-                        <tr>
+<!--                        <tr>
                             <td>Monday Price :
                             </td>
                             <td>
@@ -159,6 +159,32 @@
                                     </div>
                                 <?php endif; ?>
                             </td>
+                        </tr>-->
+                        <tr>
+                            
+                            <td>
+                                <a href="javascript:void(0);" id="set_camp_prices">Set Camp Prices</a>
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td colspan="2">
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            
+                            <td>
+                                <div id="camp_prices_holder">
+                                    
+                                </div>
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td colspan="2">
+                                &nbsp;
+                            </td>
                         </tr>
                         <tr>
                             <td>Extra Details :
@@ -177,9 +203,19 @@
                     </tbody>
                 </table>
                 <br>
-                <input type="hidden" name="txtcampid" value="0">
+                <div class='red' style='padding: 0 0 15px 0;'>
+                    <fieldset style="width: 400px">
+                        <legend>Tips</legend>
+                        <ol>
+                            <li>To deactivate a day, set its price to zero</li>
+                            <li>To set the same price for all days, fill any price input(except the book all price) and double click on it</li>
+                        </ol>
+                    </fieldset>
+                </div>
+                <input type="hidden" name="camp_id" id="camp_id" value="<?php echo $campId?>">
                 <input type="submit" name="Submit" value="Submit" class="button9">
             </form>
+        
         <?php else: ?>
             <div>Camp added successfully.</div>
         <?php endif; ?>
