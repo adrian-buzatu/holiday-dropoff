@@ -563,3 +563,21 @@ input.multipleimg-submit {
 .form_label{
     width: 106px !important;
 }
+.strong{
+    font-weight: bold;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.price_day_holder{
+    padding: 5px 0;
+}
+.price_tag_camp{
+    padding: 5px 0 0 0;
+}
+.red{
+    color: red;
+}

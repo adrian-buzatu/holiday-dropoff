@@ -52,6 +52,7 @@
                         callback = function() {
                             var camps = new Camps();
                             camps.setDatePicker();
+                            camps.events();
                         }
                         this.loadController(campsUrl, callback);
 
