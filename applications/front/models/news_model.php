@@ -30,6 +30,18 @@ class News_Model extends CI_Model {
         return $query->result_array();
     }
     
+    function getAll(){
+        $sql = "SELECT `id`, SUBSTR(`content_raw`, 1, 50) as `content_raw`,"
+                . "`title`, "
+                . "`slug`"
+                . " FROM `news`";
+        $query = $this->db->query($sql);
+        if($query->num_rows == 0){
+            return false;
+        }
+        return $query->result_array();
+    }
+    
     public function one($slug){
         $query = $this->db->get_where('news', array('slug' => $slug), 1);
         if($query->num_rows == 0){

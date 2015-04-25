@@ -30,6 +30,9 @@
                             <td>                          
                                 <form action="<?php echo base_url()?>profile" method="post" id="profile_form">
                                     <?php echo validation_errors(); ?>
+                                    <?php if($this->session->flashdata('profile_up_success') !== ''):?>
+                                    <div class="profile-up-success"><?php echo $this->session->flashdata('profile_up_success')?></div>
+                                    <?php endif;?>
                                     <div class="mydetail-right-content">
                                         <div class="formdetails"><span>Title:</span>
                                             <p>
@@ -37,6 +40,8 @@
                                                     <option <?php if($me['title'] == "Mr."):?>selected<?php endif;?> value="Mr.">Mr.</option>
                                                     <option <?php if($me['title'] == "Mrs."):?>selected<?php endif;?> value="Mrs.">Mrs.</option>
                                                     <option <?php if($me['title'] == "Ms."):?>selected<?php endif;?> value="Ms.">Ms.</option>
+                                                    <option <?php if($me['title'] == "Miss"):?>selected<?php endif;?> value="Miss">Miss</option>
+                                                    <option  <?php if($me['title'] == "Dr."):?>selected<?php endif;?> value="Dr.">Dr.</option>
                                                 </select>
                                             </p>
                                         </div>

@@ -16,8 +16,13 @@ class News extends CI_Controller {
      public function __construct() {
         parent::__construct();
         $this->data = $this->main->data;
-        $this->load->model('News_Model', 'News');
     }
+    
+    public function index(){
+        $this->data['news'] = $this->News->getAll();
+        $this->layout->view('news/index.php', $this->data);
+    }
+    
     public function view($slug = ''){
         $page = $this->data['page'] = $this->News->one($slug);
         $this->data['slug'] = $slug;

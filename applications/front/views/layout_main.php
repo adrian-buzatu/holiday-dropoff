@@ -121,7 +121,7 @@
                                     <div class="newstext1">Next Camps</div>
                                     <?php foreach($campGroups as $item):?>
                                         <div class="newstext2">
-                                            <a style="color: #FFFFFF; text-decoration:none;font-size: 13px;   font-weight: bold;" href="#book-online/<?php echo $item['id']?>"><?php echo $item['name']?></a>
+                                            <a style="color: #FFFFFF; text-decoration:none;font-size: 13px;   font-weight: bold;" href="<?php echo base_url()?>booking/<?php echo $item['id']?>"><?php echo $item['name']?></a>
                                         </div>
                                     <?php endforeach;?>  
                                 </div>
@@ -177,6 +177,11 @@
                             </li>
                             
                         <?php endforeach;?>
+                        <?php if(count($news) > 6):?>
+                            <li>
+                                <a href="<?php echo base_url()?>news">More News</a>
+                            </li>
+                        <?php endif;?>
                             </ul>
                         </div>
                         

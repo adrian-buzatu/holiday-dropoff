@@ -1,3 +1,4 @@
+
 <div class="bookonline-right-content">
     <div class="bookonline-heading-text"><img src="<?php echo asset_url()?>images/book-online-img.png" alt="" />
         <p>You are signed in as <?php echo $user['user'] ?></p>
@@ -34,10 +35,20 @@
                                             <tr>
                                                 <td class="child_style"><?php echo $child['first_name']?> <?php echo $child['last_name']?> </td>
                                             </tr>
+                                            <tr>
+                                                <td class="child_style">
+                                                    Booked for: <?php echo implode(", ", $finalChildren[$child['id']])?>
+                                                </td>
+                                            </tr>
                                         <?php endforeach;?>
                                         <?php if(isset($friend)):?>
                                             <tr>
                                                 <td class="child_style"><?php echo $friend['first_name'] ?> <?php echo $friend['last_name'] ?> </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="child_style">
+                                                    Booked for: <?php echo implode(", ", $finalChildren[0])?>
+                                                </td>
                                             </tr>
                                         <?php endif;?>
                                     </table>
@@ -45,7 +56,12 @@
                             </tr>
                             
                             <tr>
-                                <td height="40" colspan="2">Please note: You will receive confirmation of this booking by email</td>
+                                <td height="40" colspan="2">Please note: 
+                                    <ul>
+                                        <li>You will receive confirmation of this booking by email</li>
+                                        <li>The days marked with <span class='orange'>orange</span> are extended</li>
+                                    </ul>
+                                </td>
                             </tr>
                             
                             <tr>
@@ -55,7 +71,7 @@
                                 <td colspan="2"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
                                         <tr>
                                             <td width="105"><a href="<?php echo base_url()?>"><img src="<?php echo asset_url()?>images/backbt.png" alt="" /></a></td>
-                                            <td width="523"><a href="#" onclick="return getPrint();"><img src="<?php echo asset_url()?>images/printpage.png" alt="" /></a></td>
+<!--                                            <td width="523"><a href="#" onclick="return getPrint();"><img src="<?php echo asset_url()?>images/printpage.png" alt="" /></a></td>-->
                                         </tr>
 
                                     </table></td>

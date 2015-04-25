@@ -7,7 +7,7 @@
             </ul>
             <div class="TabbedPanelsContentGroup">
                 
-                <div class="TabbedPanelsContent1 TabbedPanelsContentVisible">
+                <div class="TabbedPanelsContent<?php echo $tab !== 'videos' ? 1 : 2?> TabbedPanelsContentVisible">
                     <div class="photogallerysearch">
                         <table style="padding-top:5px;">
                             <tbody>
@@ -19,7 +19,7 @@
                                                 <option value="0">Please Select Category</option>						  
 
                                                 <?php foreach ($categories as $category): ?>
-                                                    <option value="<?php echo $category['id'] ?>"><?php echo $category['name'] ?></option>
+                                                    <option value="<?php echo $category['id'] ?>" <?php echo $category['id'] === $category_id ? 'selected' : ''?>><?php echo $category['name'] ?></option>
                                                 <?php endforeach; ?>
 
                                             </select>
@@ -38,9 +38,9 @@
                                 <?php if(is_array($images)):?>
                                     <ul>
                                         <?php foreach ($images as $image):?>
-                                            <li data-thumb="<?php echo asset_url()?>images/banners/<?php echo $image['src']?>" 
-                                                data-src="<?php echo asset_url()?>images/banners/<?php echo $image['src']?>">
-                                                <img src="<?php echo asset_url()?>images/banners/<?php echo $image['src']?>" />
+                                            <li data-thumb="<?php echo base_url()?>timthumb.php?src=<?php echo asset_url()?>images/banners/<?php echo $image['src']?>&w=150&h=75" 
+                                                data-src="<?php echo base_url()?>timthumb.php?src=<?php echo asset_url()?>images/banners/<?php echo $image['src']?>&w=700&h=200">
+                                                <img src="<?php echo base_url()?>timthumb.php?src=<?php echo asset_url()?>images/banners/<?php echo $image['src']?>&w=700&h=200" />
                                             </li>
                                         <?php endforeach;?>
                                     </ul>

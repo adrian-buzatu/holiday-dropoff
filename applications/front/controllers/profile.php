@@ -5,14 +5,15 @@ class Profile extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->data = $this->main->data;
-        
+        $this->load->model('Booking_Model', 'Booking');
     }
 
     function index() {
+        $this->load->library('session');
         $this->data['countries'] = $this->Users->getCountriesForForm();
         $this->data['me'] = $this->Users->one((int)$this->data['user_id']);
         $this->data['children'] = $this->Users->getUserChildren($this->data['user_id']);
-        
+        $this->data['bookings'] = $this->Booking->get((int)$this->data['user_id']);
         if ($this->data['me'] == false) {
             redirect('login');
         }
@@ -37,8 +38,10 @@ class Profile extends CI_Controller {
             $this->layout->view('profile', $this->data);
         } else {
             $this->data['success'] = true;
+            $this->session->set_flashdata('profile_up_success', 'The Profile Was Updated Successfully');
             $user = array(
                 'email' => $this->input->post('email', true),
+                'title' => $this->input->post('title', true),
                 'first_name' => $this->input->post('first_name', true),
                 'last_name' => $this->input->post('last_name', true),
                 'username' => $this->input->post('username', true),
@@ -61,7 +64,11 @@ class Profile extends CI_Controller {
         }
         
     }
-
+    
+    function success(){
+        
+    }
+    
     function username_unique() {
         $username = $this->input->post('username');
         if ($_SESSION['username']['user'] != $username && $this->Users->checkUser($username) == false) {

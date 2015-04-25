@@ -43,6 +43,10 @@ class Camps extends CI_Controller {
             
         } else {
             $name = $this->input->post('name', true);
+            $extra_days_fee = (int)$this->input->post('extra_days_fee', true);
+            if($extra_days_fee === 0){
+                $extra_days_fee = 5;
+            }
             $campGroup = array(
                 'name' => $name,
                 'start_date' => strtotime($this->input->post('start_date', true)),
@@ -51,6 +55,7 @@ class Camps extends CI_Controller {
                 'date_updated' => time(),
                 'details' => $this->input->post('details', true),
                 'camp_group_id' => (int)$this->input->post('camp_group_id', true),
+                'extra_days_fee' => $extra_days_fee,
                 'status' => 1,
                 
             );

@@ -61,21 +61,21 @@
                                 <?php endif; ?>
                             </td>
                         </tr>
-<!--                        <tr>
-                            <td>Monday Price :
+                        <tr>
+                            <td>Extra days fee :
                             </td>
                             <td>
-                                <input type="text" name="price[1]" value="<?php echo (int) set_value('price[1]') ?>">
+                                <input type="text" name="extra_days_fee" value="5">
                             </td>
                             <td colspan="2">
-                                <?php if (form_error('price[1]') != ""): ?>
+                                <?php if (form_error('extra_days_fee') != ""): ?>
                                     <div class="form_error">
-                                        <?php echo form_error('price[1]'); ?>
+                                        <?php echo form_error('extra_days_fee'); ?>
                                     </div>
                                 <?php endif; ?>
                             </td>
                         </tr>
-                        <tr>
+               <!--             <tr>
                             <td>Tuesday Price :
                             </td>
                             <td>

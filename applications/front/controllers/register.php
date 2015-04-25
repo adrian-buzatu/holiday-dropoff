@@ -49,7 +49,7 @@ class Register extends CI_Controller {
             unset($user['password']);
             $headers = "From:info@holidaydropoff.com\r\n"; 
             $to = $this->input->post('email');
-            $subject = "Holyday Dropoff - New Account Confirmation";
+            $subject = "Holiday Drop Off - New Account Confirmation";
             $message = "<p>Dear ". $user['first_name']. " " .$user['last_name']. "</p>".
                     "<p>You account has been succesfully created.<br /> "
                     . "You can now log in using the chosen credentials</p>".

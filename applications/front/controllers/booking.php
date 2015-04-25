@@ -45,7 +45,7 @@ class Booking extends CI_Controller {
         }
         $this->data['camps'] = $camps;
         $this->data['camp_id'] = $camp_selected;
-        $this->data['children'] = $this->Users->getUserChildren($this->data['user_id']);
+        $this->data['children'] = $this->Users->getUserChildren($this->data['user_id'], 3);
         $this->data['selected_camp'] = $this->Camps->one($camp_selected);
         $this->data['prices'] = $this->Camps->getCampaignPrices($camp_selected);
         $this->data['add_friend'] = $this->load->view('booking/templates/add_friend.php', $this->data, true);
@@ -64,6 +64,8 @@ class Booking extends CI_Controller {
             'date' => time()
         );
         $prices = $this->Camps->getCampaignPrices((int) $_POST['camp_id']);
+        $_SESSION['totalRaw'][$this->data['user_id']] = 0;
+        $totalDaysForCamp = $this->Camps->getCampaignAvailableDays((int) $_POST['camp_id']);
         $orderId = $this->Booking->addOrder($order);
         $_SESSION['order_id'] = $orderId;
         $total = 0;
@@ -72,51 +74,71 @@ class Booking extends CI_Controller {
             '3' => '0.5'
         );
         $finalChildren = array();
-        $dayCount = 0;
-        foreach ($daysBooked as $day => $children) {
-            $count = 0;
-            foreach ($children as $child => $day) {
-                $finalChildren[] = $child;
-                $count ++;
-                $currentPrice = ($count > 1 && $count < 4) ?
+        $dayCount = 1;
+        
+        foreach ($daysBooked as $weekDay => $weekDaysBooked) {
+            foreach($weekDaysBooked as $day => $children){
+                $count = 0;
+                foreach ($children as $child => $day) {
+                    if (!isset($finalChildren[$child])) {
+                        $finalChildren[$child][] = $this->_formatDay($day);
+                        
+                    } else {
+                        if (!in_array($this->_formatDay($day), $finalChildren[$child])) {
+                            $finalChildren[$child][] = $this->_formatDay($day);
+                            
+                        }
+                    }
+
+                    $count ++;
+                    $currentPrice = ($count > 1 && $count < 4) ?
                         ($discount[$count] * $prices[$day]) :
                         $prices[$day];
-                $orderDetails = array(
-                    'order_id' => $orderId,
-                    'child_id' => $child,
-                    'day' => $day,
-                    'price' => $currentPrice
-                );
-                $total += $currentPrice;
-                if ($dayCount == 7) {
-                    $total -= $prices[9];
+                    $orderDetails = array(
+                        'order_id' => $orderId,
+                        'child_id' => $child,
+                        'day' => $day,
+                        'price' => $currentPrice
+                    );
+                    $_SESSION['totalRaw'][$this->data['user_id']] += $prices[$day];
+                    $this->Booking->addOrderDetails($orderDetails);
                 }
-                //$this->Booking->addOrderDetails($orderDetails);
-            }
-            $dayCount++;
-        }
-        foreach ($daysExtendedBooked as $day => $children) {
-            $count = 0;
-            $friend = FALSE;
-            foreach ($children as $child) {
-                $count ++;
-                $currentPrice = $currentPrice = ($count > 1 && $count < 4) ?
-                        ($discount[$count] * $prices[$day]) :
-                        $prices[$day];
-                $currentPrice += 5;
-                $orderDetails = array(
-                    'order_id' => $orderId,
-                    'child_id' => $child,
-                    'day' => $day,
-                    'price' => $currentPrice
-                );
-                $total += $currentPrice;
-                if ($count == 7) {
-                    $total -= $prices[9];
-                }
+                $dayCount++;
             }
             
         }
+        foreach($daysExtendedBooked as $weekDay => $weekDaysExtendedBooked){
+            foreach ($weekDaysExtendedBooked as $day => $children) {
+                $count = 0;
+                $friend = FALSE;
+                foreach ($children as $child => $day) {
+                    if (!isset($finalChildren[$child])) {
+                        $finalChildren[$child][] = $this->_formatDay($day, true);
+                    }
+                    if (!in_array($this->_formatDay($day, true), $finalChildren[$child])) {
+                        $finalChildren[$child][] = $this->_formatDay($day, true);
+                    }
+                    $count ++;
+                    $currentPrice = $currentPrice = ($count > 1 && $count < 4) ?
+                        ($discount[$count] * $prices[$day]) :
+                        $prices[$day];
+                    $currentPrice += $this->Camps->getExtendedPrice();
+                    $orderDetails = array(
+                        
+                        'extended' => 1
+                    );
+                    $up = array(
+                        'order_id' => $orderId,
+                        'child_id' => $child,
+                        'day' => $day,
+                        'price' => $currentPrice,
+                    );
+                    $_SESSION['totalRaw'][$this->data['user_id']] += $this->Camps->getExtendedPrice((int) $_POST['camp_id']);
+                    $this->Booking->updateOrderDetails($orderDetails, $up);
+                }
+            }
+        }
+        
         
         if($_POST['first_name'] != '' && $_POST['last_name'] != '' && $_POST['birthdate'] != ''){
             $friend = array(
@@ -128,71 +150,92 @@ class Booking extends CI_Controller {
             if(!empty($_POST['friend_days_booked']) || !empty($_POST['friend_days_extended_booked'])){
                 $count = 0;
                 if(isset($_POST['friend_days_booked'])){
-                    foreach($_POST['friend_days_booked'] as $did  => $day){
-                        $count ++;
-                        $currentPrice = $prices[$day];
-                        $orderDetails = array(
-                            'order_id' => $orderId,
-                            'child_id' => -1,
-                            'day' => $day,
-                            'friend' => serialize($friend),
-                            'price' => $currentPrice
-                        );
-                        $total += $currentPrice;
-                        if ($count == 7) {
-                            $total -= $prices[9];
+                    foreach($_POST['friend_days_booked'] as $weekDay => $friendWdaysBooked){
+                        foreach ($friendWdaysBooked as $day => $children) {
+                            foreach($children as $child => $day){
+                                $count ++;
+                                $currentPrice = $prices[$day];
+                                $orderDetails = array(
+                                    'order_id' => $orderId,
+                                    'child_id' => -1,
+                                    'day' => $day,
+                                    'friend' => serialize($friend),
+                                    'price' => $currentPrice
+                                );
+                            }
+                            if (!isset($finalChildren[$child])) {
+                                $finalChildren[$child][] = $this->_formatDay($day);
+                            }
+                            if (!in_array($this->_formatDay($day, true), $finalChildren[$child])) {
+                                $finalChildren[$child][] = $this->_formatDay($day);
+                            }
+                            $_SESSION['totalRaw'][$this->data['user_id']] += $prices[$day];
+                            $this->Booking->addOrderDetails($orderDetails);
+                            $friend = true;
                         }
-                        $this->Booking->addOrderDetails($orderDetails);
-                        $friend = true;
                     }
+                    
                 }
                 $count = 0;
                 if(isset($_POST['friend_days_extended_booked'])){
-                    foreach ($_POST['friend_days_extended_booked'] as $did => $day) {
-                        $count ++;
-                        $currentPrice = $prices[$day];
-                        $currentPrice += 5;
-                        $orderDetails = array(
-                            'order_id' => $orderId,
-                            'child_id' => -1,
-                            'day' => $day,
-                            'friend' => serialize($friend),
-                            'price' => $currentPrice
-                        );
-                        $total += $currentPrice;
-                        if ($count == 7) {
-                            $total -= $prices[9];
+                    foreach($_POST['friend_days_extended_booked'] as $friendWExtdaysBooked){
+                        foreach ($friendWExtdaysBooked as $day => $children) {
+                            foreach($children as $child => $day){
+                                $count ++;
+                                $currentPrice = $prices[$day];
+                                $currentPrice += $this->Camps->getExtendedPrice();
+                                $orderDetails = array(
+                                    
+                                    'extended' => 1
+                                );
+                                if (!isset($finalChildren[$child])) {
+                                    $finalChildren[$child][] = $this->_formatDay($day, true);
+                                }
+                                if (!in_array($this->_formatDay($day, true), $finalChildren[$child])) {
+                                    $finalChildren[$child][] = $this->_formatDay($day, true);
+                                }
+                                $up = array(
+                                    'order_id' => $orderId,
+                                    'child_id' => -1,
+                                    'day' => $day,
+                                    'friend' => serialize($friend),
+                                    'price' => $currentPrice
+                                );
+                                $_SESSION['totalRaw'][$this->data['user_id']] += $this->Camps->getExtendedPrice((int) $_POST['camp_id']);
+                                $this->Booking->updateOrderDetails($orderDetails, $up);
+                            }
                         }
-                        $this->Booking->addOrderDetails($orderDetails);
                     }
+                    
                 }
                 
             }
         }
         $couponPost = $this->input->post('txtcoupon_code', true);
         $coupon = $this->Booking->checkCoupon($couponPost);
-        $this->data['discount'] = 0;
+        $this->data['discount'] = $_SESSION['totalRaw'][$this->data['user_id']] - $_SESSION['totalNum'][$this->data['user_id']];
         
         if($coupon !== false){
             $discountAmount = $coupon['amount'];
             $discountType = $coupon['type']; 
             if($discountType == 1){
-                $total -= $discountAmount;
+                $_SESSION['totalNum'][$this->data['user_id']] -= $discountAmount;
                 $this->data['discount'] = $discountAmount;
             } else {
-                $this->data['discount'] = ($discountAmount / 100) * $total;
-                $total -= ($discountAmount / 100) * $total;
+                $this->data['discount'] += ($discountAmount / 100) * $_SESSION['totalNum'][$this->data['user_id']];
+                $_SESSION['totalNum'][$this->data['user_id']] -= ($discountAmount / 100) * $_SESSION['totalNum'][$this->data['user_id']];
                 
             }
         }
-        $this->Booking->updateOrderTotal($orderId, $total);
-        $this->data['total'] = $total;
+        $this->Booking->updateOrderTotal($orderId, $_SESSION['totalNum'][$this->data['user_id']]);
+        $this->data['total'] = $_SESSION['totalNum'][$this->data['user_id']];
         $this->data['camp_id'] = (int) $_POST['camp_id'];
         
         $this->data['selected_camp'] = $this->Camps->one((int) $_POST['camp_id']);
         
         if(!empty($finalChildren)){
-            $this->data['children'] = $this->Booking->getChildrenFromOrder(implode(",", $finalChildren));
+            $this->data['children'] = $this->Booking->getChildrenFromOrder(implode(",", array_keys($finalChildren)));
+            $this->data['finalChildren'] = $finalChildren;
         } else {
             $this->data['children'] = array();
         }
@@ -238,7 +281,9 @@ class Booking extends CI_Controller {
         } else {
             die('wrong id');
         }
-        
+        unset($_SESSION['total_raw']);
+        unset($_SESSION['totalNum']);
+        unset($_SESSION['children_days_booked']);
         $this->layout->view('booking/success', $this->data);
     }
     
@@ -249,5 +294,13 @@ class Booking extends CI_Controller {
     function process_paypal_response($response) {
         pr($_REQUEST, 1);
         pr($_POST, 1);
+    }
+    
+    private function _formatDay($day, $extended = false){
+        if($extended == false){
+            return date("m/d/Y", $day);
+        } else {
+            return "<span class='orange'>". date("m/d/Y", $day) . "</span>";
+        }
     }
 }

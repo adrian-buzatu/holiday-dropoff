@@ -100,7 +100,7 @@ $(document).ready(function(){
                     $("#first_name").val('');
                     $("#last_name").val('');
                     $("#birthdate").val('');
-                    $("#notes").text('');
+                    $("#notes").val('');
                     $("#addchildTbl").hide();
                 }
             });
@@ -147,7 +147,7 @@ $(document).ready(function(){
                     $("#up_first_name").val('');
                     $("#up_last_name").val('');
                     $("#up_birthdate").val('');
-                    $("#up_notes").text('');
+                    $("#up_notes").val('');
                     $("#child_id").val('');
                     $("#children_table").find('a[rel=' + post.id + "]").each(function(){
                         if($(this).hasClass('editable_text')){
@@ -187,7 +187,7 @@ $(document).ready(function(){
                 $("#up_first_name").val(child.first_name);
                 $("#up_last_name").val(child.last_name);
                 $("#up_birthdate").val(child.birthdate);
-                $("#up_notes").text(child.notes);
+                $("#up_notes").val(child.notes);
                 $("#editchildTbl").show();
                 $("#editchildform").show();
                 $("#old_child").show();

@@ -51,7 +51,7 @@
                                         <li><a class="<?php echo controller() == 'gallerycategories' ? 'active' : '';?>" href="<?php echo base_url()?>gallerycategories">Gallery Categories</a></li>
                                         <li><a class="<?php echo controller() == 'gallery' ? 'active' : '';?>" href="<?php echo base_url()?>gallery">My Photos</a></li>
                                         <li><a class="<?php echo controller() == 'videos' ? 'active' : '';?>" href="<?php echo base_url()?>videos">My Video</a></li>
-                                        <li><a class="" href="#">Order</a></li>
+                                        <li><a class="<?php echo controller() == 'order' ? 'active' : '';?>" href="<?php echo base_url()?>order">Order</a></li>
                                         <li><a href="<?php echo base_url()?>coupons" class="<?php echo controller() == 'coupons' ? 'active' : '';?>">Coupon</a></li>
                                         <li><a class="<?php echo controller() == 'testimonials' ? 'active' : '';?>" href="<?php echo base_url()?>testimonials">Testimonial</a></li>              
                                         <li><a class="<?php echo controller() == 'users' ? 'active' : '';?>" href="<?php echo base_url()?>users">Users</a></li>

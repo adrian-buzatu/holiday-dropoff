@@ -25,12 +25,19 @@ class Order extends CI_Controller {
                 'date' => $configTable['viewBaseUrl']. ',id'
             ),
             'customCrudOptions' => array(
-                'view' => 'viewBaseUrl'
+                'view' => $configTable['viewBaseUrl']
             )
         );
         $configTable = array_merge($configTableCustom, $configTable);
         $this->data['list'] = $this->layout->table($configTable);
         $this->layout->view('order/index.php', $this->data);
+    }
+    
+    function view($id){
+        $this->data['order'] = $this->Order->one((int)$id);
+        $this->data['order_id'] = $id;
+        $this->data['children'] = $this->Order->children($id);
+        $this->layout->view('order/view', $this->data);
     }
     
     

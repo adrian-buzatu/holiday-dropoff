@@ -51,12 +51,35 @@ class Camps_Model  extends CI_Model {
         $totalPriceRaw = 0;
         foreach($rows as $row){
             $output[trim($row['camp_price_type'])] = $row['price'];
-            if($row['camp_price_type'] != 8){
+            if($row['camp_price_type'] != 0){
                 $totalPriceRaw += $row['price'];
             }
         }
-        $output[9] = $totalPriceRaw - $output[8];
+        $output[-1] = $totalPriceRaw - $output[0];
+        $output[-2] = $totalPriceRaw;
         return $output;
+    }
+    
+    function getCampaignAvailableDays($campId){
+        $sql = "SELECT COUNT(*) `nb_results`, "
+                . "WEEK(FROM_UNIXTIME(cp.`camp_price_type`)) as week, "
+                . "@curRow := @curRow + 1 AS week_number "
+                . "FROM `camp_prices` cp "
+                . "JOIN (SELECT @curRow := 0) r"
+                . " WHERE cp.`camp_id` = '". $campId . "' "
+                . "AND cp.`camp_price_type` != 0"
+                . " AND cp.`price` > 0 "
+                . "GROUP BY week";
+        if($this->db->query($sql)->num_rows() == 0){
+            return false;
+        }
+        $res = $this->db->query($sql)->result_array();
+        $output = array();
+        foreach($res as $item){
+            $output[$item['week_number']] = $item['nb_results'];
+        }
+        return $output;
+        
     }
     
     function getCampGroupsForForm(){
@@ -70,5 +93,11 @@ class Camps_Model  extends CI_Model {
             $output[$item['id']] = $item['name'];
         }
         return $output;
+    }
+    
+    function getExtendedPrice($camp_id = 1){
+        $sql = "SELECT `extra_days_fee` FROM `camps` WHERE `id` = '". $camp_id ."' LIMIT 1";
+        $result = $this->db->query($sql)->result_array();
+        return $result[0]['extra_days_fee'];
     }
 }

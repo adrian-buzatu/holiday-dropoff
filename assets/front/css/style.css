@@ -356,7 +356,7 @@ a {
     background:url(../images/contact-us.png) no-repeat;
     color:#000
 }
-.menubottomco-home, .menubottomco1-gallery, .menubottomco1-register {
+.menubottomco-home, .menubottomco-gallery, .menubottomco-register {
     float:left;
     width:1030px;
     height:14px;
@@ -421,6 +421,9 @@ a {
     -moz-border-radius: 10px; /* Firefox */
     -webkit-border-radius: 10px; /* Safari and Chrome */
     border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+}
+.price-heading-text{
+    padding: 10px 0 0 0;
 }
 .newstext1 {
     float:left;
@@ -1052,7 +1055,7 @@ a {
     padding-left:24px;
     font-weight:bold;
     list-style:none;
-    line-height:24px;
+    line-height:30px;
 }
 .middilepart li a{
     font-family:"Century Gothic";
@@ -1374,6 +1377,9 @@ img {
     font-weight:bold;
     color:#FFFFFF;
 }
+.login-heading-text div{
+    font-size:16px;
+}
 .emailiputbg {
     width:368px;
     height:21px;
@@ -1448,10 +1454,19 @@ img {
     margin:0px;
 }
 .errorFrm{
-    font-size: 15px !important;
+    font-size: 15px;
     font-weight: bold;
-    color: #FFFFFF !important;
-    padding: 0 0 20px 3px !important;
+    color: #FFFFFF;
+    padding: 0 0 20px 3px;
+}
+#profile_form .errorFrm{
+    color: red;
+    padding: 0 0 20px 15px;
+}
+.profile-up-success{
+    font-size: 15px;
+    color: green;
+    padding: 0 15px;
 }
 .login-content-text1 {
     float:left;
@@ -1689,9 +1704,17 @@ img {
     border:0px; height:175px; width:602px;
     padding:5px 10px 20px 5px;
 }
-.cmassage textarea {border: medium none; font:normal 12px Arial, Helvetica, sans-serif;
-                    height: 150px;
-                    width: 577px;}
+.cmassage textarea {
+    border: none; 
+    font: normal 12px Arial, Helvetica, sans-serif;
+    height: 150px;
+    width: 577px;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
 .contactmasssage{margin: 0 auto; width:500px; background:#FFFFFF; 	border:#FFFFFF solid 1px; text-align:center; font-size:15px; padding:15px 0; 
                  -moz-border-radius: 10px; /* Firefox */
                  -webkit-border-radius: 10px; /* Safari and Chrome */
@@ -1864,6 +1887,15 @@ img {
     width: 650px;
     padding: 20px 0 0 0;
 }
+.news-page-heading-text{
+    font-family: Arial;
+    color: #fff;
+    font-size: 31px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    width: 650px;
+    padding: 20px 0 0 0;
+    letter-spacing: 2px;
+}
 #addfrndmsg span{ color:#FF0000;}
 .tdclassf {
 	background:#FFFFFF;
@@ -1944,13 +1976,13 @@ img {
 
 @media screen and (orientation: landscape) {
     .gallery_front_thumb{
-        max-height: 66px;
-        width: auto;
+        height: 66px;
+        max-width: 99px;
     }
     .gallery-img {
         float:left;
-        max-height: 66px;
-        width: auto;
+        height: 66px;
+        max-width: 99px;
         margin:23px 0 0 15px;
         border:#9b9556 solid 1px;
         background:#FFFFFF;
@@ -2047,4 +2079,10 @@ img {
      height:32px;   
      padding:5px; 
      padding-right:13px;
+}
+.orange{
+    color: #FFCC66;
+}
+.news_item{
+    padding: 10px;
 }

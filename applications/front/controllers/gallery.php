@@ -25,6 +25,7 @@ class Gallery  extends CI_Controller {
             $category = $categories[0]['id'];
         }
         $this->data['tab'] = $tab;
+        $this->data['category_id'] = $category;
         $this->data['images'] = $this->Gallery->get('Image', $category);
         $this->data['videos'] = $this->Gallery->get('Video', $category);
         $this->layout->view('gallery/index', $this->data);

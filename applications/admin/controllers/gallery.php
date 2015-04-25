@@ -66,6 +66,19 @@ class Gallery extends CI_Controller {
             } else {
                 $fileData = $this->upload->data();
                 chmod($fileData['full_path'],0777);
+                $config['image_library'] = 'gd2';
+                $config['source_image']	= $fileData['full_path'];
+                $config['create_thumb'] = TRUE;
+                $config['maintain_ratio'] = TRUE;
+                $config['width']	= 600;
+                $config['height']	= 150;
+
+                $this->load->library('image_lib', $config); 
+
+                if (!$this->image_lib->resize()) {
+                    echo $this->image_lib->display_errors(); exit;
+                }
+                
                 $galleryPhoto = array(
                     'title' => $this->input->post('title', true),
                     'gallery_category_id' => (int)$this->input->post('gallery_category_id', true),

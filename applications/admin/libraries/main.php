@@ -25,6 +25,7 @@ class Main {
                 'deleteBaseUrl' => base_url() . controller() . '/delete/',
                 'pageBaseUrl' => base_url() . controller() . '/page/',
                 'editParam' => 'id',
+                'viewParam' => 'id',
                 'deleteParam' => 'id'
             );
             $this->data['configTable'] = $configTable;

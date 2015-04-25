@@ -48,7 +48,7 @@
 <div class="middlecontant3">
     <div class="flayer">
         <div class="downloadtext">
-            <a href="download.php?download_file=050226171113.pdf">Download Our HDO E-Flyer</a>              </div>
+            <a href="<?php echo base_url()?>download/get/<?php echo $flyer['file']?>">Download Our HDO E-Flyer</a>              </div>
         <div class="img-effect"><img src="<?php echo asset_url() ?>images/img-effect.png" /></div>
     </div>
 </div>

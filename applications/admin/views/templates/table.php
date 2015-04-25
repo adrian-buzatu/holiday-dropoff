@@ -60,7 +60,7 @@
                         <td width="20%" align="left"><a href="<?php echo $deleteBaseUrl. $item[$deleteParam]?>" class="delete_list_item">delete</a></td>
                     <?php else:?>
                         <?php foreach ($customCrudOptions as $title => $viewUrl):?>
-                            <td width="20%" align="left"><a href="<?php echo $viewUrl. $item[$editParam]?>" class="edit_list_item"><?php echo $title?></a></td>
+                            <td width="20%" align="left"><a href="<?php echo $viewUrl. $item[$viewParam]?>" class="edit_list_item <?php echo $item[$viewParam]?>"><?php echo $title?></a></td>
                         <?php endforeach;?>
                     <?php endif;?>
                 </tr>

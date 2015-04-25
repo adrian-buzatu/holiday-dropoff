@@ -64,6 +64,20 @@
                                 <?php endif; ?>
                             </td>
                         </tr>
+                        <tr>
+                            <td>Extra days fee :
+                            </td>
+                            <td>
+                                <input type="text" name="extra_days_fee" value="<?php echo set_value('extra_days_fee') == '' ? $camp['extra_days_fee'] :set_value('extra_days_fee')?>">
+                            </td>
+                            <td colspan="2">
+                                <?php if (form_error('extra_days_fee') != ""): ?>
+                                    <div class="form_error">
+                                        <?php echo form_error('extra_days_fee'); ?>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
 <!--                        <tr>
                             <td>Monday Price :
                             </td>
