@@ -33,9 +33,7 @@ application/admin/config/config.php
 *.rar
 *.tar
 *.zip
-*.jpg
-assets/images/*
-
+ 
 # Logs and databases #
 ######################
 *.log

@@ -171,8 +171,8 @@
                         $(this).attr('checked', 'checked');
                         $(this).addClass('js_checked');
                     });
-                    $(me.accesors.bookAllDaysPrefix + book_all_to_uncheck + "_" + week).removeAttr('checked');
-                    $(me.accesors.bookAllDaysPrefix + book_all_to_uncheck + "_" + week).removeClass('js_checked');
+                    //$(me.accesors.bookAllDaysPrefix + book_all_to_uncheck + "_" + week).removeAttr('checked');
+                    //$(me.accesors.bookAllDaysPrefix + book_all_to_uncheck + "_" + week).removeClass('js_checked');
                     $(target_checkbox_class + "_" + week).removeAttr('checked').removeClass('js_checked');
                 } else {
                     parent.find(checkbox_class + '.js_checked' + checkbox_class + '_' + week).
@@ -221,9 +221,9 @@
         uncheckMirrorEl: function($mirrorCheckboxes){
             var me = this;
             $mirrorCheckboxes.each(function(){
-                if($(this).val() == me.day && $(this).hasClass('js_checked')){
-                    $(this).removeAttr('checked');
-                    $(this).removeClass('js_checked');
+                if($(this).val() == me.day && $(this).hasClass('js_checked') && me.checkboxType === 'extended'){
+                    $(this).attr('checked', 'checked');
+                    $(this).removeClass('js_checked').addClass('js_checked');
                 } 
              });
         }
