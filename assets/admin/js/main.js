@@ -86,6 +86,16 @@
                         this.loadController(newsUrl, callback);
 
                     }
+                    case 'report': {
+                        reportUrl = this.assetsUrl + "js/controllers/report.js";
+                        callback = function() {
+                            var report = new Report();
+                            report.setDatePicker();
+                            report.events();
+                        }
+                        this.loadController(reportUrl, callback);
+
+                    }
                 }
             }
         }

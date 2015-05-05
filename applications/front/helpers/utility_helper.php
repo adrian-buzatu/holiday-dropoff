@@ -53,3 +53,26 @@ function pr($object, $die = false) {
         die("<span style='color:red;'><em>Script was killed on demand!</em></span>");
     }
 }
+
+function calculateAge($timestamp = 0, $now = 0) {
+        # default to current time when $now not given
+        if ($now == 0)
+            $now = time();
+
+        # calculate differences between timestamp and current Y/m/d
+        $yearDiff = date("Y", $now) - date("Y", $timestamp);
+        $monthDiff = date("m", $now) - date("m", $timestamp);
+        $dayDiff = date("d", $now) - date("d", $timestamp);
+
+        # check if we already had our birthday
+        if ($monthDiff < 0)
+            $yearDiff--;
+        elseif (($monthDiff == 0) && ($dayDiff < 0))
+            $yearDiff--;
+
+        # set the result: age in years
+        $result = intval($yearDiff);
+
+        # deliver the result
+        return $result;
+    }

@@ -103,4 +103,72 @@ class Booking_Model extends CI_Model {
         $res = $query->result_array();
         return $res;
     }
+    
+    public function getUserFinalizedBookings($userId, $order_id = 0){
+        $where = "";
+        if((int)$order_id > 0){
+            $where = " AND o.`id` = '". $order_id ."' ";
+        }
+        $sql = "SELECT o.`total`, o.`date`, o.`id`,"
+                . " od.`friend`, od.`child_id`,"
+                . " camp.`name` as `camp`, "
+                . " c.`first_name`, "
+                . " c.`last_name`, "
+                . "TIMESTAMPDIFF(YEAR, FROM_UNIXTIME(c.`birthdate`), NOW()) as `age`, "
+                . "c.`notes`, "
+                . " CONCAT(c.`first_name`, ' ', c.`last_name`) as `child`"
+                . " FROM `order` AS o"
+                . " JOIN `order_details` od ON(od.`order_id` = o.`id`)"
+                . " LEFT JOIN `children` c ON(od.`child_id` = c.`id`)"
+                . " JOIN `camps` camp ON(o.`camp_id` = camp.`id`)"
+                . " WHERE o.`user_id` = '". $userId . "' AND o.`status` = 1 "
+                . $where
+                . " GROUP BY od.`child_id`, o.`id`"
+                . " ORDER BY o.`date`";
+        $query = $this->db->query($sql);
+        if($query->num_rows() === 0){
+            return false;
+        }
+        $result = $query->result_array();
+        foreach($result as $loopIndex => $orderItem){
+            $result[$loopIndex]['days_booked'] = '';
+           if(is_array($this->__formatChildOrderDaysBooked($orderItem['id'], $orderItem['child_id']))){
+               $result[$loopIndex]['days_booked'] = implode(",", 
+                       $this->__formatChildOrderDaysBooked($orderItem['id'], $orderItem['child_id']));
+           }
+        }
+        return $result;
+    }
+    
+    private function __formatDay($day, $extended = false){
+        if($extended == false){
+            return date("d/m/Y", $day);
+        } else {
+            return "<span class='orange'>". date("d/m/Y", $day) . "</span>";
+        }
+    }
+    
+    private function ___getChildOrderDaysBooked($orderId, $childId){
+        $sql = "SELECT od.`day`, od.`extended` FROM `order_details` od"
+                . " WHERE od.`order_id` = '". $orderId . "' "
+                . "AND od.`child_id` = '". $childId . "'"
+                . " ORDER BY od.`day` ASC";
+        $query = $this->db->query($sql);
+        if($query->num_rows() === 0){
+            return false;
+        }
+        return $query->result_array();        
+    }
+    
+    private function __formatChildOrderDaysBooked($orderId, $childId){
+         $daysBooked = array();
+        if(!is_array($this->___getChildOrderDaysBooked($orderId, $childId))){
+            return false;
+        }
+        $childDaysBooked = $this->___getChildOrderDaysBooked($orderId, $childId);
+        foreach($childDaysBooked as $dayData){
+            $daysBooked[] = $this->__formatDay($dayData['day'], $dayData['extended']);
+        }
+        return $daysBooked;
+    }
 }

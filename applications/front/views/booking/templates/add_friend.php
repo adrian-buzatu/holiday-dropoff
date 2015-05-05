@@ -7,7 +7,7 @@
     <tr>
         <td colspan="3">
             <table >
-                <tr id="friend" class="hide">
+                <tr id="friend" class="<?php if(!isset($children_days_booked[0])):?>hide<?php endif;?>">
                     <td>
                         <table  id="friend_table"  width="300" border="0" align="center" cellpadding="0" cellspacing="0">
                             <tr>
@@ -17,7 +17,7 @@
                                 <td style="margin-left:5%;"></td>
                                 <td>Forename:</td>
                                 <td width="225">
-                                    <input name="first_name" id="first_name" class="afnamebg" type="text" value="" />
+                                    <input name="first_name" id="first_name" class="afnamebg" type="text" value="<?php echo $friend['first_name']?>" />
                                     <div id="first_name_error" class="child_form_error">&nbsp;</div>
                                 </td>
                                 <td width="302">&nbsp;</td>
@@ -26,7 +26,7 @@
                                 <td style="margin-left:5%;"></td>
                                 <td>Surname:</td>
                                 <td>
-                                    <input name="last_name" id="last_name" class="afnamebg" type="text"  value=""  />
+                                    <input name="last_name" id="last_name" class="afnamebg" type="text"  value="<?php echo $friend['last_name']?>"  />
                                     <div id="last_name_error" class="child_form_error">&nbsp;</div>
                                 </td>
                                 <td>&nbsp;</td>
@@ -37,7 +37,7 @@
                             <tr>
                                 <td colspan="2">Date of birth:</td>
                                 <td width="52" class="birthdate_friend_table_container">
-                                    <input name="birthdate" id="birthdate" class="afnamebg datepicker" type="text" readonly="" value=""  /> 
+                                    <input name="birthdate" id="birthdate" class="afnamebg datepicker" type="text" readonly="" value="<?php echo $friend['birthdate']?>"  /> 
                                     <div id="birthdate" class="child_form_error">&nbsp;</div>
                                 </td>
                                 <td>&nbsp;</td>
@@ -50,7 +50,7 @@
                                     <table width="585" border="0" cellspacing="0" cellpadding="0">
                                         <tr>
                                             <td width="210" valign="top">Allergies/notes:</td>
-                                            <td valign="top"><textarea name="notes" id="notes" class="textbox" cols="" rows=""></textarea>
+                                            <td valign="top"><textarea name="notes" id="notes" class="textbox" cols="" rows=""><?php echo $friend['notes']?></textarea>
                                             </td>
                                         </tr>
                                     </table>
@@ -91,13 +91,15 @@
                                         <tr>
                                             <td width="169" class="tdclassf" style="text-align:center;" >Normal Day</td>
                                             <?php
+                                            $dayCount = 0;
                                             for ($i = $week; $i < strtotime('+1 week', $week); $i = strtotime('+1 day', $i)):
                                                 ?>
 
-                                                <?php if(isset($prices[$i])):?>
+                                                <?php if(isset($prices[$i])): $dayCount ++;?>
                                                     <td width="89" rowspan="2" align="center" class="tdclasso normal <?php echo ($prices[$i] == 0) ? 'hide' : 'show show_'. $weekCount?>">
-                                                        <input week="<?php echo $weekCount?>" type="checkbox" class="normal_check booking_checkbox normal_check_<?php echo $weekCount?>" rel="extended" child="0"
-                                                               name="friend_days_booked[<?php echo $weekCount?>][<?php echo $i ?>][0]" id="" value="<?php echo $i ?>" />
+                                                        <input week="<?php echo $weekCount?>" type="checkbox" 
+                                                               class="<?php if(isset($children_days_booked[0]['normal']) && in_array($i, $children_days_booked[0]['normal'])):?>js_checked<?php endif;?> normal_check booking_checkbox normal_check_<?php echo $weekCount?>" rel="extended" child="0"
+                                                               <?php if(isset($children_days_booked[0]['normal']) && in_array($i, $children_days_booked[0]['normal'])):?>checked<?php endif;?> name="friend_days_booked[<?php echo $weekCount?>][<?php echo $i ?>][0]" id="" value="<?php echo $i ?>" />
                                                                 Book </td>
                                                 <?php endif;?>
                                             <?php endfor; ?>
@@ -105,18 +107,20 @@
                                         </tr>
                                         <tr>
                                             <td valign="top" class="check_all_wrapper" style="">
-                                                <input week="<?php echo $weekCount?>" type="checkbox" child="0" name="book_all_normal_friend[<?php echo $weekCount?>][0]" class="book_all_days book_all_days_normal book_all_days_normal_<?php echo $weekCount?>" rel="normal,extended" />
+                                                <input <?php if(isset($children_days_booked[0]['normal']) && count($children_days_booked[0]['normal']) === $dayCount):?>checked<?php endif;?>  week="<?php echo $weekCount?>" type="checkbox" child="0" name="book_all_normal_friend[<?php echo $weekCount?>][0]" class="book_all_days book_all_days_normal book_all_days_normal_<?php echo $weekCount?>" rel="normal,extended" />
                                                 Book all days</td>
                                         </tr>
                                         <tr>
                                             <td width="169" class="tdclassf" style="text-align:center;" >Extended Day</td>
-                                            <?php
+                                            <?php $dayCount = 0;
                                             for ($i = $week; $i < strtotime('+1 week', $week); $i = strtotime('+1 day', $i)):
                                                 ?>
 
-                                                <?php if(isset($prices[$i])):?>
+                                                <?php if(isset($prices[$i])): $dayCount ++;?>
                                                 <td width="89" rowspan="2" align="center" class="tdclasso extended <?php echo ($prices[$i] == 0) ? 'hide' : 'show show_'. $weekCount?>">
-                                                    <input week="<?php echo $weekCount?>" type="checkbox"  class="extended_check booking_checkbox extended_check_<?php echo $weekCount?>" rel="normal" child="0"
+                                                    <input week="<?php echo $weekCount?>" type="checkbox"  
+                                                           <?php if(isset($children_days_booked[0]['extended']) && in_array($i, $children_days_booked[0]['extended'])):?>checked<?php endif;?> 
+                                                        class="<?php if(isset($children_days_booked[0]['extended']) && in_array($i, $children_days_booked[0]['extended'])):?>js_checked<?php endif;?> extended_check booking_checkbox extended_check_<?php echo $weekCount?>" rel="normal" child="0"
                                                         name="friend_days_extended_booked[<?php echo $weekCount?>][<?php echo $i ?>][0]" id="" value="<?php echo $i ?>" />
                                                             Book </td>
                                                 <?php endif;?>
@@ -124,7 +128,7 @@
                                         </tr>
                                         <tr>
                                             <td valign="top" class="check_all_wrapper">
-                                                <input week="<?php echo $weekCount?>" type="checkbox" child="0" name="book_all_extended_friend[<?php echo $weekCount?>][0]" class="book_all_days book_all_days_extended book_all_days_extended_<?php echo $weekCount?>" rel="extended,normal" child="0" />
+                                                <input <?php if(isset($children_days_booked[0]['extended']) && count($children_days_booked[0]['extended']) === $dayCount):?>checked<?php endif;?>  week="<?php echo $weekCount?>" type="checkbox" child="0" name="book_all_extended_friend[<?php echo $weekCount?>][0]" class="book_all_days book_all_days_extended book_all_days_extended_<?php echo $weekCount?>" rel="extended,normal" child="0" />
                                                 Book all days</td>
                                         </tr>
                                         

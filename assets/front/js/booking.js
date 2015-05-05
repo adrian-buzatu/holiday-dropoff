@@ -125,14 +125,11 @@
                         removeAttr('checked');
                 if(!$(this).hasClass("js_checked")){
                     //When I book a normal day, the same extended day should be unchecked and vice-versa.
-                    me.uncheckMirrorEl(parent.find('.' + target + '_check'));
+                    me.checkMirrorEl(parent.find('.' + target + '_check'));
                    $(this).addClass('js_checked');
-                    console.log(parent.find(checkbox_class  + "_" + week + '.js_checked').length,
-                    parent.find(checkbox_class  + "_" + week + '.js_checked'),
-                    parent.find('td.show_' + week + "." + me.checkboxType).length);
+                    
                     if(parent.find(checkbox_class  + "_" + week + '.js_checked').length >= 
-                    parent.find('td.show_' + week + "." + me.checkboxType).length) {
-                
+                    parent.find('td.show_' + week + "." + me.checkboxType).length) {                
                         parent.find(me.accesors.dynClasses.check_all.replace('{type}', me.checkboxType))
                             .trigger('click');
                     } else {
@@ -141,9 +138,17 @@
                     }
                     
                 } else {
-                    parent.find(me.accesors.dynClasses.check_all.replace('{type}', me.checkboxType))
+                    if(me.checkboxType === 'normal'){
+                        parent.find(me.accesors.dynClasses.check_all.replace('{type}', target))
                             .removeAttr('checked');
+                        me.uncheckMirrorEl(parent.find('.' + target + '_check'));
+                        console.log(parent.find('.' + target + '_check'));
+                    }
+                    parent.find(me.accesors.dynClasses.check_all.replace('{type}', me.checkboxType))
+                            .removeAttr('checked');                  
+                    
                     $(this).removeClass('js_checked');
+                    
                     me.ajaxCall();
                 }
                 
@@ -171,9 +176,17 @@
                         $(this).attr('checked', 'checked');
                         $(this).addClass('js_checked');
                     });
-                    //$(me.accesors.bookAllDaysPrefix + book_all_to_uncheck + "_" + week).removeAttr('checked');
-                    //$(me.accesors.bookAllDaysPrefix + book_all_to_uncheck + "_" + week).removeClass('js_checked');
-                    $(target_checkbox_class + "_" + week).removeAttr('checked').removeClass('js_checked');
+                    //$(me.accesors.bookAllDaysPrefix + book_all_to_uncheck + "_" + week).attr('checked', 'checked');
+                    //$(me.accesors.bookAllDaysPrefix + book_all_to_uncheck + "_" + week).removeClass('js_checked').
+                    //        addClass('js_checked');
+                    if(me.checkboxType === 'extended'){
+                        parent.find(target_checkbox_class + "_" + week).attr('checked', 'checked').
+                            removeClass('js_checked').addClass('js_checked');
+                        parent.find(me.accesors.bookAllDaysPrefix + book_all_to_uncheck + "_" + week).attr('checked', 'checked');
+                        parent.find(me.accesors.bookAllDaysPrefix + book_all_to_uncheck + "_" + week).removeClass('js_checked').
+                            addClass('js_checked');
+                    }
+                    
                 } else {
                     parent.find(checkbox_class + '.js_checked' + checkbox_class + '_' + week).
                             removeClass('js_checked').removeAttr('checked');
@@ -218,12 +231,21 @@
                 });
                 return sum;
         },
-        uncheckMirrorEl: function($mirrorCheckboxes){
+        checkMirrorEl: function($mirrorCheckboxes){
             var me = this;
-            $mirrorCheckboxes.each(function(){
-                if($(this).val() == me.day && $(this).hasClass('js_checked') && me.checkboxType === 'extended'){
+            $mirrorCheckboxes.each(function(){                
+                if($(this).val() == me.day && !$(this).hasClass('js_checked') && me.checkboxType === 'extended'){
                     $(this).attr('checked', 'checked');
                     $(this).removeClass('js_checked').addClass('js_checked');
+                } 
+             });
+        },
+        uncheckMirrorEl: function($mirrorCheckboxes){
+            var me = this;
+            $mirrorCheckboxes.each(function(){                
+                if($(this).val() == me.day && $(this).hasClass('js_checked') && me.checkboxType === 'normal'){
+                    $(this).removeAttr('checked');
+                    $(this).removeClass('js_checked');
                 } 
              });
         }

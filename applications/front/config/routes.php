@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "homepage";
 $route['404_override'] = '';
+$route['newsletter'] = 'newsletter';
 $route['news'] = 'news';
 $route['news/(:any)'] = 'news/view/$1';
 $route['ajax'] = "ajax";

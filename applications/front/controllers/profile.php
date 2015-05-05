@@ -8,15 +8,16 @@ class Profile extends CI_Controller {
         $this->load->model('Booking_Model', 'Booking');
     }
 
-    function index() {
+    function index() {   
+        
+        if (!isset($this->data['user_id']) || (int)$this->data['user_id'] < 1) {
+            redirect('login');
+        }
         $this->load->library('session');
         $this->data['countries'] = $this->Users->getCountriesForForm();
         $this->data['me'] = $this->Users->one((int)$this->data['user_id']);
         $this->data['children'] = $this->Users->getUserChildren($this->data['user_id']);
-        $this->data['bookings'] = $this->Booking->get((int)$this->data['user_id']);
-        if ($this->data['me'] == false) {
-            redirect('login');
-        }
+        $this->data['bookings'] = $this->Booking->getUserFinalizedBookings((int)$this->data['user_id']);
         $this->form_validation->set_rules('first_name', '"First Name"', 'required');
         $this->form_validation->set_rules('last_name', '"Last Name"', 'required');
         $this->form_validation->set_rules('username', '"Username"', 'required|callback_username_unique');

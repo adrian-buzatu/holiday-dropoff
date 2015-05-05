@@ -97,6 +97,19 @@ class Users_Model extends CI_Model {
         }
     }
     
+    function oneAdmin(){
+        $sql = "SELECT * "
+                . "FROM `users` WHERE `role` = '1'"
+                . " LIMIT 1";
+        $result = $this->db->query($sql);
+        if ($result->num_rows() == 0){
+            return false;            
+        } else {
+            $row = $result->result_array();
+            return $row[0];
+        }
+    }
+    
     function oneFromMail($email){
         $sql = "SELECT * "
                 . "FROM `users` WHERE `email` = '". $email . "' "
@@ -203,7 +216,7 @@ class Users_Model extends CI_Model {
     // Note: the $add_dashes option will increase the length of the password by
     // floor(sqrt(N)) characters.
 
-    function generatePass($length = 9, $add_dashes = false, $available_sets = 'luds') {
+    public function generatePass($length = 9, $add_dashes = false, $available_sets = 'luds') {
         $sets = array();
         if (strpos($available_sets, 'l') !== false)
             $sets[] = 'abcdefghjkmnpqrstuvwxyz';
@@ -239,5 +252,6 @@ class Users_Model extends CI_Model {
         $dash_str .= $password;
         return $dash_str;
     }
-
+    
+    
 }

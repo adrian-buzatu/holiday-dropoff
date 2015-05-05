@@ -2,7 +2,7 @@
     <div class="bookonline-right-content">
         <div id="floatMenu">
             <div id="float_div">
-                <div id="total_price" class="total">Total Charge: &pound;<span id="total_num">0</span></div>
+                <div id="total_price" class="total">Total Charge: &pound;<span id="total_num"><?php echo $total?></span></div>
                 <input type="hidden" id="prices_list" value='<?php echo json_encode($prices);?>'>
                 <input type="hidden" id="extended_days_fee" value="5" />
                 <input type="hidden" name="camp_id" value="<?php echo $selected_camp['id'];?>" />
@@ -56,12 +56,12 @@
                                                             </td>
                                                         </tr>
                                                     </table>
-                                                    <table id="children_area_<?php echo $child['id']?>" class="hide" >
+                                                    <table id="children_area_<?php echo $child['id']?>" class="<?php if(!isset($children_days_booked[$child['id']])):?>hide<?php endif;?>" >
                                                         <tr>
                                                             <td class="book_for_child_name">Book Camp For: <?php echo $child['first_name']. " ".$child['last_name'] ?>   </td>
                                                         </tr>
                                                     </table>
-                                                    <table id="children_booking_area_<?php echo $child['id']?>" class="hide" >
+                                                    <table id="children_booking_area_<?php echo $child['id']?>" class="<?php if(!isset($children_days_booked[$child['id']])):?>hide<?php endif;?>" >
                                                         <tr>
                                                             <td class="camp_cell" colspan="4" style=""><?php echo $selected_camp['name']?> <?php echo date('m/d/Y', $selected_camp['start_date'])?> - <?php echo date('m/d/Y', $selected_camp['end_date'])?></td>
                                                         </tr>
@@ -86,13 +86,15 @@
                                                                      
                                                                         <tr>
                                                                             <td width="169" class="tdclassf" style="text-align:center;" >Normal Day</td>
-                                                                                <?php
+                                                                                <?php $dayCount = 0;
                                                                                 for ($i = $week; $i < strtotime('+1 week', $week); $i = strtotime('+1 day', $i)):
+                                                                                    
                                                                                     ?>
-                                                                                    <?php if(isset($prices[$i])):?>
+                                                                                    <?php if(isset($prices[$i])):$dayCount ++;?>
                                                                                         <td width="89" rowspan="2" align="center" class="tdclasso normal <?php echo ($prices[$i] == 0) ? 'hide' : 'show show_'. $weekCount?>">
-                                                                                            <input week="<?php echo $weekCount?>" type="checkbox" class="normal_check booking_checkbox normal_check_<?php echo $weekCount?>" rel="extended" child="<?php echo $child['id']?>"
-                                                                                                   name="days_booked[<?php echo $weekCount?>][<?php echo $i ?>][<?php echo $child['id']?>]" id="" value="<?php echo $i ?>" />
+                                                                                            <input week="<?php echo $weekCount?>" type="checkbox" 
+                                                                                                   class="<?php if(isset($children_days_booked[$child['id']]['normal']) && in_array($i, $children_days_booked[$child['id']]['normal'])):?>js_checked<?php endif;?> normal_check booking_checkbox normal_check_<?php echo $weekCount?>" rel="extended" child="<?php echo $child['id']?>"
+                                                                                              <?php if(isset($children_days_booked[$child['id']]['normal']) && in_array($i, $children_days_booked[$child['id']]['normal'])):?>checked<?php endif;?>      name="days_booked[<?php echo $weekCount?>][<?php echo $i ?>][<?php echo $child['id']?>]" id="" value="<?php echo $i ?>" />
                                                                                                     Book </td>
                                                                                     <?php endif;?>
                                                                                 <?php endfor; ?>
@@ -100,18 +102,19 @@
                                                                         </tr>
                                                                         <tr>
                                                                             <td valign="top" class="check_all_wrapper" style="">
-                                                                                <input week="<?php echo $weekCount?>" type="checkbox" child="<?php echo $child['id']?>" name="book_all_normal[<?php echo $weekCount?>][<?php echo $child['id']?>]" class="book_all_days book_all_days_normal book_all_days_normal_<?php echo $weekCount?>" rel="normal,extended" />
+                                                                                <input <?php if(isset($children_days_booked[$child['id']]['normal']) && count($children_days_booked[$child['id']]['normal']) === $dayCount):?>checked<?php endif;?> week="<?php echo $weekCount?>" type="checkbox" child="<?php echo $child['id']?>" name="book_all_normal[<?php echo $weekCount?>][<?php echo $child['id']?>]" class="book_all_days book_all_days_normal book_all_days_normal_<?php echo $weekCount?>" rel="normal,extended" />
                                                                                 Book all days</td>
                                                                         </tr>
 
                                                                         <tr>
                                                                             <td width="169" class="tdclassf" style="text-align:center;" >Extended Day</td>
-                                                                             <?php
+                                                                             <?php $dayCount = 0;
                                                                                 for ($i = $week; $i < strtotime('+1 week', $week); $i = strtotime('+1 day', $i)):
                                                                                     ?>
-                                                                                    <?php if(isset($prices[$i])):?>
+                                                                                    <?php if(isset($prices[$i])):$dayCount ++;?>
                                                                                     <td width="89" rowspan="2" align="center" class="tdclasso extended <?php echo ($prices[$i] == 0) ? 'hide' : 'show show_'. $weekCount?>">
-                                                                                        <input week="<?php echo $weekCount?>" type="checkbox"  class="extended_check booking_checkbox extended_check_<?php echo $weekCount?>" rel="normal" child="<?php echo $child['id']?>"
+                                                                                        <input <?php if(isset($children_days_booked[$child['id']]['extended']) && in_array($i, $children_days_booked[$child['id']]['extended'])):?>checked<?php endif;?> week="<?php echo $weekCount?>" type="checkbox"  
+                                                                                            class="<?php if(isset($children_days_booked[$child['id']]['extended']) && in_array($i, $children_days_booked[$child['id']]['extended'])):?>js_checked<?php endif;?> extended_check booking_checkbox extended_check_<?php echo $weekCount?>" rel="normal" child="<?php echo $child['id']?>"
                                                                                             name="days_extended_booked[<?php echo $weekCount?>][<?php echo $i ?>][<?php echo $child['id']?>]" id="" value="<?php echo $i ?>" />
                                                                                                 Book </td>
                                                                                     <?php endif;?>
@@ -119,7 +122,7 @@
                                                                         </tr>
                                                                         <tr>
                                                                             <td valign="top" class="check_all_wrapper">
-                                                                                <input week="<?php echo $weekCount?>" type="checkbox" child="<?php echo $child['id']?>" name="book_all_extended[<?php echo $weekCount?>][<?php echo $child['id']?>]" class="book_all_days book_all_days_extended book_all_days_extended_<?php echo $weekCount?>" rel="extended,normal" child="<?php echo $child['id']?>" />
+                                                                                <input <?php if(isset($children_days_booked[$child['id']]['extended']) && count($children_days_booked[$child['id']]['extended']) === $dayCount):?>checked<?php endif;?> week="<?php echo $weekCount?>" type="checkbox" child="<?php echo $child['id']?>" name="book_all_extended[<?php echo $weekCount?>][<?php echo $child['id']?>]" class="book_all_days book_all_days_extended book_all_days_extended_<?php echo $weekCount?>" rel="extended,normal" child="<?php echo $child['id']?>" />
                                                                                 Book all days</td>
                                                                         </tr>
                                                                         <tr><?php
@@ -167,7 +170,7 @@
         </div>
         <div class="bottomblock">
             <input type="hidden" name="txttotal_price" id="txttotal_price" />
-            <div class="total" id="total_price1">Total Charge: &pound;<span id="total_num_bottom">0.00</span></div>
+            <div class="total" id="total_price1">Total Charge: &pound;<span id="total_num_bottom"><?php echo $total?></span></div>
             <div class="c1"></div>
             <div align="right" style="color:#fff;">Discounts will be show on the next page</div>
             <div class="oncart11" style="display:none;">Update Cart</div>

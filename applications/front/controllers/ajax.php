@@ -38,23 +38,18 @@ class Ajax extends CI_Controller {
                 'fullWeek' => isset($_POST['book_all_normal']) ? $_POST['book_all_normal'] : array()
             )
         );
-//        $this->process_days($daysExtendedBooked, array(
-//                'extended' => true,
-//                'fullWeek' => isset($_POST['book_all_extended']) ? $_POST['book_all_extended'] : array()
-//            )
-//        );
         $this->process_days($friendDaysBooked, array(
                 'extended' => false,
                 'friend' => true,
                 'fullWeek' => isset($_POST['book_all_normal_friend']) ? $_POST['book_all_normal_friend'] : array()
             )
         );
-//        $this->process_days($friendDaysExtendedBooked, array(
-//                'extended' => true,
-//                'friend' => true,
-//                'fullWeek' => isset($_POST['book_all_extended_friend']) ? $_POST['book_all_extended_friend'] : array()
-//            )
-//        );
+        $_SESSION['friend'][$this->data['user_id']] = array(
+            'first_name' => $this->input->post('first_name', true),
+            'last_name' => $this->input->post('last_name', true),
+            'birthdate' => $this->input->post('birthdate', true),
+            'notes' => $this->input->post('notes', true)
+        );    
         $this->add_extended_fee($daysExtendedBooked, (int) $_POST['camp_id']);
         $this->add_extended_fee($friendDaysExtendedBooked, (int) $_POST['camp_id']);
         echo json_encode(array(
@@ -67,7 +62,7 @@ class Ajax extends CI_Controller {
         $extended = $config['extended'];
         $friend = isset($config['friend']) ? true: false;
         $fullWeekArray = isset($config['fullWeek']) ? $config['fullWeek']: array();
-        $type = $extended == true ? 'extended' : 'normal';
+        $type = 'normal';
         $prices = $this->Camps->getCampaignPrices((int) $_POST['camp_id']);
         $totalDaysForCampArr = $this->Camps->getCampaignAvailableDays((int) $_POST['camp_id']);
         $discount = array(
@@ -97,9 +92,7 @@ class Ajax extends CI_Controller {
                         } else {
                             $currentPrice = $prices[$day];
                         }
-                        if ($extended === true) {
-                            $currentPrice += $this->Camps->getExtendedPrice();
-                        }
+                        
                         if (!isset($_SESSION['total'][$this->data['user_id']][$child]) || !isset($_SESSION['total'][$this->data['user_id']][$child][$weekNumber])
                         ) {
                             $_SESSION['total'][$this->data['user_id']][$child][$weekNumber] = $currentPrice;
@@ -125,9 +118,7 @@ class Ajax extends CI_Controller {
                              $_SESSION['total'][$this->data['user_id']][$child][$weekNumber] = $prices[0];
                         }
                         
-                        if($extended === true){
-                            $_SESSION['total'][$this->data['user_id']][$child][$weekNumber] += $this->Camps->getExtendedPrice();
-                        }
+                       
                         
                     }
                     
@@ -157,6 +148,19 @@ class Ajax extends CI_Controller {
     }
     
     function add_extended_fee($extended_days, $camp_id){
-        $_SESSION['totalNum'][$this->data['user_id']] += (count($extended_days) * $this->Camps->getExtendedPrice($camp_id));
+        $extended_days_total = 0;        
+        foreach ($extended_days as $week => $days){
+            foreach($days as $day => $items){
+                $extended_days_total += count($items);
+                foreach($items as $child => $day){
+                    if(!isset($_SESSION['children_days_booked'][$this->data['user_id']][$child])){
+                        $_SESSION['children_days_booked'][$this->data['user_id']][$child]['extended'] = array();
+                    }
+                    $_SESSION['children_days_booked'][$this->data['user_id']][$child]['extended'][] = $day;
+                }
+            }
+            
+        }  
+        $_SESSION['totalNum'][$this->data['user_id']] += ($extended_days_total * $this->Camps->getExtendedPrice($camp_id));
     }
 }

@@ -25,10 +25,21 @@ class Booking extends CI_Controller {
     }
 
     public function index($camp_id = 0) {
-        
         $camp_selected = 0;
         $camps = $this->Camps->get();
-
+        if(!isset($_SESSION['children_days_booked'][$this->data['user_id']])){
+            $_SESSION['children_days_booked'][$this->data['user_id']] = array();
+        }
+        if(!isset($_SESSION['friend'][$this->data['user_id']])){
+            $_SESSION['friend'][$this->data['user_id']] = array(
+                'first_name' => '',
+                'last_name' => '',
+                'birthdate' => '',
+                'notes' => ''
+            );
+        }
+        $this->data['friend'] = $_SESSION['friend'][$this->data['user_id']];
+        $this->data['children_days_booked'] = $_SESSION['children_days_booked'][$this->data['user_id']];
         // I am doing all this to meet the cas ein which somebody enters a camp id
         // that doesn't exist(the case in which he types the url, instead on clicking on it).
         foreach ($camps as $index => $camp) {
@@ -43,6 +54,7 @@ class Booking extends CI_Controller {
             $camps[0]['selected'] = true;
             $camp_selected = $camps[0]['id'];
         }
+        $this->data['total'] = isset($_SESSION['totalNum'][$this->data['user_id']]) ? $_SESSION['totalNum'][$this->data['user_id']] : 0;
         $this->data['camps'] = $camps;
         $this->data['camp_id'] = $camp_selected;
         $this->data['children'] = $this->Users->getUserChildren($this->data['user_id'], 3);
@@ -116,13 +128,16 @@ class Booking extends CI_Controller {
                         $finalChildren[$child][] = $this->_formatDay($day, true);
                     }
                     if (!in_array($this->_formatDay($day, true), $finalChildren[$child])) {
+                        if (($key = array_search($this->_formatDay($day), $finalChildren[$child])) !== false) {
+                            unset($finalChildren[$child][$key]);
+                        }
                         $finalChildren[$child][] = $this->_formatDay($day, true);
                     }
                     $count ++;
                     $currentPrice = $currentPrice = ($count > 1 && $count < 4) ?
                         ($discount[$count] * $prices[$day]) :
                         $prices[$day];
-                    $currentPrice += $this->Camps->getExtendedPrice();
+                    $currentPrice += $this->Camps->getExtendedPrice((int) $_POST['camp_id']);
                     $orderDetails = array(
                         
                         'extended' => 1
@@ -183,15 +198,23 @@ class Booking extends CI_Controller {
                             foreach($children as $child => $day){
                                 $count ++;
                                 $currentPrice = $prices[$day];
-                                $currentPrice += $this->Camps->getExtendedPrice();
+                                $currentPrice += $this->Camps->getExtendedPrice((int) $_POST['camp_id']);
                                 $orderDetails = array(
                                     
                                     'extended' => 1
                                 );
+                                
                                 if (!isset($finalChildren[$child])) {
                                     $finalChildren[$child][] = $this->_formatDay($day, true);
+                                } else {
+                                    
+                                    
                                 }
+                                
                                 if (!in_array($this->_formatDay($day, true), $finalChildren[$child])) {
+                                    if (($key = array_search($this->_formatDay($day), $finalChildren[$child])) !== false) {
+                                        unset($finalChildren[$child][$key]);
+                                    }
                                     $finalChildren[$child][] = $this->_formatDay($day, true);
                                 }
                                 $up = array(
@@ -232,7 +255,15 @@ class Booking extends CI_Controller {
         $this->data['camp_id'] = (int) $_POST['camp_id'];
         
         $this->data['selected_camp'] = $this->Camps->one((int) $_POST['camp_id']);
-        
+        $cmp = function ($a, $b) {
+            if ($this->getTimestampFromDate($a) == $this->getTimestampFromDate($b)) {
+                return 0;
+            }
+            return ($this->getTimestampFromDate($a) < $this->getTimestampFromDate($b)) ? -1 : 1;
+        };
+        foreach($finalChildren as $child => $booked_days_array){
+            uasort($finalChildren[$child], $cmp);
+        }
         if(!empty($finalChildren)){
             $this->data['children'] = $this->Booking->getChildrenFromOrder(implode(",", array_keys($finalChildren)));
             $this->data['finalChildren'] = $finalChildren;
@@ -248,7 +279,12 @@ class Booking extends CI_Controller {
         
         $this->layout->view('booking/process_booking', $this->data);
     }
-
+    
+    function getTimestampFromDate($date)    {
+        $d = DateTime::createFromFormat('d/m/Y', strip_tags($date));
+        return $d->getTimestamp();
+    }
+    
     function success() {
         $paypal = get_paypal_credentials(true);
         $id = $paypal['identity_token'];
@@ -281,6 +317,35 @@ class Booking extends CI_Controller {
         } else {
             die('wrong id');
         }
+        $this->load->library('email');
+        $config['mailtype'] = 'html';
+        $this->email->initialize($config);
+        $user = $this->Users->one($this->data['user_id']);
+        $this->email->from('info@holidaydropoff.com', 'HDO Team');
+        $this->email->to($user['email']); 
+        $this->email->subject('Holiday Drop Off - Order Confirmation');
+        
+        
+        $this->data['client'] = $user;
+        $this->data['children'] = $this->Booking->getUserFinalizedBookings($this->data['user_id'], $orderId);
+        //pr($this->data['children'], 1);
+        $message = $this->load->view('booking/templates/email_to_client', $this->data, true);
+        $this->email->message($message);
+        $this->email->attach(base_path(). "assets/front/images/uploads/hdo-register-template.xls");
+        $this->email->send();
+        
+        $this->data['tx'] = $tx;
+        $admin = $this->Users->oneAdmin();
+        $headers = "From:info@holidaydropoff.com\r\n"; 
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+        $to = $admin['email'];
+        $subject = "Holiday Drop Off - New Registration";
+       
+        //pr($this->data['children'], 1);
+        $message = $this->load->view('booking/templates/email_to_admin', $this->data, true);
+        
+        mail($to, $subject, $message, $headers);
         unset($_SESSION['total_raw']);
         unset($_SESSION['totalNum']);
         unset($_SESSION['children_days_booked']);
@@ -298,9 +363,11 @@ class Booking extends CI_Controller {
     
     private function _formatDay($day, $extended = false){
         if($extended == false){
-            return date("m/d/Y", $day);
+            return date("d/m/Y", $day);
         } else {
-            return "<span class='orange'>". date("m/d/Y", $day) . "</span>";
+            return "<span class='orange'>". date("d/m/Y", $day) . "</span>";
         }
     }
+    
+    
 }

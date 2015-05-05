@@ -326,7 +326,48 @@
                     </table>
                 </div>
                 <div class="TabbedPanelsContent3">
-                    <div>Under development</div>
+                    <div>
+                        <table class="profile__bookings" cellpadding = "0" cellspacing = "0">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>
+                                        Child Name
+                                    </th>
+                                    <th>
+                                        Days Booked
+                                    </th>
+                                    <th>
+                                        Camp
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($bookings as $loopIndex => $item): ?>
+                                    <tr >
+                                        
+                                        <td>
+                                            <?php echo $item['child'];?>
+                                        </td>
+                                        <td cellpadding = "0">
+                                            <?php echo $item['days_booked'];?>
+                                        </td>
+                                        <td cellpadding = "0">
+                                            <?php echo $item['camp'];?>
+                                        </td>                                        
+                                    </tr>
+                                    <?php if(isset($bookings[$loopIndex +1])
+                                                && $bookings[$loopIndex]['id'] != $bookings[$loopIndex + 1]['id']):?>
+                                    <tr >
+                                        <td colspan="3" class="profile__booking_total_cell">
+                                            TOTAL: &pound; <?php echo number_format($item['total'], 2);?>
+                                        </td> 
+                                    </tr>
+                                    <?php endif;?>
+                                <?php endforeach;?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

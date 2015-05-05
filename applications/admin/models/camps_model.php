@@ -93,4 +93,16 @@ class Camps_Model  extends CI_Model {
         }
         return $output;
     }
+    
+    function getCampsForForm(){        
+        $camps = $this->get();
+        if(!is_array($camps)){
+            return false;
+        }
+        $output = array();
+        foreach ($camps as $item){
+            $output[$item['id']] = $item['name'];
+        }
+        return $output;
+    }
 }

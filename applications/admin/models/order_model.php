@@ -31,8 +31,8 @@ class Order_Model extends CI_Model {
     
     public function one($orderId){
         $sql = "SELECT o.*, c.`first_name`, c.`last_name`,"
-                . "FROM_UNIXTIME(cm.`start_date`, '%m/%d/%Y') as `start_date`, "
-                . "FROM_UNIXTIME(cm.`end_date`, '%m/%d/%Y') as `end_date`, "
+                . "FROM_UNIXTIME(cm.`start_date`, '%d/%m/%Y') as `start_date`, "
+                . "FROM_UNIXTIME(cm.`end_date`, '%d/%m/%Y') as `end_date`, "
                 . "cm.`name` as `camp_name`"
                 . " FROM `order` o"
                 . " JOIN `users` c ON (o.`user_id` = c.`id`)"
@@ -44,6 +44,37 @@ class Order_Model extends CI_Model {
         }
         $res = $query->result_array();
         return $res[0];
+    }
+    
+    function excel($camp_id, $start = 0, $end = 999999999999999999999999999){
+        $start = (int) $start;
+        if((int) $end === 0){
+            $end = 999999999999999999999999999;
+        }
+        
+        $sql = "SELECT o.`date`, o.`id`, o.`total`, od.`child_id`, "
+                . "SUM(od.`extended`) as `extended`, COUNT(*) as `normal`,"
+                . " SUM(od.`price`) as `price`, "
+            . "CONCAT(c.`first_name`, ' ', c.`last_name`) as child, "
+            . "CONCAT(u.`first_name`, ' ', u.`last_name`) as parent, "
+            . "u.`phone_number` as `number`, "
+            . "u.`email` as `email`, "
+            . "TIMESTAMPDIFF(YEAR, FROM_UNIXTIME(c.`birthdate`), NOW()) as `age`, "
+            . "c.`notes` "
+            . " FROM `order_details` od"
+            . " JOIN `order` o ON (od.`order_id` = o.`id`)"
+            . " LEFT JOIN `children` c ON (od.`child_id` = c.`id`)"
+            . " JOIN `users` u ON (o.`user_id` = u.`id`)"
+            . " WHERE o.`status` = '1' AND o.`date` BETWEEN {$start} AND {$end}"
+            . " AND o.`camp_id` = '". $camp_id . "'"
+            . " AND o.`date` BETWEEN ". $start . " AND ". $end
+            . " GROUP BY o.`id`, od.`child_id`"
+            . " ORDER BY o.`date`";
+        $query = $this->db->query($sql);
+        if($query->num_rows == 0){
+            return false;
+        }
+        return $query->result_array();
     }
     
     function children($orderId){
