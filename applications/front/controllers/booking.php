@@ -331,7 +331,7 @@ class Booking extends CI_Controller {
         //pr($this->data['children'], 1);
         $message = $this->load->view('booking/templates/email_to_client', $this->data, true);
         $this->email->message($message);
-        $this->email->attach(base_path(). "assets/front/images/uploads/hdo-register-template.xls");
+        $this->email->attach(base_path(). "assets/front/images/uploads/hdo-registration-forms.doc");
         $this->email->send();
         
         $this->data['tx'] = $tx;

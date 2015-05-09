@@ -123,8 +123,26 @@ class Users_Model extends CI_Model {
         }
     }
     
+    function oneFromRecoveryCode($recovery_code){
+        $sql = "SELECT * "
+                . "FROM `users` WHERE `recovery_code` = '". $recovery_code . "' "
+                . "LIMIT 1";
+        $result = $this->db->query($sql);
+        if ($result->num_rows() == 0){
+            return false;            
+        } else {
+            $row = $result->result_array();
+            return $row[0];
+        }
+    }
+    
     function getCountriesForForm(){
-        $sql = "SELECT * FROM `countries`";
+        $sql = "SELECT * FROM `countries`"
+                . " ORDER BY CASE LOWER(`name`)
+                    WHEN 'united kingdom' THEN 0 
+                    ELSE 1 
+                  END 
+                  ASC";
         $result = $this->db->query($sql);
         if ($result->num_rows() == 0){
             return false;            

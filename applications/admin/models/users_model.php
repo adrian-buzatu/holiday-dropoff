@@ -72,7 +72,7 @@ class Users_Model extends CI_Model {
     }
     
     function getFrontUsers(){
-        $sql = "SELECT * FROM `users` WHERE `role` = 3";
+        $sql = "SELECT * FROM `users` WHERE `role` = 3 AND `status` = 1";
         $result = $this->db->query($sql);
         if ($result->num_rows() == 0){
             return false;            
@@ -94,7 +94,12 @@ class Users_Model extends CI_Model {
     }
     
     function getCountriesForForm(){
-        $sql = "SELECT * FROM `countries`";
+        $sql = "SELECT * FROM `countries`"
+                . " ORDER BY CASE LOWER(`name`)
+                    WHEN 'united kingdom' THEN 0 
+                    ELSE 1 
+                  END 
+                  ASC";
         $result = $this->db->query($sql);
         if ($result->num_rows() == 0){
             return false;            

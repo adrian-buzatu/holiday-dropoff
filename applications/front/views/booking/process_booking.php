@@ -70,7 +70,7 @@
                             <tr>
                                 <td colspan="2"><table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
                                         <tr>
-                                            <td width="105"><a href="<?php echo base_url()?>"><img src="<?php echo asset_url()?>images/backbt.png" alt="" /></a></td>
+                                            <td width="105"><a href="javascript:history.go(-1)"><img src="<?php echo asset_url()?>images/backbt.png" alt="" /></a></td>
 <!--                                            <td width="523"><a href="#" onclick="return getPrint();"><img src="<?php echo asset_url()?>images/printpage.png" alt="" /></a></td>-->
                                         </tr>
 

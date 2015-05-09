@@ -169,15 +169,12 @@
             <div class="c1"></div>
         </div>
         <div class="bottomblock">
-            <input type="hidden" name="txttotal_price" id="txttotal_price" />
             <div class="total" id="total_price1">Total Charge: &pound;<span id="total_num_bottom"><?php echo $total?></span></div>
             <div class="c1"></div>
             <div align="right" style="color:#fff;">Discounts will be show on the next page</div>
             <div class="oncart11" style="display:none;">Update Cart</div>
             <div class="oncart1">
-                <input type="hidden" name="txt_children_tmp_1" id="txt_children_tmp_1" value="0" />
-                <input type="hidden" name="txt_children_tmp_2" id="txt_children_tmp_2" value="0" />
-                <input type="hidden" name="txt_children_tmp_3" id="txt_children_tmp_3" value="0" />
+               
                 <input type="submit" class="confirm_booking_submit" value="Confirm Booking" />
             </div>
         </div>

@@ -42,8 +42,9 @@ class Camps extends CI_Controller {
         if ($this->form_validation->run() == false) {
             
         } else {
+            
             $name = $this->input->post('name', true);
-            $extra_days_fee = (int)$this->input->post('extra_days_fee', true);
+            $extra_days_fee = (float)$this->input->post('extra_days_fee', true);
             if($extra_days_fee === 0){
                 $extra_days_fee = 5;
             }
@@ -78,15 +79,22 @@ class Camps extends CI_Controller {
         if(!empty($_POST) && $camp['name'] != $_POST['name']){
             $this->form_validation->set_rules('name', 'Name', 'required|is_unique[camps.name]');
         }
-        $this->form_validation->set_rules('price[]', 'Price', 'required|numeric');
+        $this->form_validation->set_rules('extra_days_fee', 'Extra Days Fee', 'required|numeric');
+        //$this->form_validation->set_rules('price[]', 'Price', 'required|numeric');
         $this->form_validation->set_message("is_unique", "%s is already Taken");
         $this->form_validation->set_message("required", "%s required");
         if ($this->form_validation->run() == false) {
             
         } else {
+           
+            $extra_days_fee = (float)$this->input->post('extra_days_fee', true);
+            if($extra_days_fee === 0){
+                $extra_days_fee = 5;
+            }
             $name = $this->input->post('name', true);
             $campGroup = array(
                 'name' => $name,
+                'extra_days_fee' => $extra_days_fee,
                 'start_date' => strtotime($this->input->post('start_date', true)),
                 'end_date' => strtotime($this->input->post('end_date', true)),
                 'date_created' => time(),
@@ -100,7 +108,10 @@ class Camps extends CI_Controller {
             );
             $this->data['success'] = true;
             $this->Camps->update($campGroup, array('id' => $id));
-            $this->Camps->addCampPrices($this->input->post('price'), $id);
+            if($this->input->post('price')){
+                $this->Camps->addCampPrices($this->input->post('price'), $id);
+            }
+            
         }
         $this->layout->view('camps/edit.php', $this->data);
     }

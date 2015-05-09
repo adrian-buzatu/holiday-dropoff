@@ -78,4 +78,9 @@ class Users extends CI_Controller {
         }
         $this->layout->view('users/edit.php', $this->data);
     }
+    
+    function delete($user_id){
+        $this->Users->update(array('status' => 0), $user_id);
+        redirect('users');
+    }
 }

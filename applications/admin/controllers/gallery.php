@@ -26,7 +26,7 @@ class Gallery extends CI_Controller {
             'headers' => array('Image', 'Category', 'Title'),
             'displayedFields' => array('src', 'category', 'title'),
             'fieldTemplate' => array(
-                'src' => "<img class='banner_image_admin' src='" .  front_url(). "assets/front/images/banners/{src}'>"
+                'src' => "<img class='banner_image_admin' src='". front_url(). "timthumb.php?src=" .  front_url(). "assets/front/images/banners/{src}&w=62'>"
             ),
             'data' => $this->Gallery->get(),
             'links' => array(
@@ -52,7 +52,8 @@ class Gallery extends CI_Controller {
             
         } else {
             $file = $_FILES['image'];
-            $name = time() . "_" . $file['name'];
+            
+            $name = time() . "_" . $this->__slugify_filename($file['name']);
             $config['upload_path'] = base_path(). "assets/front/images/banners/";
             $config['allowed_types'] = 'jpg|png|gif|bmp';
             $config['max_size']	= '20480';
@@ -107,7 +108,7 @@ class Gallery extends CI_Controller {
             $this->data['success'] = true;
             if (!empty($_FILES['image']['name'])){
                 $file = $_FILES['image'];
-                $name = time() . "_" . $file['name'];
+                $name = time() . "_" . $this->__slugify_filename($file['name']);
                 $config['upload_path'] = base_path() . "assets/front/images/banners/";
                 $config['allowed_types'] = 'jpg|png|gif|bmp';
                 $config['max_size'] = '20480';
@@ -140,5 +141,9 @@ class Gallery extends CI_Controller {
     function delete($id){
         $this->Gallery->delete($id);
         redirect('gallery');
+    }
+    
+    private function __slugify_filename($fname){
+        return url_title( str_replace( pathinfo( $fname, PATHINFO_EXTENSION ), '', $fname ) ) . "." . pathinfo( $fname, PATHINFO_EXTENSION );
     }
 }

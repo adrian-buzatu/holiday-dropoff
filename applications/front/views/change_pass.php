@@ -1,41 +1,35 @@
 <div class="ourcampus-right-content1">
     <div class="bookonline-right-content">
         <div class="login-heading-text1">
-            <h1>Log in</h1>
-            
-            <form id="signup" method="post" action="<?php echo base_url()?>login">
+            <h1>Change Password</h1>
+            <form id="signup" method="post" action="<?php echo base_url()?>login/change_pass/<?php echo $recovery_code?>">
                 <table width="650" border="0" align="center" cellpadding="0" cellspacing="0" style="border:#333333 solid 1px; 
                        -moz-border-radius: 10px; /* Firefox */
                        -webkit-border-radius: 10px; /* Safari and Chrome */
                        border-radius: 10px; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
                        background:#ffffff;   ">
                     <tr>
-                        <td>
-                            <div class="profile-up-success"><?php echo $this->session->flashdata('change_pass_success')?></div>
-                        </td>
-                    </tr>
-                    <tr>
                         <td style="padding-left:20px; padding-top:50px;"><table width="610" border="0" cellspacing="0" cellpadding="0">
-                                <?php if (form_error('username') != ''): ?>
+                                <?php if (form_error('password') != ''): ?>
                                     <tr>
                                         <td>
                                             <div style="font-size:14px; color:#FF0000; margin-top:-25px; position:absolute;">  
 
-                                                <?php echo form_error('username') ?>
+                                                <?php echo form_error('password') ?>
 
                                             </div>
                                         </td>
                                     </tr>
                                 <?php endif; ?>
                                 <tr>
-                                    <td colspan="2" style="color:#000000; font-size:15px;">Username :</td>
-                                    <td><input id="username" name="username" type="text"  class="useriputbg" /></td>
+                                    <td colspan="2" style="color:#000000; font-size:15px;">New Password :</td>
+                                    <td><input id="new_pass" name="password" type="password"  class="useriputbg" /></td>
                                     <!--<td class="massagebg">This will be used to sign
                                   into your account</td>-->
                                 </tr>
                                 <tr>
-                                    <td colspan="2" style="color:#000000; font-size:15px; ">Password :</td>
-                                    <td colspan="2"><input id="password" name="password" type="password"  class="useriputbg" /></td>
+                                    <td colspan="2" style="color:#000000; font-size:15px; ">Confirm Password :</td>
+                                    <td colspan="2"><input id="passconf" name="passconf" type="password"  class="useriputbg" /></td>
                                     <!--<td class="massagebg">Pick something that you 
                                   will remember!</td>-->
                                 </tr>
@@ -47,12 +41,11 @@
                                     <td colspan="2">&nbsp;</td>
                                     <td colspan="4">
                                         <div id="submit_holder">
-                                            <input type="submit" class="signupbt" value="Log In"  />
+                                            <input type="submit" class="signupbt" value="Change Pass"  />
                                         </div>
                                     </td>
                                 </tr>
-                            </table>
-                        </td>
+                            </table></td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>

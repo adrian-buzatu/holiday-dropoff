@@ -47,6 +47,7 @@ $route['ajax'] = "ajax";
 $route['ajax/update_total'] = "ajax/update_total";
 $route['booking'] = "booking";
 $route['download/get/(:any)'] = 'download/get/$1';
+$route['login/change_pass/(:any)'] = "login/change_pass/$1";
 $route['booking/process'] = "booking/process_booking";
 $route['booking/success'] = "booking/success";
 $route['booking/cancel'] = "booking/cancel";
@@ -62,6 +63,7 @@ $route['contact-us/process'] = "contactus/process";
 $route['contact-us'] = "contactus";
 $route['login'] = "login";
 $route['login/forgot'] = "login/forgot";
+
 $route['register'] = "register";
 $route['logout'] = "logout";
 $route['profile'] = "profile";

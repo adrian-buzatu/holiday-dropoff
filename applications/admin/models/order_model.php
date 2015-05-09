@@ -81,9 +81,9 @@ class Order_Model extends CI_Model {
         $sql = "SELECT o.*, "
                 . "c.`first_name`, "
                 . "c.`last_name`, "
-                . "GROUP_CONCAT(DISTINCT DAYNAME(FROM_UNIXTIME(`day`))) as days_booked"
+                . "GROUP_CONCAT( DISTINCT CONCAT( DAYNAME( FROM_UNIXTIME(`day`) ), '+++', DAY( FROM_UNIXTIME(`day`) ) ) ) as days_booked"
                 . " FROM `order_details` o"
-                . " JOIN `users` c ON (o.`child_id` = c.`id`)"
+                . " JOIN `children` c ON (o.`child_id` = c.`id`)"
                 . " WHERE o.`order_id` = '". $orderId . "'"
                 . " GROUP BY o.`child_id`";
         $query = $this->db->query($sql);

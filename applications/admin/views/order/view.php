@@ -48,7 +48,7 @@
                         <td align="left">
                             <?php $days_arr = explode(",", $child['days_booked']);?>
                             <?php foreach($days_arr as $day):?>
-                            <p><?php echo $day?></p>
+                            <p><?php echo str_replace("+++", ", ", $day)?></p>
                             <?php endforeach;?>
                         </td>                                                             
                     </tr>

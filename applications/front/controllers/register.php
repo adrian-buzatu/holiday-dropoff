@@ -48,6 +48,8 @@ class Register extends CI_Controller {
             $user['id'] = $user_id;
             unset($user['password']);
             $headers = "From:info@holidaydropoff.com\r\n"; 
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
             $to = $this->input->post('email');
             $subject = "Holiday Drop Off - New Account Confirmation";
             $message = "<p>Dear ". $user['first_name']. " " .$user['last_name']. "</p>".

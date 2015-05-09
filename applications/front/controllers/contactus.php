@@ -31,9 +31,9 @@ class Contactus extends CI_Controller {
 
         // decode the json
         $resp = json_decode($resp_json, true);
-
+        $this->data['addressUrl'] = '';
         // response status will be 'OK', if able to geocode given address 
-        if ($resp['status'] = 'OK') {
+        if ($resp['status'] = 'OK' && isset($resp['results'][0])) {
             //pr($resp['results'][0], 1);
             // get the important data
             $lati = $resp['results'][0]['geometry']['location']['lat'];
