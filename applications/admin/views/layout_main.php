@@ -11,7 +11,7 @@
         <script src="<?php echo asset_url();?>js/jquery-1.11.2.min.js" type="text/javascript"></script>
         <script src="<?php echo asset_url();?>js/jquery.ui.js" type="text/javascript"></script>
         <script src="<?php echo asset_url();?>js/main.js" type="text/javascript"></script>
-        <?php if(in_array(controller(), array('pages', 'news', 'testimonials'))):?>
+        <?php if(in_array(controller(), array('pages', 'news', 'testimonials', 'emails'))):?>
             <script src="<?php echo asset_url();?>js/nicEdit.js" type="text/javascript"></script>
         <?php endif;?>
     </head>
@@ -46,18 +46,26 @@
                                         <li><a class="<?php echo item() == 'sitemap' ? 'active' : '';?>" href="<?php echo base_url()?>pages/edit/sitemap">Sitemap</a></li>
                                         <li><a class="<?php echo item() == 'prices' ? 'active' : '';?>" href="<?php echo base_url()?>pages/edit/prices">Prices</a></li>
                                         <li><a class="<?php echo controller() == 'news' ? 'active' : '';?>" href="<?php echo base_url()?>news">News</a></li>
+                                        <div class="top_heading_red">Email Templates</div>
+                                        <li><a class="<?php echo item() == 'registration-to-user' ? 'active' : '';?>" href="<?php echo base_url()?>emails/edit/registration-to-user">Registration Mail(User)</a></li>
+                                        <li><a class="<?php echo item() == 'registration-to-admin' ? 'active' : '';?>" href="<?php echo base_url()?>emails/edit/registration-to-admin">Registration Mail(Admin)</a></li>
+                                        <li><a class="<?php echo item() == 'sign-up' ? 'active' : '';?>" href="<?php echo base_url()?>emails/edit/sign-up">Sign Up Mail</a></li>
+                                        <li><a class="<?php echo item() == 'forgot-pass' ? 'active' : '';?>" href="<?php echo base_url()?>emails/edit/forgot-pass">Password Recovery Mail</a></li>
                                         <div class="top_heading_red">Misc</div>
                                         <li><a class="<?php echo controller() == 'banners' ? 'active' : '';?>" href="<?php echo base_url()?>banners">Home Banners</a></li>
+                                        <li><a class="<?php echo controller() == 'checklist' ? 'active' : '';?>" href="<?php echo base_url()?>checklist">Checklist</a></li>
                                         <li><a class="<?php echo controller() == 'gallerycategories' ? 'active' : '';?>" href="<?php echo base_url()?>gallerycategories">Gallery Categories</a></li>
                                         <li><a class="<?php echo controller() == 'gallery' ? 'active' : '';?>" href="<?php echo base_url()?>gallery">My Photos</a></li>
                                         <li><a class="<?php echo controller() == 'videos' ? 'active' : '';?>" href="<?php echo base_url()?>videos">My Video</a></li>
                                         <li><a class="<?php echo controller() == 'order' ? 'active' : '';?>" href="<?php echo base_url()?>order">Order</a></li>
                                         <li><a href="<?php echo base_url()?>coupons" class="<?php echo controller() == 'coupons' ? 'active' : '';?>">Coupon</a></li>
+                                        <li><a class="<?php echo controller() == 'newsletter' ? 'active' : '';?>" href="<?php echo base_url()?>newsletter">Newsletter</a></li>
                                         <li><a class="<?php echo controller() == 'testimonials' ? 'active' : '';?>" href="<?php echo base_url()?>testimonials">Testimonial</a></li>              
                                         <li><a class="<?php echo controller() == 'users' ? 'active' : '';?>" href="<?php echo base_url()?>users">Users</a></li>
                                         <li><a class="<?php echo controller() == 'csv' ? 'active' : '';?>" href="<?php echo base_url()?>csv">Download CSV</a></li>
                                         <li><a class="<?php echo controller() == 'report' ? 'active' : '';?>" href="<?php echo base_url()?>report">Report</a></li>
                                         <li><a class="<?php echo controller() == 'companyaddress' ? 'active' : '';?>" href="<?php echo base_url()?>companyaddress">Change Company Address</a></li>
+                                        <li><a class="<?php echo controller() == 'notificationemail' ? 'active' : '';?>" href="<?php echo base_url()?>notificationemail">Change Admin Notification Email</a></li>
                                         <li><a class="<?php echo controller() == 'account' ? 'active' : '';?>" href="<?php echo base_url()?>account/change_password">Change Password</a></li>
                                         <li><a href="<?php echo base_url()?>logout">Logout</a></li>
                                     </ul>

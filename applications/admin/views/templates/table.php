@@ -1,7 +1,13 @@
 <h3><?php echo $title?>
-    <div style="float: right;">
-        <a href="<?php echo $addBaseUrl?>">Add New</a>
-    </div>
+    <?php if(!isset($customHeader)):?>
+        <div style="float: right;">
+            <a href="<?php echo $addBaseUrl?>">Add New</a>
+        </div>
+    <?php elseif(!empty($customHeader)):?>
+        <div style="float: right;">
+            <a href="<?php echo $customHeader['url']?>"><?php echo $customHeader['title']?></a>
+        </div>
+    <?php endif;?>
 </h3>
 <table width="100%" class="table_template">
     <tbody>
@@ -76,7 +82,9 @@
         <?php endif;?>
         <?php if(is_array($data)):?>
             <tr>
-                <td colspan="3"><strong style="padding:3px 5px 2px; margin:2px; background:#006ED3;color: #FFFFFF;">1</strong></td>
+                <td colspan="3">
+                    <strong style="padding:3px 5px 2px; margin:2px; background:#006ED3;color: #FFFFFF;">1</strong>
+                </td>
             </tr>
         <?php endif;?>
     </tbody>

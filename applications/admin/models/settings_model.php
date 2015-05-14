@@ -17,14 +17,14 @@ class Settings_Model extends CI_Model {
         parent::__construct();
     }
     
-    public function getAddress(){
+    public function getItem($item){
         $sql = "SELECT * FROM `settings` LIMIT 1";
         $query = $this->db->query($sql);
         if($query->num_rows == 0){
             return false;
         }
         $res = $query->result_array();
-        return $res[0]['address'];
+        return isset($res[0][$item]) ? $res[0][$item] : false;
     }
     
     public function updateAddress($address){
@@ -38,5 +38,9 @@ class Settings_Model extends CI_Model {
     
     public function makeGMapsUrl($address){
         return $address;
+    }
+    
+    public function updateItem($item){
+        $this->db->update('settings', $item, array('id' => 1));
     }
 }

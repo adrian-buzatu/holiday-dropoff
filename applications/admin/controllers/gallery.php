@@ -15,6 +15,7 @@ class Gallery extends CI_Controller {
     
      public function __construct() {
         parent::__construct();
+        ini_set('memory_limit', '1024M');
         $this->data = $this->main->data;
         $this->load->model('Gallery_Model', 'Gallery');
     }

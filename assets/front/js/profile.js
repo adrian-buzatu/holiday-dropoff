@@ -49,7 +49,7 @@ $(document).ready(function(){
     }
 
     var $ = jQuery.noConflict();
-    $('.datepicker').datepicker({ changeYear: true });
+    $('.datepicker').datepicker({ changeYear: true, yearRange: "-100:+0" });
     $("#addchildform1").submit(function(e){
         e.preventDefault();
         

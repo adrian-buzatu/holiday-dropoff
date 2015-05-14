@@ -27,6 +27,16 @@ class Settings_Model extends CI_Model {
         return $res[0]['address'];
     }
     
+    public function getEmail(){
+        $sql = "SELECT * FROM `settings` LIMIT 1";
+        $query = $this->db->query($sql);
+        if($query->num_rows == 0){
+            return false;
+        }
+        $res = $query->result_array();
+        return $res[0]['notification_email'];
+    }
+    
     public function updateAddress($address){
         $up = array(
             'address' => $address,

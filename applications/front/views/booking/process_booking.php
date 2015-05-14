@@ -15,7 +15,7 @@
         <input type="hidden" name="notify_url" value="<?php echo base_url()?>booking/process_paypal">
         <input type="hidden" name="return" value="<?php echo base_url()?>booking/success">
         <input type="hidden" name="cancel" value="<?php echo base_url()?>booking/cancel">
-        <input type="hidden" name="amount" value="<?php echo $total?>">
+        <input type="hidden" name="amount" value="<?php echo number_format((float)$total, 2)?>">
         <div class="bookonline-middle-content">
             <div id="TabbedPanels2" class="TabbedPane2s">
                 <ul class="TabbedPanelsTabGroup">
@@ -90,7 +90,7 @@
             <div class="c1"></div>
         </div>
         <div class="bottomblock">
-            <div class="total">Total Charge: &pound;<?php echo $total?></div>
+            <div class="total">Total Charge: &pound;<?php echo number_format((float)$total, 2)?></div>
             <div style="clear:both;"></div>
             <div class="total">Discount: &pound;<?php echo $discount?></div>
             <div style="clear:both;"></div>

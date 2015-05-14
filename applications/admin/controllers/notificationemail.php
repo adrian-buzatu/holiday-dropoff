@@ -11,7 +11,7 @@
  *
  * @author shade
  */
-class Companyaddress extends CI_Controller {
+class Notificationemail extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Settings_Model', 'Settings');
@@ -22,8 +22,8 @@ class Companyaddress extends CI_Controller {
     public function index(){
         $this->data['success'] = false;
         $this->form_validation->set_error_delimiters('<div class="form_error">', '</div>');
-        $this->form_validation->set_rules('address', 'Address', 'required');
-        $this->data['address'] = $this->Settings->getItem('address');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        $this->data['email'] = $this->Settings->getItem('notification_email');
         $this->form_validation->set_message("required", "%s required");
         if ($this->form_validation->run() == false) {
             
@@ -32,9 +32,9 @@ class Companyaddress extends CI_Controller {
             $this->data['success'] = true;
             
             if($this->data['success'] == true){
-                $this->Settings->updateAddress($this->input->post('address'));
+                $this->Settings->updateItem(array('notification_email' => $this->input->post('email', true)));
             } 
         }
-        $this->layout->view('companyaddress/index.php', $this->data);
+        $this->layout->view('notificationemail/index.php', $this->data);
     }
 }

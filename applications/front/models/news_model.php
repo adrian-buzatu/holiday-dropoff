@@ -22,7 +22,7 @@ class News_Model extends CI_Model {
                 . "`title`, "
                 . "`slug`"
                 . " FROM `news`"
-                . " LIMIT 6";
+                . " LIMIT 5";
         $query = $this->db->query($sql);
         if($query->num_rows == 0){
             return false;

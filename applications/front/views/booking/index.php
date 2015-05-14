@@ -2,7 +2,7 @@
     <div class="bookonline-right-content">
         <div id="floatMenu">
             <div id="float_div">
-                <div id="total_price" class="total">Total Charge: &pound;<span id="total_num"><?php echo $total?></span></div>
+                <div id="total_price" class="total">Total Charge: &pound;<span id="total_num"><?php echo number_format((float)$total, 2)?></span></div>
                 <input type="hidden" id="prices_list" value='<?php echo json_encode($prices);?>'>
                 <input type="hidden" id="extended_days_fee" value="5" />
                 <input type="hidden" name="camp_id" value="<?php echo $selected_camp['id'];?>" />
@@ -63,7 +63,7 @@
                                                     </table>
                                                     <table id="children_booking_area_<?php echo $child['id']?>" class="<?php if(!isset($children_days_booked[$child['id']])):?>hide<?php endif;?>" >
                                                         <tr>
-                                                            <td class="camp_cell" colspan="4" style=""><?php echo $selected_camp['name']?> <?php echo date('m/d/Y', $selected_camp['start_date'])?> - <?php echo date('m/d/Y', $selected_camp['end_date'])?></td>
+                                                            <td class="camp_cell" colspan="4" style=""><?php echo $selected_camp['name']?> <?php echo date('d/m/Y', $selected_camp['start_date'])?> - <?php echo date('d/m/Y', $selected_camp['end_date'])?></td>
                                                         </tr>
                                                         <?php $weekCount = 0; for ($week = $selected_camp['start_date']; $week <= $selected_camp['end_date']; $week = strtotime('+1 week', $week)): $weekCount++?>
                                                         <tr>
@@ -169,7 +169,7 @@
             <div class="c1"></div>
         </div>
         <div class="bottomblock">
-            <div class="total" id="total_price1">Total Charge: &pound;<span id="total_num_bottom"><?php echo $total?></span></div>
+            <div class="total" id="total_price1">Total Charge: &pound;<span id="total_num_bottom"><?php echo number_format((float)$total, 2)?></span></div>
             <div class="c1"></div>
             <div align="right" style="color:#fff;">Discounts will be show on the next page</div>
             <div class="oncart11" style="display:none;">Update Cart</div>

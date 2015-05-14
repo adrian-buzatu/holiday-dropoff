@@ -86,12 +86,21 @@
                         this.loadController(newsUrl, callback);
 
                     }
+                    case 'emails': {
+                        emailsUrl = this.assetsUrl + "js/controllers/emails.js";
+                        callback = function() {
+                            var emails = new Emails();
+                            emails.setMceIconsPath(me.assetsUrl);
+                            emails.bindMceToEl('content');
+                        }
+                        this.loadController(emailsUrl, callback);
+
+                    }
                     case 'report': {
                         reportUrl = this.assetsUrl + "js/controllers/report.js";
                         callback = function() {
                             var report = new Report();
                             report.setDatePicker();
-                            report.events();
                         }
                         this.loadController(reportUrl, callback);
 

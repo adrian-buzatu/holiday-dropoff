@@ -5,6 +5,7 @@ class Login extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->data = $this->main->data;
+        $this->load->model('Emails_Model', 'Emails');
     }
 
     public function index() {
@@ -46,15 +47,23 @@ class Login extends CI_Controller {
                         'password' => sha1($newPass),
                         'recovery_code' => $recovery_code
                     ), array('id' => $id));
-            $message = "<p>Dear ". $user['username']. "</p>".
-                    "<p>Here is a newly generated password: ". $newPass."<br /> It is recommended that you change it after login</p>".
-                    "<p>If you prefer to change it right away you can click <a href='". base_url() ."login/change_pass/". $recovery_code ."'>here</a> </p>".
-                    "<p><br /><br />Kind regards, <br /> The Holiday Drop Off team</p>";
-            //echo $id;die;
+            $mailForClient = $this->Emails->get('forgot-pass');
+            $mailForClient['content'] = str_replace(
+                    "%username%", 
+                    $user['username'], $mailForClient['content']
+            );
+            $mailForClient['content'] = str_replace(
+                    "%new_pass%", 
+                    $newPass, $mailForClient['content']
+            );
+            $mailForClient['content'] = str_replace(
+                    "%recovery_url%", 
+                    base_url() ."login/change_pass/". $recovery_code, $mailForClient['content']
+            );
             $headers = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
             $headers .= "From:info@holidaydropoff.com";
-            mail($this->input->post('email', true), "Password change request", $message, $headers);
+            mail($this->input->post('email', true), "Password change request", $mailForClient['content'], $headers);
         }
         $this->layout->view('forgot', $this->data);
     }

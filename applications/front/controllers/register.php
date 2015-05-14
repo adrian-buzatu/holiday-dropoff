@@ -5,7 +5,7 @@ class Register extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->data = $this->main->data;
-        
+        $this->load->model('Emails_Model', 'Emails');
     }
 
     function index() {
@@ -47,16 +47,19 @@ class Register extends CI_Controller {
             $user_id = $this->Users->add($user);
             $user['id'] = $user_id;
             unset($user['password']);
+            $mailForClient = $this->Emails->get('sign-up');
+            $mailForClient['content'] = str_replace(
+                    "%username%", 
+                    $user['first_name']. " " .$user['last_name'], $mailForClient['content']
+            );
+            
             $headers = "From:info@holidaydropoff.com\r\n"; 
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
             $to = $this->input->post('email');
             $subject = "Holiday Drop Off - New Account Confirmation";
-            $message = "<p>Dear ". $user['first_name']. " " .$user['last_name']. "</p>".
-                    "<p>You account has been succesfully created.<br /> "
-                    . "You can now log in using the chosen credentials</p>".
-                    "<p><br /><br />Kind regards, <br /> The Holiday Drop Off team</p>";
-            mail($to, $subject, $message, $headers);
+            
+            mail($to, $subject, $mailForClient['content'], $headers);
             
             //redirect('login');
         }

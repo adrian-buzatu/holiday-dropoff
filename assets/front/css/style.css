@@ -1698,7 +1698,10 @@ img {
     padding:0px 10px 17px 10px;
     line-height:56px !important;
     font-size:15px;
+    outline: none;
+  -webkit-box-shadow: none;
 }
+
 .cmassage {
     background:url(../images/massagebox.png) left top no-repeat;
     border:0px; height:175px; width:602px;

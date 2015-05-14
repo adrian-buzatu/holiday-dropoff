@@ -33,6 +33,10 @@ class Booking_Model extends CI_Model {
         $this->db->update('order', array('total' => $total), array('id' => $orderId));
         return true;
     }
+    function updateOrderDiscount($orderId, $discount){
+        $this->db->update('order', array('discount' => $discount), array('id' => $orderId));
+        return true;
+    }
     function getChildrenFromOrder($childrenIds){
         $sql = "SELECT * "
                 . "FROM `children` c "
@@ -109,7 +113,7 @@ class Booking_Model extends CI_Model {
         if((int)$order_id > 0){
             $where = " AND o.`id` = '". $order_id ."' ";
         }
-        $sql = "SELECT o.`total`, o.`date`, o.`id`,"
+        $sql = "SELECT o.`total`, o.`discount`, o.`date`, o.`id`,"
                 . " od.`friend`, od.`child_id`,"
                 . " camp.`name` as `camp`, "
                 . " c.`first_name`, "
@@ -140,11 +144,24 @@ class Booking_Model extends CI_Model {
         return $result;
     }
     
+    public function beenBefore($userId, $maxOrder){
+        $sql = "SELECT * FROM `order` "
+                . "WHERE `user_id` = '". $userId . "' "
+                . "AND `id` < ". $maxOrder. 
+                " LIMIT 1";
+        $query = $this->db->query($sql);
+        if($query->num_rows() === 0){
+            return 'No';
+        }
+        return 'Yes';
+    }
+
+
     private function __formatDay($day, $extended = false){
         if($extended == false){
-            return date("d/m/Y", $day);
+            return date("d/m/Y", $day). "(n)";
         } else {
-            return "<span class='orange'>". date("d/m/Y", $day) . "</span>";
+            return date("d/m/Y", $day). "(e)";
         }
     }
     

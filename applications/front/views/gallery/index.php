@@ -39,8 +39,8 @@
                                     <ul>
                                         <?php foreach ($images as $image):?>
                                             <li data-thumb="<?php echo base_url()?>timthumb.php?src=<?php echo asset_url()?>images/banners/<?php echo $image['src']?>&w=150&h=75" 
-                                                data-src="<?php echo base_url()?>timthumb.php?src=<?php echo asset_url()?>images/banners/<?php echo $image['src']?>&w=700&h=200">
-                                                <img src="<?php echo base_url()?>timthumb.php?src=<?php echo asset_url()?>images/banners/<?php echo $image['src']?>&w=700&h=200" />
+                                                data-src="<?php echo base_url()?>timthumb.php?src=<?php echo asset_url()?>images/banners/<?php echo $image['src']?>&w=700&h=350">
+                                                <img src="<?php echo base_url()?>timthumb.php?src=<?php echo asset_url()?>images/banners/<?php echo $image['src']?>&w=700&h=350" />
                                             </li>
                                         <?php endforeach;?>
                                     </ul>

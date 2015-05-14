@@ -32,6 +32,7 @@ class Ajax extends CI_Controller {
         $_SESSION['total'][$this->data['user_id']] = array();    
         $_SESSION['totalNum'][$this->data['user_id']] = 0;
         $_SESSION['totalRaw'][$this->data['user_id']] = 0;
+        $_SESSION['camp_id'][$this->data['user_id']] = $this->input->post('camp_id');
         $_SESSION['children_days_booked'][$this->data['user_id']] = array();
         $this->process_days($daysBooked, array(
                 'extended' => false,
@@ -54,7 +55,7 @@ class Ajax extends CI_Controller {
         $this->add_extended_fee($friendDaysExtendedBooked, (int) $_POST['camp_id']);
         echo json_encode(array(
             'success' => true,
-            'total' => $_SESSION['totalNum'][$this->data['user_id']],
+            'total' => number_format((float)$_SESSION['totalNum'][$this->data['user_id']], 2),
         ));
     }
     

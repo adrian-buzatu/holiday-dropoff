@@ -70,7 +70,7 @@
                         </table>
                         <table id="friend_booking_area" >
                             <tr>
-                                <td class="camp_cell" colspan="4" style=""><?php echo $selected_camp['name'] ?> <?php echo date('m/d/Y', $selected_camp['start_date']) ?> - <?php echo date('m/d/Y', $selected_camp['end_date']) ?></td>
+                                <td class="camp_cell" colspan="4" style=""><?php echo $selected_camp['name'] ?> <?php echo date('d/m/Y', $selected_camp['start_date']) ?> - <?php echo date('d/m/Y', $selected_camp['end_date']) ?></td>
                             </tr>
                             <tr>
                                 <td class="booking_cell" colspan="4" align="center" style=" ">

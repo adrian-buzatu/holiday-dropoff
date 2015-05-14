@@ -139,11 +139,9 @@
                                 <div class="checklist2">
                                     <div class="cheklist-text-hd">HDO Checklist...</div>
                                     <div class="cheklist-text-hd2">
-                                        <div class="cheklist-offer"><img src="<?php echo asset_url() ?>images/icon.png" />Packed Lunch</div>
-                                        <div class="cheklist-offer"><img src="<?php echo asset_url() ?>images/icon.png" />Swimming Kit</div>
-                                        <div class="cheklist-offer"><img src="<?php echo asset_url() ?>images/icon.png" />Clothing</div>
-                                        <div class="cheklist-offer"><img src="<?php echo asset_url() ?>images/icon.png" />Medical Equipment</div>
-                                        <div class="cheklist-offer"><img src="<?php echo asset_url() ?>images/icon.png" />Application Form</div>
+                                        <?php foreach($checklist as $item):?>
+                                            <div class="cheklist-offer"><img src="<?php echo asset_url() ?>images/icon.png" /><?php echo $item?></div>
+                                        <?php endforeach;?>
                                         <div class="c1"></div>
                                     </div>
                                 </div>
@@ -177,7 +175,7 @@
                                     </li>
 
                                 <?php endforeach; ?>
-                                <?php if (count($news) > 6): ?>
+                                <?php if (count($news) > 5): ?>
                                     <li>
                                         <a href="<?php echo base_url() ?>news">More News</a>
                                     </li>

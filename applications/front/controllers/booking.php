@@ -18,6 +18,8 @@ class Booking extends CI_Controller {
         $this->data = $this->main->data;
         $this->load->model('Camps_Model', 'Camps');
         $this->load->model('Booking_Model', 'Booking');
+        $this->load->model('Settings_Model', 'Settings');
+        $this->load->model('Emails_Model', 'Emails');        
         if (!isset($_SESSION['username'])) {
             redirect('login');
             exit;
@@ -27,6 +29,18 @@ class Booking extends CI_Controller {
     public function index($camp_id = 0) {
         $camp_selected = 0;
         $camps = $this->Camps->get();
+        if(!isset($camp_id) || $camp_id === 0){
+            $camp_id = $camps[0]['id'];
+        }
+        if(!isset($_SESSION['camp_id'])){
+            $_SESSION['camp_id'][$this->data['user_id']] = $camp_id;
+        }
+        if($_SESSION['camp_id'][$this->data['user_id']] != $camp_id){
+            $_SESSION['total'][$this->data['user_id']] = array();    
+            $_SESSION['totalNum'][$this->data['user_id']] = 0;
+            $_SESSION['totalRaw'][$this->data['user_id']] = 0;
+            $_SESSION['children_days_booked'][$this->data['user_id']] = array();
+        }
         if(!isset($_SESSION['children_days_booked'][$this->data['user_id']])){
             $_SESSION['children_days_booked'][$this->data['user_id']] = array();
         }
@@ -251,6 +265,7 @@ class Booking extends CI_Controller {
             }
         }
         $this->Booking->updateOrderTotal($orderId, $_SESSION['totalNum'][$this->data['user_id']]);
+        $this->Booking->updateOrderDiscount($orderId, $this->data['discount']);
         $this->data['total'] = $_SESSION['totalNum'][$this->data['user_id']];
         $this->data['camp_id'] = (int) $_POST['camp_id'];
         
@@ -317,35 +332,14 @@ class Booking extends CI_Controller {
         } else {
             die('wrong id');
         }
+        $user = $this->Users->one($this->data['user_id']);
         $this->load->library('email');
         $config['mailtype'] = 'html';
         $this->email->initialize($config);
-        $user = $this->Users->one($this->data['user_id']);
-        $this->email->from('info@holidaydropoff.com', 'HDO Team');
-        $this->email->to($user['email']); 
-        $this->email->subject('Holiday Drop Off - Order Confirmation');
+        $this->__send_mail_to_client($orderId, $user);
+        $this->email->clear(TRUE);
+        $this->__send_email_to_admin($orderId, $user, $tx);
         
-        
-        $this->data['client'] = $user;
-        $this->data['children'] = $this->Booking->getUserFinalizedBookings($this->data['user_id'], $orderId);
-        //pr($this->data['children'], 1);
-        $message = $this->load->view('booking/templates/email_to_client', $this->data, true);
-        $this->email->message($message);
-        $this->email->attach(base_path(). "assets/front/images/uploads/hdo-registration-forms.doc");
-        $this->email->send();
-        
-        $this->data['tx'] = $tx;
-        $admin = $this->Users->oneAdmin();
-        $headers = "From:info@holidaydropoff.com\r\n"; 
-        $headers .= "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-        $to = $admin['email'];
-        $subject = "Holiday Drop Off - New Registration";
-       
-        //pr($this->data['children'], 1);
-        $message = $this->load->view('booking/templates/email_to_admin', $this->data, true);
-        
-        mail($to, $subject, $message, $headers);
         unset($_SESSION['total_raw']);
         unset($_SESSION['totalNum']);
         unset($_SESSION['children_days_booked']);
@@ -369,5 +363,77 @@ class Booking extends CI_Controller {
         }
     }
     
+    private function __send_mail_to_client($orderId, $user){
+        
+        
+        $children = $this->data['children'] = $this->Booking->getUserFinalizedBookings($this->data['user_id'], $orderId);
+        //pr($this->data['children'], 1);
+        $mailForClient = $this->Emails->get('registration-to-user');
+        $mailForClient['content'] = str_replace(
+                "%client_name%", 
+                $user['title']." ". $user['first_name']. " " .$user['last_name'], $mailForClient['content']
+        );
+        $mailForClient['content'] = str_replace(
+                "%camp_name%", 
+                $children[0]['camp'], $mailForClient['content']
+        );
+        $childrenForMail = $this->load->view('booking/templates/email_to_client_children', $this->data, true);
+        $mailForClient['content'] = str_replace(
+                "%children_area%", 
+                $childrenForMail, $mailForClient['content']
+        );
+        $this->email->from('info@holidaydropoff.com', 'HDO Team');
+        $this->email->to($user['email']); 
+        $this->email->subject('Holiday Drop Off - Order Confirmation');
+        $this->email->message($mailForClient['content']);
+        $this->email->attach(base_path(). "assets/front/images/docs/". $mailForClient['attachment']);
+        $this->email->send();
+    }
     
+    private function __send_email_to_admin($orderId, $user, $tx){
+       
+        $this->data['tx'] = $tx;
+        $this->data['client'] = $user;
+        $children = $this->data['children'] = $this->Booking->getUserFinalizedBookings($this->data['user_id'], $orderId);
+        $to = $this->Settings->getEmail();
+        $mailForClient = $this->Emails->get('registration-to-admin');
+        //pr($this->data['children'], 1);
+        foreach(array('client', 'children', 'excel') as $item){
+            ${$item. "_area"} = $this->load->view('booking/templates/email_to_admin_'. $item, $this->data, true);
+            $mailForClient['content'] = str_replace(
+                "%". $item ."_area%", 
+                ${$item. "_area"}, $mailForClient['content']
+            );
+        }
+        $mailForClient['content'] = str_replace(
+            "%transaction_id%", 
+            $tx, $mailForClient['content']
+        );
+        $mailForClient['content'] = str_replace(
+            "%camp%", 
+            $children[0]['camp'], $mailForClient['content']
+        );
+        $mailForClient['content'] = str_replace(
+            "%been_before%", 
+            $this->Booking->beenBefore($this->data['user_id'], $orderId), $mailForClient['content']
+        );
+        $mailForClient['content'] = str_replace(
+            "%total%", 
+            $children[0]['total'] + $children[0]['discount'], $mailForClient['content']
+        );
+        $mailForClient['content'] = str_replace(
+            "%paid%", 
+            $children[0]['total'], $mailForClient['content']
+        );
+        $medical = $this->load->view('booking/templates/email_to_admin_medical', $this->data, true);
+        $mailForClient['content'] = str_replace(
+            "%medical%", 
+            $medical, $mailForClient['content']
+        );
+        $this->email->from('info@holidaydropoff.com', 'HDO Team');
+        $this->email->to($to); 
+        $this->email->subject('Holiday Drop Off - New Registration');
+        $this->email->message($mailForClient['content']);
+        $this->email->send();
+    }
 }
