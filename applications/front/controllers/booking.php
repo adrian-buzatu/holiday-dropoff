@@ -159,8 +159,7 @@ class Booking extends CI_Controller {
                     $up = array(
                         'order_id' => $orderId,
                         'child_id' => $child,
-                        'day' => $day,
-                        'price' => $currentPrice,
+                        'day' => $day
                     );
                     $_SESSION['totalRaw'][$this->data['user_id']] += $this->Camps->getExtendedPrice((int) $_POST['camp_id']);
                     $this->Booking->updateOrderDetails($orderDetails, $up);
@@ -234,9 +233,7 @@ class Booking extends CI_Controller {
                                 $up = array(
                                     'order_id' => $orderId,
                                     'child_id' => -1,
-                                    'day' => $day,
-                                    'friend' => serialize($friend),
-                                    'price' => $currentPrice
+                                    'day' => $day
                                 );
                                 $_SESSION['totalRaw'][$this->data['user_id']] += $this->Camps->getExtendedPrice((int) $_POST['camp_id']);
                                 $this->Booking->updateOrderDetails($orderDetails, $up);

@@ -6,6 +6,11 @@
         </span>
     </div>
     <div>
-        Example: Thank you for your payment. Your transaction has been completed and a receipt for your purchase has been emailed to you. You may log in to your account at <a href="https://www.sandbox.paypal.com/uk/">www.sandbox.paypal.com/uk</a> to view details of this transaction.
+        <br /><br /><br /><br />
+        Thank you for your payment,
+        <br /><br />
+        Your transaction has been completed and a receipt for your purchase has been 
+        <br />emailed to you. You may log in to your account at
+        <br /><a href="https://www.sandbox.paypal.com/uk/">www.sandbox.paypal.com/uk</a> to view details of this transaction.
     </div>
 </div>

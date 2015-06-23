@@ -80,7 +80,7 @@ a {
 #wrap.page-prices{
     background:url(../images/parple_bg.png) top left repeat-x;
 }
-#wrap.page-booking, #wrap.page-login{
+#wrap.page-booking, #wrap.page-login, #wrap.page-profile{
     background:url(../images/orenge_bg.png) top left repeat-x;
 }
 #wrap.page-contact-us{
@@ -386,7 +386,7 @@ a {
     height:14px;
     background:#8350a0;
 }
-.menubottomco-booking, .menubottomco-login {
+.menubottomco-booking, .menubottomco-login, .menubottomco-profile {
     float:left;
     width:1030px;
     height:14px;
@@ -1610,18 +1610,19 @@ img {
     height:32px;
 }
 .signupbt {
-    float:right;
-    width:99px;
-    background-image:url(../images/signupbt.png);
-    background-repeat:no-repeat;
-    height:35px;
-    line-height:35px;
+    float: right;
+    width: 150px;
+    background-repeat: no-repeat;
+    height: 35px;
+    line-height: 35px;
     display: block;
-    text-align:center;
-    color:#FFFFFF;
-    margin-top:30px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 30px;
     border: none;
     cursor: pointer;
+    border-radius: 10px;
+    background-color: #ed1c24;
 }
 .signupbt a {
     text-decoration:none;
@@ -1699,7 +1700,7 @@ img {
     line-height:56px !important;
     font-size:15px;
     outline: none;
-  -webkit-box-shadow: none;
+    -webkit-box-shadow: none;
 }
 
 .cmassage {
@@ -1707,7 +1708,7 @@ img {
     border:0px; height:175px; width:602px;
     padding:5px 10px 20px 5px;
 }
-.cmassage input{
+input{
     outline: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -1907,37 +1908,37 @@ img {
 }
 #addfrndmsg span{ color:#FF0000;}
 .tdclassf {
-	background:#FFFFFF;
-	border-top:#666666 solid 1px;
-	border-right:#666666 solid 1px;
-	border-left:#666666 solid 1px;
-	padding:5px 0 0 5px;
+    background:#FFFFFF;
+    border-top:#666666 solid 1px;
+    border-right:#666666 solid 1px;
+    border-left:#666666 solid 1px;
+    padding:5px 0 0 5px;
 }
 .tdclasso {
-	background:#FFFFFF;
-	border-bottom:#666666 solid 1px;
-	border-right:#666666 solid 1px;
-	border-top:#666666 solid 1px;
+    background:#FFFFFF;
+    border-bottom:#666666 solid 1px;
+    border-right:#666666 solid 1px;
+    border-top:#666666 solid 1px;
 }
 .tdextented {
-	background:#FFFFFF;
-	border-right:#666666 solid 1px;
-	border-left:#666666 solid 1px;
-	padding:5px 0 0 5px;
-	font-size:12px;
+    background:#FFFFFF;
+    border-right:#666666 solid 1px;
+    border-left:#666666 solid 1px;
+    padding:5px 0 0 5px;
+    font-size:12px;
 }
 .tdextentedr {
-	background:#FFFFFF;
-	border-right:#666666 solid 1px;
-	border-bottom:#666666 solid 1px;
+    background:#FFFFFF;
+    border-right:#666666 solid 1px;
+    border-bottom:#666666 solid 1px;
 }
 .tdbookall {
-	background:#FFFFFF;
-	border-bottom:#666666 solid 1px;
-	border-right:#666666 solid 1px;
-	border-left:#666666 solid 1px;
-	padding-top:3px;
-	padding-bottom:5px;
+    background:#FFFFFF;
+    border-bottom:#666666 solid 1px;
+    border-right:#666666 solid 1px;
+    border-left:#666666 solid 1px;
+    padding-top:3px;
+    padding-bottom:5px;
 }
 .child_name_table{
     background:#3e52a3; 
@@ -1969,7 +1970,7 @@ img {
 }
 
 @media screen and (orientation: portrait) {
-  .gallery_front_thumb{
+    .gallery_front_thumb{
         max-width: 66px;
         height: auto;
     }
@@ -1996,7 +1997,7 @@ img {
         border:#9b9556 solid 1px;
         background:#FFFFFF;
     }
-    
+
 }
 .gallery_global_link{
     display: block;
@@ -2011,32 +2012,32 @@ img {
     padding-bottom:5px;
 }
 .confirm_booking_submit{
-     height:40px; 
-     cursor:pointer;
-     color: rgb(0, 0, 0); 
-     text-decoration: none; 
-     border: 0px none; 
-     background: none repeat scroll 0% 0% transparent; 
-     font-weight: bold; 
-     font-size: 16px;
+    height:40px; 
+    cursor:pointer;
+    color: rgb(0, 0, 0); 
+    text-decoration: none; 
+    border: 0px none; 
+    background: none repeat scroll 0% 0% transparent; 
+    font-weight: bold; 
+    font-size: 16px;
 }
 .normal_extended_box{
-     font-size:14px;  	
-     border:#333333 solid 1px;
-     -moz-border-radius: 10px;
-     /* Firefox */-webkit-border-radius: 10px; 
-     /* Safari and Chrome */	
-     border-radius: 10px; 
-     /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */	
-     background:#f7f5be; 
-     padding-left:15px; 
-     height:24px; 
-     line-height:24px; 
-     margin-bottom:10px;
+    font-size:14px;  	
+    border:#333333 solid 1px;
+    -moz-border-radius: 10px;
+    /* Firefox */-webkit-border-radius: 10px; 
+    /* Safari and Chrome */	
+    border-radius: 10px; 
+    /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */	
+    background:#f7f5be; 
+    padding-left:15px; 
+    height:24px; 
+    line-height:24px; 
+    margin-bottom:10px;
 }
 .add_holder{
-     color:#FFFFFF; 
-     cursor:pointer;
+    color:#FFFFFF; 
+    cursor:pointer;
 }
 .booking_calendar_headers{
     color:#FFFFFF;
@@ -2053,12 +2054,25 @@ img {
     font-weight: bold; 
     height: 39px; 
     font-size: 16px;
-    
+
 }
 .child_style{
     font-size:16px;  
     border-top: #999999 dotted 1px;
-    padding:10px 0 15px 0;
+    padding:10px 0 15px 0;    
+}
+.process_booking__notification{
+    padding: 100px 0 0 0;
+    font-size: 14px;
+}
+.process_booking__notification .red{
+    color: red;
+    display: block;
+    padding: 0 0 10px 0;
+}
+.child_style.child_name{
+    font-weight: bold;
+    color: #e94825;
 }
 .add_friend_btn_holder{
     font-weight:normal; 
@@ -2085,9 +2099,9 @@ img {
     padding:0px 0 15px 0;
 }
 .birthdate_friend_table_container{
-     height:32px;   
-     padding:5px; 
-     padding-right:13px;
+    height:32px;   
+    padding:5px; 
+    padding-right:13px;
 }
 .orange{
     color: #FFCC66;
@@ -2102,7 +2116,16 @@ img {
 }
 .profile__bookings tr{
     border-top: solid 1px #000;
+    background: #b2d3ef;
     padding: 10px 0;
+}
+.profile__my-bookings h3{
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 0;
+}
+.profile__bookings tr.total-row{
+    background: #fff;
 }
 .profile__bookings tr td{
     padding: 5px;
@@ -2113,7 +2136,7 @@ img {
 }
 .profile__bookings tr:first-child td{
     border-top: solid 1px #000;
-    
+
 }
 .profile__bookings tr td{
     border-left: solid 1px #000;
@@ -2132,4 +2155,11 @@ img {
 }
 .profile__bookings th:first-child{
     border-left: none;
+}
+.bookonline-right-content > div:last-child{
+    padding: 10px 0 0 0;
+}
+.days_booked_wrapper_profile{
+    width: 386px;
+    word-break: break-word;
 }

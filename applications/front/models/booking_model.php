@@ -128,7 +128,8 @@ class Booking_Model extends CI_Model {
                 . " WHERE o.`user_id` = '". $userId . "' AND o.`status` = 1 "
                 . $where
                 . " GROUP BY od.`child_id`, o.`id`"
-                . " ORDER BY o.`date`";
+                . " ORDER BY o.`date`"
+                . " LIMIT 5";
         $query = $this->db->query($sql);
         if($query->num_rows() === 0){
             return false;
@@ -137,7 +138,7 @@ class Booking_Model extends CI_Model {
         foreach($result as $loopIndex => $orderItem){
             $result[$loopIndex]['days_booked'] = '';
            if(is_array($this->__formatChildOrderDaysBooked($orderItem['id'], $orderItem['child_id']))){
-               $result[$loopIndex]['days_booked'] = implode(",", 
+               $result[$loopIndex]['days_booked'] = implode(", ", 
                        $this->__formatChildOrderDaysBooked($orderItem['id'], $orderItem['child_id']));
            }
         }

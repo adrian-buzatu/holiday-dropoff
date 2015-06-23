@@ -58,6 +58,7 @@ class Users extends CI_Controller {
         } else {
             $this->data['success'] = true;
             $up = array(
+                'title' => $this->input->post('title', true),
                 'first_name' => $this->input->post('first_name', true),
                 'last_name' => $this->input->post('last_name', true),
                 'username' => $this->input->post('username', true),

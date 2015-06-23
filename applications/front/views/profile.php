@@ -325,8 +325,9 @@
                         </tr>
                     </table>
                 </div>
-                <div class="TabbedPanelsContent3">
+                <div class="TabbedPanelsContent3 profile__my-bookings">
                     <div>
+                        <h3>Normal hours are shown as (n) - Extended hours are shown as (e)</h3>
                         <table class="profile__bookings" cellpadding = "0" cellspacing = "0">
                             <thead>
                                 <tr>
@@ -350,15 +351,18 @@
                                             <?php echo $item['child'];?>
                                         </td>
                                         <td cellpadding = "0">
-                                            <?php echo $item['days_booked'];?>
+                                            <div class="days_booked_wrapper_profile">
+                                                <?php echo $item['days_booked'];?>
+                                            </div>
                                         </td>
                                         <td cellpadding = "0">
                                             <?php echo $item['camp'];?>
                                         </td>                                        
                                     </tr>
                                     <?php if(isset($bookings[$loopIndex +1])
-                                                && $bookings[$loopIndex]['id'] != $bookings[$loopIndex + 1]['id']):?>
-                                    <tr >
+                                                && $bookings[$loopIndex]['id'] == $bookings[$loopIndex + 1]['id']):?>
+                                    <?php else:?>
+                                    <tr class="total-row" >
                                         <td colspan="3" class="profile__booking_total_cell">
                                             TOTAL: &pound; <?php echo number_format($item['total'], 2);?>
                                         </td> 

@@ -41,7 +41,7 @@
                                     <td colspan="2">&nbsp;</td>
                                     <td colspan="4">
                                         <div id="submit_holder">
-                                            <input type="submit" class="signupbt" value="Change Pass"  />
+                                            <input type="submit" class="signupbt" value="Change Password"  />
                                         </div>
                                     </td>
                                 </tr>

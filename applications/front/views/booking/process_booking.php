@@ -33,7 +33,7 @@
                                     <table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
                                         <?php foreach($children as $child):?>
                                             <tr>
-                                                <td class="child_style"><?php echo $child['first_name']?> <?php echo $child['last_name']?> </td>
+                                                <td class="child_style child_name"><?php echo $child['first_name']?> <?php echo $child['last_name']?> </td>
                                             </tr>
                                             <tr>
                                                 <td class="child_style">
@@ -56,7 +56,7 @@
                             </tr>
                             
                             <tr>
-                                <td height="40" colspan="2">Please note: 
+                                <td class="process_booking__notification" height="40" colspan="2"><span class="red">Please note:</span> 
                                     <ul>
                                         <li>You will receive confirmation of this booking by email</li>
                                         <li>The days marked with <span class='orange'>orange</span> are extended</li>

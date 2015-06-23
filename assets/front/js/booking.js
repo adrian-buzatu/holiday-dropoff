@@ -120,11 +120,10 @@
                 
                 me.setParent($(me.accesors.bookingParentPrefix + "_" + week + "_" + me.childId));
                     var parent = me.accesors.currentParent;
-                parent.find(me.accesors.dynClasses.check_all.
-                        replace('{type}', target)).
-                        removeAttr('checked');
+//                parent.find(me.accesors.dynClasses.check_all.
+//                        replace('{type}', target)).
+//                        removeAttr('checked');
                 if(!$(this).hasClass("js_checked")){
-                    //When I book a normal day, the same extended day should be unchecked and vice-versa.
                     me.checkMirrorEl(parent.find('.' + target + '_check'));
                    $(this).addClass('js_checked');
                     
@@ -138,7 +137,7 @@
                     }
                     
                 } else {
-                    if(me.checkboxType === 'normal'){
+                    if(me.checkboxType === 'normal'){ 
                         parent.find(me.accesors.dynClasses.check_all.replace('{type}', target))
                             .removeAttr('checked');
                         me.uncheckMirrorEl(parent.find('.' + target + '_check'));

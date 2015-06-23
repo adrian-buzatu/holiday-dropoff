@@ -71,7 +71,7 @@ class Ajax extends CI_Controller {
             '3' => '0.5'
         );
         $total = array();
-        
+//        pr($days_array);
         foreach($days_array as $weekNumber => $daysBookedPerWeek){
             $dayCount = 1;
             
@@ -102,6 +102,13 @@ class Ajax extends CI_Controller {
                         }
                     if (isset($fullWeekArray[$weekNumber][$child])) {
                         $_SESSION['total'][$this->data['user_id']][$child][$weekNumber] = $prices[0];
+                        if ($friend === false) {
+                            
+                            $diff = ($count > 1 && $count < 4) ?
+                                    $prices[$day] - ($discount[$count] * $prices[$day]) :
+                                    0;
+                            $_SESSION['total'][$this->data['user_id']][$child][$weekNumber] -= $diff;
+                        }
                         if(!isset($fullWeekChildren[$weekNumber])){
                             $fullWeekChildren[$weekNumber] = array();
                         }
