@@ -53,8 +53,9 @@ class Order_Model extends CI_Model {
         }
         
         $sql = "SELECT o.`date`, o.`id`, o.`total`, od.`child_id`, "
-                . "SUM(od.`extended`) as `extended`, COUNT(*) as `normal`,"
-                . " SUM(od.`price`) as `price`, "
+                . "IF(od.`extended` = 1, 1, 0) as `extended`, "
+                . "IF(od.`extended` = 0, 1, 0) as `normal`,"
+                . " od.`price` as `price`, od.`day` as day, "
             . "CONCAT(c.`first_name`, ' ', c.`last_name`) as child, "
             . "CONCAT(u.`first_name`, ' ', u.`last_name`) as parent, "
             . "u.`phone_number` as `number`, "
@@ -65,16 +66,28 @@ class Order_Model extends CI_Model {
             . " JOIN `order` o ON (od.`order_id` = o.`id`)"
             . " LEFT JOIN `children` c ON (od.`child_id` = c.`id`)"
             . " JOIN `users` u ON (o.`user_id` = u.`id`)"
-            . " WHERE o.`status` = '1' AND o.`date` BETWEEN {$start} AND {$end}"
+            . " WHERE o.`status` = '1'"
             . " AND o.`camp_id` = '". $camp_id . "'"
-            . " AND o.`date` BETWEEN ". $start . " AND ". $end
-            . " GROUP BY o.`id`, od.`child_id`"
-            . " ORDER BY o.`date`";
+            /*. " AND o.`date` BETWEEN ". $start . " AND ". $end */
+            /*. " GROUP BY od.`child_id`" */
+            . " ORDER BY od.`day`, o.`id`";
         $query = $this->db->query($sql);
         if($query->num_rows == 0){
             return false;
         }
         return $query->result_array();
+    }
+    
+    function getOrderDaySubtotal($order_id, $day){
+        $sql = "SELECT SUM(`price`) as `subtotal` FROM `order_details`"
+                . " WHERE `order_id` = '". $order_id . "' AND `day` = '". $day. "'"
+                . " GROUP BY `order_id`";
+        $query = $this->db->query($sql);
+        if($query->num_rows == 0){
+            return 0;
+        }
+        $res = $query->result_array();
+        return $res[0]['subtotal'];
     }
     
     function children($orderId){

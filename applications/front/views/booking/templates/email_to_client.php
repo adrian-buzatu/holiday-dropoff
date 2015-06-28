@@ -5,7 +5,7 @@
 <p>We have received the following booking information</p>
 <p><br></p>
 <?php foreach ($children as $child): $array = 'child';?>
-    <?php if($child['id'] === -1):
+    <?php if($child['child_id'] == -1):
             $friend = unserialize($child['friend']);
             $array = 'friend';
         ?>        

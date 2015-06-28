@@ -344,6 +344,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <?php if(is_array($bookings)):?>
                                 <?php foreach ($bookings as $loopIndex => $item): ?>
                                     <tr >
                                         
@@ -369,6 +370,11 @@
                                     </tr>
                                     <?php endif;?>
                                 <?php endforeach;?>
+                            <?php else:?>
+                                    <tr>
+                                        <td colspan="3"> You have made no bookings. </td>
+                                    </tr>
+                            <?php endif;?>
                             </tbody>
                         </table>
                     </div>

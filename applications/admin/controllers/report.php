@@ -53,13 +53,13 @@ class Report extends CI_Controller {
         
         foreach ($campsExcel as $loop_index => $item) {
             if (!isset($campsExcel[$loop_index - 1]) ||
-                    date("d/m/Y", $campsExcel[$loop_index]['date']) != date("d/m/Y", $campsExcel[$loop_index - 1]['date'])) {
+                    date("d/m/Y", $campsExcel[$loop_index]['day']) != date("d/m/Y", $campsExcel[$loop_index - 1]['day'])) {
                 
                 $total = $daysTotal = $daysExtended = 0;
                 $html .= "
                 <tr _excel-styles='{\"fill\":{\"type\":\"PHPExcel_Style_Fill::FILL_SOLID\",\"color\":{\"rgb\":\"d0d0d0\"}}}'>
-                    <td _excel-styles='{\"font\":{\"color\":{\"rgb\":\"000000\"}}}'>" . date('l', $item['date']) . "</td>
-                    <td _excel-styles='{\"font\":{\"color\":{\"rgb\":\"000000\"}}}'>" . date('jS \of F', $item['date']) . "</td>
+                    <td _excel-styles='{\"font\":{\"color\":{\"rgb\":\"000000\"}}}'>" . date('l', $item['day']) . "</td>
+                    <td _excel-styles='{\"font\":{\"color\":{\"rgb\":\"000000\"}}}'>" . date('jS \of F', $item['day']) . "</td>
                     <td _excel-styles='{\"font\":{\"color\":{\"rgb\":\"000000\"}}}'>&nbsp;</td>
                     <td _excel-styles='{\"font\":{\"color\":{\"rgb\":\"000000\"}}}'>&nbsp;</td>
                     <td _excel-styles='{\"font\":{\"color\":{\"rgb\":\"000000\"}}}'>&nbsp;</td>
@@ -85,9 +85,9 @@ class Report extends CI_Controller {
             }
             if((!isset($campsExcel[$loop_index - 1]) ||
                     $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id'])){
-                $total += $item['total'];
+                //$subtotal += $item['price'];
             }
-            
+            $total += $item['price'];
             $daysTotal += $item['normal'];
             $daysExtended += $item['extended'];
             $color = $loop_index % 2 === 0 ? 'fdff00' : 'FFFFFF';
@@ -99,7 +99,8 @@ class Report extends CI_Controller {
                     $item['number'] : '';
             $payment = (!isset($campsExcel[$loop_index - 1]) ||
                     $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id']) ?
-                    $item['total'] : '';
+                    $this->Order->getOrderDaySubtotal($campsExcel[$loop_index]['id'],
+                            $campsExcel[$loop_index]['day']) : '';
             $email = (!isset($campsExcel[$loop_index - 1]) ||
                     $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id']) ?
                     $item['email'] : '';
@@ -129,7 +130,7 @@ class Report extends CI_Controller {
                 <td _excel-styles='{\"alignment\":{\"horizontal\":\"PHPExcel_Style_Alignment::HORIZONTAL_LEFT\"}, \"font\":{\"color\":{\"rgb\":\"000000\"}}, \"borders\":{\"left\":{\"style\":\"PHPExcel_Style_Border::BORDER_THIN\"}, \"right\":{\"style\":\"PHPExcel_Style_Border::BORDER_THIN\"} }}'>&nbsp;</td>
             </tr>";
             if ( $loop_index === count($campsExcel) - 1 ||( isset($campsExcel[$loop_index + 1]['date']) && 
-                    date("d/m/Y", $campsExcel[$loop_index]['date']) != date("d/m/Y", $campsExcel[$loop_index + 1]['date'])
+                    date("d/m/Y", $campsExcel[$loop_index]['day']) != date("d/m/Y", $campsExcel[$loop_index + 1]['day'])
                     )
                 ) {
                  $color1 = "FFFFFF";

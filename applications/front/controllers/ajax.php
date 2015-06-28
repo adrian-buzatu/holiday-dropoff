@@ -71,7 +71,23 @@ class Ajax extends CI_Controller {
             '3' => '0.5'
         );
         $total = array();
-//        pr($days_array);
+        
+        foreach($days_array as $weekNumber => $daysBookedPerWeek){
+            foreach($daysBookedPerWeek  as $day => &$children){                
+                $fullWeekArraySort = isset($fullWeekArray[$weekNumber]) ? array_keys($fullWeekArray[$weekNumber]) : array() ; 
+                uksort($days_array[$weekNumber][$day], function($a, $b)  use (&$fullWeekArraySort){
+                   if (
+                           (in_array($a, $fullWeekArraySort) && in_array($b, $fullWeekArraySort))
+                           ||
+                           (!in_array($a, $fullWeekArraySort) && !in_array($b, $fullWeekArraySort))
+                    ) return 0;
+                    return (
+                            !in_array($a, $fullWeekArraySort) && in_array($b, $fullWeekArraySort)                            
+                    ) ? 1 : -1;
+                });
+            }
+            
+        }
         foreach($days_array as $weekNumber => $daysBookedPerWeek){
             $dayCount = 1;
             

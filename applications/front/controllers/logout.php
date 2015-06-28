@@ -7,7 +7,7 @@ class Logout extends CI_Controller {
     }
 
     public function index() {
-        unset($_SESSION['username']);
+        $_SESSION = array();
         redirect('login');
     }
 

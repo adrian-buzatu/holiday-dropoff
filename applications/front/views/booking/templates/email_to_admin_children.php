@@ -1,8 +1,8 @@
 
 <?php $medical = array(); foreach ($children as $child): $array = 'child';?>
-    <?php if($child['id'] === -1):
+    <?php if($child['child_id'] == -1):
             $friend = unserialize($child['friend']);
-            $frient['age'] = calculateAge($friend['birthdate']);
+            $friend['age'] = calculateAge($friend['birthday']);
             $array = 'friend';
         ?>        
     <?php endif;?>

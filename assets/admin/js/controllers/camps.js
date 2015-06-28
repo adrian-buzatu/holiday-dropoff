@@ -15,13 +15,18 @@ var Camps = function() {
     }
     
     this.setDatePicker = function(){
-        $('#start_date').datepicker({ minDate: -20 });
-        $('#end_date').datepicker({ minDate: -20 });
+        $('#start_date').datepicker({ minDate: -20, onSelect: function() {
+            $("#set_camp_prices").trigger('click')
+        }});
+        $('#end_date').datepicker({ minDate: -20, onSelect: function() {
+            $("#set_camp_prices").trigger('click')
+        } });
     }
     
     this.events = function(){
         var me = this;
         $("#set_camp_prices").on('click', function(){
+            me.config.camp_prices_holder.html('');
             var startDate = me.accesors.start_date.val();
             var endDate = me.accesors.end_date.val();
             if(me.config.camp_prices_holder.text().replace(/\s/g, '') !== ''){

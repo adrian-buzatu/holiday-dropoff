@@ -1,9 +1,9 @@
 <p><?php echo $client['first_name']. " ". $client['last_name']?></p>
 <p><?php echo $client['phone_number']?></p>
 <?php $medical = array(); foreach ($children as $child): $array = 'child';?>
-    <?php if($child['id'] === -1):
+    <?php if($child['child_id'] == -1):
             $friend = unserialize($child['friend']);
-            $frient['age'] = calculateAge($friend['birthdate']);
+            $friend['age'] = calculateAge($friend['birthday']);
             $array = 'friend';
         ?>        
     <?php endif;?>
@@ -13,6 +13,6 @@
     <?php endif;?>
     <p><?php echo ${$array}['first_name']. " ". ${$array}['last_name']?></p>
     <p><?php echo ${$array}['age']?></p>
-    <p><?php echo ${$array}['days_booked']?></p>
+    <p><?php echo $child['days_booked']?></p>
 <?php endforeach;?>
 

@@ -43,7 +43,7 @@
                                         <?php endforeach;?>
                                         <?php if(isset($friend)):?>
                                             <tr>
-                                                <td class="child_style"><?php echo $friend['first_name'] ?> <?php echo $friend['last_name'] ?> </td>
+                                                <td class="child_style child_name"><?php echo $friend['first_name'] ?> <?php echo $friend['last_name'] ?> </td>
                                             </tr>
                                             <tr>
                                                 <td class="child_style">
