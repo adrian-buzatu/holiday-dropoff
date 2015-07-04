@@ -54,7 +54,7 @@ class Report extends CI_Controller {
         foreach ($campsExcel as $loop_index => $item) {
             if (!isset($campsExcel[$loop_index - 1]) ||
                     date("d/m/Y", $campsExcel[$loop_index]['day']) != date("d/m/Y", $campsExcel[$loop_index - 1]['day'])) {
-                
+                $sub_loop_index = 0;
                 $total = $daysTotal = $daysExtended = 0;
                 $html .= "
                 <tr _excel-styles='{\"fill\":{\"type\":\"PHPExcel_Style_Fill::FILL_SOLID\",\"color\":{\"rgb\":\"d0d0d0\"}}}'>
@@ -82,6 +82,8 @@ class Report extends CI_Controller {
                     <td _excel-styles='{\"font\":{\"color\":{\"rgb\":\"000000\"}}}'>&nbsp;</td>
                     <td _excel-styles='{\"font\":{\"color\":{\"rgb\":\"000000\"}}}'>Day Rate</td>
                 </tr>";
+            } else {
+                $sub_loop_index ++;
             }
             if((!isset($campsExcel[$loop_index - 1]) ||
                     $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id'])){
@@ -90,9 +92,11 @@ class Report extends CI_Controller {
             $total += $item['price'];
             $daysTotal += $item['normal'];
             $daysExtended += $item['extended'];
-            $color = $loop_index % 2 === 0 ? 'fdff00' : 'FFFFFF';
+            $color = $sub_loop_index % 2 === 0 ? 'fdff00' : 'FFFFFF';
             $parent = (!isset($campsExcel[$loop_index - 1]) ||
-                    $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id']) ?
+                    $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id']
+                    || $campsExcel[$loop_index]['day'] != $campsExcel[$loop_index - 1]['day']
+                    ) ?
                     $item['parent'] : '';
             $number = (!isset($campsExcel[$loop_index - 1]) ||
                     $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id']) ?
@@ -104,14 +108,14 @@ class Report extends CI_Controller {
             $email = (!isset($campsExcel[$loop_index - 1]) ||
                     $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id']) ?
                     $item['email'] : '';
-            if ($item['child_id'] !== -1) {
+            if ($item['child_id'] != -1) {
                 $child = $item['child'];
                 $age = $item['age'];
                 $notes = $item['notes'];
             } else {
                 $friend = unserialize($item['friend']);
                 $child = $friend['first_name'] . " " . $friend['last_name'];
-                $age = $this->__calculateAge($friend['birthdate']);
+                $age = $this->__calculateAge($friend['birthday']);
                 $notes = $friend['notes'];
             }
             $html .= "

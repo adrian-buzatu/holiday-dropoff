@@ -55,7 +55,7 @@ class Order_Model extends CI_Model {
         $sql = "SELECT o.`date`, o.`id`, o.`total`, od.`child_id`, "
                 . "IF(od.`extended` = 1, 1, 0) as `extended`, "
                 . "IF(od.`extended` = 0, 1, 0) as `normal`,"
-                . " od.`price` as `price`, od.`day` as day, "
+                . " od.`price` as `price`, od.`day` as day, od.`friend` as `friend`, "
             . "CONCAT(c.`first_name`, ' ', c.`last_name`) as child, "
             . "CONCAT(u.`first_name`, ' ', u.`last_name`) as parent, "
             . "u.`phone_number` as `number`, "

@@ -128,7 +128,7 @@ class Booking_Model extends CI_Model {
                 . " WHERE o.`user_id` = '". $userId . "' AND o.`status` = 1 "
                 . $where
                 . " GROUP BY od.`child_id`, o.`id`"
-                . " ORDER BY o.`date`"
+                . " ORDER BY o.`date` DESC"
                 . " LIMIT 5";
         $query = $this->db->query($sql);
         if($query->num_rows() === 0){

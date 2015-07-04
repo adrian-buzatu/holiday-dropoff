@@ -347,10 +347,18 @@
                             <?php if(is_array($bookings)):?>
                                 <?php foreach ($bookings as $loopIndex => $item): ?>
                                     <tr >
-                                        
-                                        <td>
-                                            <?php echo $item['child'];?>
-                                        </td>
+                                        <?php if($item['child_id'] != -1):?>
+                                            <td>
+                                                <?php echo $item['child'];?>
+                                            </td>
+                                        <?php else: 
+                                            $friend = unserialize($item['friend']);
+                                            $friend_name = $friend['first_name']. " ". $friend['last_name'];
+                                            ?>
+                                            <td>
+                                                <?php echo $friend_name;?>
+                                            </td>
+                                        <?php endif;?>
                                         <td cellpadding = "0">
                                             <div class="days_booked_wrapper_profile">
                                                 <?php echo $item['days_booked'];?>

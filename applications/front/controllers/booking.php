@@ -83,8 +83,19 @@ class Booking extends CI_Controller {
         $daysBooked = isset($_POST['days_booked']) ? $_POST['days_booked'] : array();
         $daysExtendedBooked = isset($_POST['days_extended_booked']) ? $_POST['days_extended_booked'] : array();
         $friendDaysBooked = isset($_POST['friend_days_booked']) ? $_POST['friend_days_booked'] : array();
+        $valid = 1;
         if(empty($daysBooked) && empty($friendDaysBooked)){
+            $this->session->set_flashdata('booking_error', array('no_days_booked' => 'You must book at least a day'));
+            $valid = 0;            
+        }
+        if(!empty($friendDaysBooked) && ($_POST['first_name'] == '' || $_POST['last_name'] == '' || $_POST['birthdate'] == '')){
+            $valid = 0;
+            $this->session->set_flashdata('booking_error', array('no_friend_data' => 'Friend\'s name and birthdate are mandatory'));
+        }
+        if($valid == 0){
             redirect(getenv('HTTP_REFERER'));
+        } else {
+            $this->session->set_flashdata('booking_error', array());
         }
 
 //$order_

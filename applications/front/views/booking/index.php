@@ -24,6 +24,16 @@
                 </ul>
                 <div class="TabbedPanelsContentGroup">
                     <div class="TabbedPanelsContent1">
+                        <?php $errors = $this->session->flashdata('booking_error');?>
+                        <div class="bookonline__errors">
+                            <?php if(!empty($errors)):?>
+                                <?php foreach($errors as $type => $error):?>
+                                    <div class="red">
+                                        <?php echo $error?>
+                                    </div>
+                                <?php endforeach;?>
+                            <?php endif;?>
+                        </div>
                         <div class="bcodebg">Promotional Code
                             <input name="txtcoupon_code" type="text">
                         </div>

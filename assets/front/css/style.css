@@ -2070,6 +2070,15 @@ input{
     display: block;
     padding: 0 0 10px 0;
 }
+.bookonline__errors{
+    float: left;
+}
+.bookonline__errors div{
+    color: red;
+    font-style: italic;
+    padding: 10px;
+    
+}
 .child_style.child_name{
     font-weight: bold;
     color: #e94825;
