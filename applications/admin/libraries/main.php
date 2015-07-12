@@ -3,7 +3,7 @@
 class Main {
 
     public function __construct() {
-        session_start();
+        session_start_escaped();
         $CI = &get_instance();
         
         $CI->load->model('Users_Model', 'Users');
