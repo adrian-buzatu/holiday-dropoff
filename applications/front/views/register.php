@@ -105,7 +105,7 @@
             <?php else:?>
                 <div class="login-heading-text1">
                     <p>Your account has been created successfully.</p>
-                        <p>Please <a href="<?php echo base_url()?>">click here</a> to login</p>
+                        <p>Please <a href="<?php echo base_url()?>login">click here</a> to login</p>
                 </div>
             <?php endif;?>
         </div>

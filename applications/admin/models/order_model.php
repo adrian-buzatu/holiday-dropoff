@@ -21,7 +21,7 @@ class Order_Model extends CI_Model {
         $sql = "SELECT o.*, c.`first_name`, c.`last_name`"
                 . " FROM `order` o"
                 . " JOIN `users` c ON (o.`user_id` = c.`id`)"
-                . " WHERE o.`status` = 1";
+                . " WHERE o.`status` = 1 ORDER BY o.`date` DESC";
             $query = $this->db->query($sql);
         if($query->num_rows == 0){
             return false;
@@ -51,7 +51,6 @@ class Order_Model extends CI_Model {
         if((int) $end === 0){
             $end = 999999999999999999999999999;
         }
-        
         $sql = "SELECT o.`date`, o.`id`, o.`total`, od.`child_id`, "
                 . "IF(od.`extended` = 1, 1, 0) as `extended`, "
                 . "IF(od.`extended` = 0, 1, 0) as `normal`,"
@@ -68,7 +67,8 @@ class Order_Model extends CI_Model {
             . " JOIN `users` u ON (o.`user_id` = u.`id`)"
             . " WHERE o.`status` = '1'"
             . " AND o.`camp_id` = '". $camp_id . "'"
-            /*. " AND o.`date` BETWEEN ". $start . " AND ". $end */
+            . " AND od.`price` > 0 "
+            . " AND od.`day` BETWEEN ". $start . " AND ". $end 
             /*. " GROUP BY od.`child_id`" */
             . " ORDER BY od.`day`, o.`id`";
         $query = $this->db->query($sql);
@@ -94,10 +94,11 @@ class Order_Model extends CI_Model {
         $sql = "SELECT o.*, "
                 . "c.`first_name`, "
                 . "c.`last_name`, "
-                . "GROUP_CONCAT( DISTINCT CONCAT( DAYNAME( FROM_UNIXTIME(`day`) ), '+++', DAY( FROM_UNIXTIME(`day`) ) ) ) as days_booked"
+                . "GROUP_CONCAT( DISTINCT CONCAT( DAYNAME( FROM_UNIXTIME(`day`) ), '+++', DAY( FROM_UNIXTIME(`day`) )"
+                . ", IF(o.`extended` = 1, '(e)', '(n)' ) ) ) as days_booked"
                 . " FROM `order_details` o"
                 . " JOIN `children` c ON (o.`child_id` = c.`id`)"
-                . " WHERE o.`order_id` = '". $orderId . "'"
+                . " WHERE o.`order_id` = '". $orderId . "' AND o.`price` > 0"
                 . " GROUP BY o.`child_id`";
         $query = $this->db->query($sql);
         if($query->num_rows == 0){

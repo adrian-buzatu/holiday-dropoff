@@ -60,7 +60,7 @@
     </head>
     <body>
         <div id="wrapper">
-            <div id="wrap"  class="page-<?php echo controller() ?>">
+            <div id="wrap"  class="page-<?php echo controller(); ?>">
                 <div id="page">
                     <!--header-->
                     <div class="header">
@@ -175,7 +175,7 @@
                                     </li>
 
                                 <?php endforeach; ?>
-                                <?php if (count($news) > 5): ?>
+                                <?php if ($news_count > 5): ?>
                                     <li>
                                         <a href="<?php echo base_url() ?>news">More News</a>
                                     </li>

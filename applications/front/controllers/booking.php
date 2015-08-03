@@ -268,6 +268,7 @@ class Booking extends CI_Controller {
             
         }
         $couponPost = $this->input->post('txtcoupon_code', true);
+        
         $coupon = $this->Booking->checkCoupon($couponPost);
         $this->data['discount'] = $_SESSION['totalRaw'][$this->data['user_id']] - $_SESSION['totalNum'][$this->data['user_id']];
         
@@ -320,37 +321,50 @@ class Booking extends CI_Controller {
     }
     
     function success() {
-        $paypal = get_paypal_credentials(true);
-        $id = $paypal['identity_token'];
-        $tx = $_GET['tx'];
-        $request = curl_init();
         $orderId = $_SESSION['order_id'];
-        // Set request options
-        curl_setopt_array($request, array
-        (
-          CURLOPT_URL => 'https://www.sandbox.paypal.com/cgi-bin/webscr',
-          CURLOPT_POST => TRUE,
-          CURLOPT_POSTFIELDS => http_build_query(array
+        if(!isset($_GET['no_paypal']) || (int) $_GET['no_paypal'] != 1){
+            $paypal = get_paypal_credentials(true);
+            $id = $paypal['identity_token'];
+            $tx = $_GET['tx'];
+            $request = curl_init();
+            
+            // Set request options
+            curl_setopt_array($request, array
             (
-              'cmd' => '_notify-synch',
-              'tx' => $tx,
-              'at' => $id,
-            )),
-          CURLOPT_RETURNTRANSFER => TRUE,
-          CURLOPT_HEADER => FALSE,
-          // CURLOPT_SSL_VERIFYPEER => TRUE,
-          // CURLOPT_CAINFO => 'cacert.pem',
-        ));
+              CURLOPT_URL => 'https://www.sandbox.paypal.com/cgi-bin/webscr',
+              CURLOPT_POST => TRUE,
+              CURLOPT_POSTFIELDS => http_build_query(array
+                (
+                  'cmd' => '_notify-synch',
+                  'tx' => $tx,
+                  'at' => $id,
+                )),
+              CURLOPT_RETURNTRANSFER => TRUE,
+              CURLOPT_HEADER => FALSE,
+              // CURLOPT_SSL_VERIFYPEER => TRUE,
+              // CURLOPT_CAINFO => 'cacert.pem',
+            ));
 
-        // Execute request and get response and status code
-        $response = curl_exec($request);
-        $status   = curl_getinfo($request, CURLINFO_HTTP_CODE);
-        if($status == 200 AND strpos($response, 'SUCCESS') === 0)
-        {
-            $this->Booking->updateOrder($orderId, array('status' => 1, 'tx' => $tx));
-        } else {
-            die('wrong id');
+            // Execute request and get response and status code
+            $response = curl_exec($request);
+            $status   = curl_getinfo($request, CURLINFO_HTTP_CODE);
+            if($status == 200 AND strpos($response, 'SUCCESS') === 0)
+            {
+                $this->Booking->updateOrder($orderId, array('status' => 1, 'tx' => $tx));
+            } else {
+                die('wrong id');
+            }
+        } else{
+            $tx = "FREE".microtime();
+            $order = $this->Booking->getOrderById($orderId);
+            if($order['total'] == 0){
+                $this->Booking->updateOrder($orderId, array('status' => 1, 'tx' => $tx));
+            } else {
+                die("attempt to make a non-zero order pass the paypal process");
+            }
+            
         }
+        
         $user = $this->Users->one($this->data['user_id']);
         $this->load->library('email');
         $config['mailtype'] = 'html';

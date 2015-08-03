@@ -158,7 +158,7 @@
                                             </tr>
                                         <?php else:?>
                                             <tr>
-                                                <td>You added no children</td>
+                                                <td>Click <a href="<?php echo base_url()?>profile">here</a> to add children</td>
                                             </tr>
                                         <?php endif;?>
                                         </table>

@@ -1,4 +1,9 @@
-
+<?php 
+    $action = "https://www.sandbox.paypal.com/webscr";
+    if($total == 0){
+        $action = base_url(). "booking/success?no_paypal=1";
+    }
+?>
 <div class="bookonline-right-content">
     <div class="bookonline-heading-text"><img src="<?php echo asset_url()?>images/book-online-img.png" alt="" />
         <p>You are signed in as <?php echo $user['user'] ?></p>
@@ -6,7 +11,7 @@
             <a href="#"><img src="<?php echo asset_url()?>images/signoutbt.png" alt="" /></a>
         </span>
     </div>
-    <form method="post" action="https://www.sandbox.paypal.com/webscr">
+    <form method="post" action="<?php echo $action;?>">
         <input type="hidden" name="camp_id" value="<?php echo $camp_id?>" />
         <input type="hidden" name="cmd" value="_xclick">
 	<input type="hidden" name="business" value="Paypal-facilitator@holidaydropoff.com">
@@ -90,11 +95,11 @@
             <div class="c1"></div>
         </div>
         <div class="bottomblock">
-            <div class="total">Total Charge: &pound;<?php echo number_format((float)$total, 2)?></div>
+            <div class="total">Total Charge: &pound;<?php echo sprintf('%.2f', $total)?></div>
             <div style="clear:both;"></div>
-            <div class="total">Discount: &pound;<?php echo $discount?></div>
+            <div class="total">Discount: &pound;<?php echo sprintf('%.2f', $discount)?></div>
             <div style="clear:both;"></div>
-            <div class="total">Total Without Discount: &pound;<?php echo $total + $discount?></div>
+            <div class="total">Total Without Discount: &pound;<?php echo sprintf('%.2f', $total + $discount)?></div>
             <div class="c1"></div>
             <div class="">
                 <input type="hidden" name="discount_amount" value="0.00" />

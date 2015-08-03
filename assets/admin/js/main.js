@@ -45,6 +45,7 @@
                             page.bindMceToEl('content');
                         }
                         this.loadController(pagesUrl, callback);
+                        break;
 
                     }
                     case 'camps': {
@@ -55,7 +56,7 @@
                             camps.events();
                         }
                         this.loadController(campsUrl, callback);
-
+                        break;
                     }
                     case 'coupons': {
                         couponsUrl = this.assetsUrl + "js/controllers/coupons.js";
@@ -64,7 +65,7 @@
                             coupons.setDatePicker();
                         }
                         this.loadController(couponsUrl, callback);
-
+                        break;
                     }
                     case 'testimonials': {
                         testimonialsUrl = this.assetsUrl + "js/controllers/testimonials.js";
@@ -74,7 +75,7 @@
                             testimonials.bindMceToEl('content');
                         }
                         this.loadController(testimonialsUrl, callback);
-
+                        break;
                     }
                     case 'news': {
                         newsUrl = this.assetsUrl + "js/controllers/news.js";
@@ -84,7 +85,7 @@
                             news.bindMceToEl('content');
                         }
                         this.loadController(newsUrl, callback);
-
+                        break;
                     }
                     case 'emails': {
                         emailsUrl = this.assetsUrl + "js/controllers/emails.js";
@@ -94,7 +95,7 @@
                             emails.bindMceToEl('content');
                         }
                         this.loadController(emailsUrl, callback);
-
+                        break;
                     }
                     case 'report': {
                         reportUrl = this.assetsUrl + "js/controllers/report.js";
@@ -103,7 +104,7 @@
                             report.setDatePicker();
                         }
                         this.loadController(reportUrl, callback);
-
+                        break;
                     }
                 }
             }

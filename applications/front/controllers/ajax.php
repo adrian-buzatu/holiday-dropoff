@@ -73,7 +73,11 @@ class Ajax extends CI_Controller {
         $total = array();
         
         foreach($days_array as $weekNumber => $daysBookedPerWeek){
-            foreach($daysBookedPerWeek  as $day => &$children){                
+            foreach($daysBookedPerWeek  as $day => &$children){   
+                if($prices[$day] == 0){
+                        continue; //I skip the days that are disabled
+                        
+                    }
                 $fullWeekArraySort = isset($fullWeekArray[$weekNumber]) ? array_keys($fullWeekArray[$weekNumber]) : array() ; 
                 uksort($days_array[$weekNumber][$day], function($a, $b)  use (&$fullWeekArraySort){
                    if (
@@ -96,6 +100,10 @@ class Ajax extends CI_Controller {
                 $fullWeekChildren = array();
                 $count = 0;
                 foreach ($children as $child => $day) {
+                    if($prices[$day] == 0){
+                        continue; //I skip the days that are disabled
+                        
+                    }
                     if(!isset($_SESSION['children_days_booked'][$this->data['user_id']][$child])){
                         $_SESSION['children_days_booked'][$this->data['user_id']][$child][$type] = array();
                     }
@@ -173,8 +181,12 @@ class Ajax extends CI_Controller {
     
     function add_extended_fee($extended_days, $camp_id){
         $extended_days_total = 0;        
+        $prices = $this->Camps->getCampaignPrices((int) $camp_id);
         foreach ($extended_days as $week => $days){
             foreach($days as $day => $items){
+                if($prices[$day] == 0){
+                    continue; // I skip disabled days;
+                }
                 $extended_days_total += count($items);
                 foreach($items as $child => $day){
                     if(!isset($_SESSION['children_days_booked'][$this->data['user_id']][$child])){

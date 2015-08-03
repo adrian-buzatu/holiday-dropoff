@@ -12,6 +12,7 @@ class Main {
         $CI->load->model('News_Model', 'News');
         $this->data = array();
         $this->data['news'] = $CI->News->get();
+        $this->data['news_count'] = count($CI->News->getAll());
         if (isset($_SESSION['username'])) {
             $this->data['user_id'] = $_SESSION['username']['user_id'];
             $this->data['user'] = $_SESSION['username'];

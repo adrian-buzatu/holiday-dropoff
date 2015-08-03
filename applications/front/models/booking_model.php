@@ -63,8 +63,8 @@ class Booking_Model extends CI_Model {
         $sql = "SELECT * "
                 . "FROM `coupons` c "
                 . "WHERE c.`code` = '". $code . "'"
-                . "AND c.`start_date` <= ". time()
-                . " AND c.`end_date` >= ". time();
+                . "AND c.`start_date` <= ". strtotime("midnight", time())
+                . " AND c.`end_date` >= ". strtotime("midnight", time());
         $result = $this->db->query($sql);
         if ($result->num_rows() == 0) {
             return false;
@@ -108,6 +108,18 @@ class Booking_Model extends CI_Model {
         return $res;
     }
     
+    public function getOrderById($id){
+        $sql = "SELECT o.*"
+                . " FROM `order` o"
+                . " WHERE o.`status` = 1 AND o.`id` = '". $id . "'";
+            $query = $this->db->query($sql);
+        if($query->num_rows == 0){
+            return false;
+        }
+        $res = $query->result_array();
+        return $res[0];
+    }
+    
     public function getUserFinalizedBookings($userId, $order_id = 0){
         $where = "";
         if((int)$order_id > 0){
@@ -129,7 +141,7 @@ class Booking_Model extends CI_Model {
                 . $where
                 . " GROUP BY od.`child_id`, o.`id`"
                 . " ORDER BY o.`date` DESC"
-                . " LIMIT 5";
+                . " ";
         $query = $this->db->query($sql);
         if($query->num_rows() === 0){
             return false;
@@ -162,14 +174,14 @@ class Booking_Model extends CI_Model {
         if($extended == false){
             return date("d/m/Y", $day). "(n)";
         } else {
-            return date("d/m/Y", $day). "(e)";
+            return "<span class='orange'>". date("d/m/Y", $day). "(e)". "</span>";
         }
     }
     
     private function ___getChildOrderDaysBooked($orderId, $childId){
         $sql = "SELECT od.`day`, od.`extended` FROM `order_details` od"
                 . " WHERE od.`order_id` = '". $orderId . "' "
-                . "AND od.`child_id` = '". $childId . "'"
+                . "AND od.`child_id` = '". $childId . "' AND od.`price` > 0 "
                 . " ORDER BY od.`day` ASC";
         $query = $this->db->query($sql);
         if($query->num_rows() === 0){

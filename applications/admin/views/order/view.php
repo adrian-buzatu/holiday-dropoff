@@ -47,7 +47,11 @@
                         <td align="left"><?php echo $order['end_date']?></td>                                    
                         <td align="left">
                             <?php $days_arr = explode(",", $child['days_booked']);?>
-                            <?php foreach($days_arr as $day):?>
+                            <?php foreach($days_arr as $day):
+                                if(preg_match("/\(e\)$/", $day)){
+                                    $day = "<span class='extended_day_color'>". $day ."</span>";
+                                }
+                            ?>
                             <p><?php echo str_replace("+++", ", ", $day)?></p>
                             <?php endforeach;?>
                         </td>                                                             

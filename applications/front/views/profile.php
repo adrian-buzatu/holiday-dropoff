@@ -344,8 +344,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php if(is_array($bookings)):?>
-                                <?php foreach ($bookings as $loopIndex => $item): ?>
+                            <?php if(is_array($bookings)): $count = 0;?>
+                                <?php foreach ($bookings as $loopIndex => $item): 
+                                        if($count > 4) break;
+                                    ?>
                                     <tr >
                                         <?php if($item['child_id'] != -1):?>
                                             <td>
@@ -370,7 +372,7 @@
                                     </tr>
                                     <?php if(isset($bookings[$loopIndex +1])
                                                 && $bookings[$loopIndex]['id'] == $bookings[$loopIndex + 1]['id']):?>
-                                    <?php else:?>
+                                    <?php else: $count ++;?>
                                     <tr class="total-row" >
                                         <td colspan="3" class="profile__booking_total_cell">
                                             TOTAL: &pound; <?php echo number_format($item['total'], 2);?>

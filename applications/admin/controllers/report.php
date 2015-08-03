@@ -42,7 +42,17 @@ class Report extends CI_Controller {
             $this->__generateReport((int) $_POST['camp_id'], $start_date, $end_date);
         }
     }
-
+    
+    public function get_dates_for_camp($id = 0){
+        $camp = $this->Camps->getOne($id);
+        echo json_encode(
+            array(
+                'start_date' => date('m/d/Y', $camp['start_date']),
+                'end_date' => date('m/d/Y', $camp['end_date'])
+            )
+        );
+    }
+    
     private function __generateReport($camp_id, $start_date = NULL, $end_date = NULL) {
         $campsExcel = $this->Order->excel($camp_id, $start_date, $end_date);
         $base = APPPATH . "libraries/HtmlPhpExcel-master/";

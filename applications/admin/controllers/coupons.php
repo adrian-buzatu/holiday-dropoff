@@ -54,15 +54,16 @@ class Coupons extends CI_Controller {
         if ($this->form_validation->run() == false) {
             
         } else {
-            
+            $beginOfDay = strtotime("midnight", strtotime($this->input->post('start_date', true)));
+            $endOfDay   = strtotime("tomorrow", strtotime($this->input->post('end_date', true))) - 1;
             $coupon = array(
                 'name' => $this->input->post('name', true),
                 'description' => $this->input->post('description', true),
                 'amount' => $this->input->post('amount', true),
                 'code' => $this->input->post('code', true),
                 'type' => $this->input->post('type', true),
-                'start_date' => strtotime($this->input->post('start_date', true)),
-                'end_date' => strtotime($this->input->post('end_date', true)),
+                'start_date' => $beginOfDay,
+                'end_date' => $endOfDay,
                 'use' => $this->input->post('use', true)
             );
             $this->data['success'] = true;
@@ -90,14 +91,16 @@ class Coupons extends CI_Controller {
         if ($this->form_validation->run() == false) {
             
         } else {
+            $beginOfDay = strtotime("midnight", strtotime($this->input->post('start_date', true)));
+            $endOfDay   = strtotime("tomorrow", strtotime($this->input->post('end_date', true))) - 1;
             $coupon = array(
                 'name' => $this->input->post('name', true),
                 'description' => $this->input->post('description', true),
                 'code' => $this->input->post('code', true),
                 'amount' => $this->input->post('amount', true),
                 'type' => $this->input->post('type', true),
-                'start_date' => strtotime($this->input->post('start_date', true)),
-                'end_date' => strtotime($this->input->post('end_date', true)),
+                'start_date' => $beginOfDay,
+                'end_date' => $endOfDay,
                 'use' => $this->input->post('use', true)
             );
             $this->data['success'] = true;
