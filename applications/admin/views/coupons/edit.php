@@ -76,8 +76,8 @@
                                 Coupon Type :
                             </td>
                             <td>
-                                Amount :<input type="radio" name="type" value="1" <?php if(set_value('type') == 1 || $coupon['type'] == 1):?>selected<?php endif;?>>               
-                                % of Amount :<input checked="checked" type="radio" name="type" value="2" <?php if(set_value('type') == 2 || $coupon['type']):?>selected<?php endif;?>>
+                                Amount :<input type="radio" name="type" value="1" <?php if(set_value('type') == 1 || $coupon['type'] == 1):?>checked<?php endif;?>>               
+                                % of Amount :<input type="radio" name="type" value="2" <?php if(set_value('type') == 2 || $coupon['type'] == 2):?>checked<?php endif;?>>
                             </td>
                         </tr>
                         <tr>
