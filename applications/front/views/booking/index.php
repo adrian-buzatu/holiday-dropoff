@@ -62,7 +62,10 @@
                                                     <table class="child_name_table" rel="<?php echo $child['id']?>">
                                                         <tr>
                                                             <td class="add_holder">
-                                                                <img src="<?php echo asset_url() ?>images/add+.png"  alt="" /><?php echo $child['first_name']. " ".$child['last_name'] ?>                               
+                                                                <img src="<?php echo asset_url() ?>images/add+.png"  alt="" />                               
+                                                            </td>
+                                                            <td class="add_holder">
+                                                                <?php echo $child['first_name']. " ".$child['last_name'] ?>
                                                             </td>
                                                         </tr>
                                                     </table>

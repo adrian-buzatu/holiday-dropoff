@@ -1294,7 +1294,7 @@ a {
     width:96px;
 }
 img {
-    float:left;
+    /*float:left;*/
     margin:0px;
     padding:0px;
 }
@@ -1949,6 +1949,16 @@ input{
     line-height: 27px; 
     margin-left:-10px;
 }
+.child_name_table .add_holder:first-child{
+    width: 40px;
+}
+/*.child_name_table .add_holder img{
+    float: left;
+}
+.child_name_table .add_holder:after{
+    display: block;
+    clear: left;
+}*/
 .book_for_child_name{
     font-weight:bold; 
     text-decoration:underline; 
