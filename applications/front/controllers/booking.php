@@ -270,23 +270,24 @@ class Booking extends CI_Controller {
         $couponPost = $this->input->post('txtcoupon_code', true);
         
         $coupon = $this->Booking->checkCoupon($couponPost);
+        //pr($coupon, 1);
         $this->data['discount'] = $_SESSION['totalRaw'][$this->data['user_id']] - $_SESSION['totalNum'][$this->data['user_id']];
-        
+        $total_num = $_SESSION['totalNum'][$this->data['user_id']];
         if($coupon !== false){
             $discountAmount = $coupon['amount'];
             $discountType = $coupon['type']; 
             if($discountType == 1){
-                $_SESSION['totalNum'][$this->data['user_id']] -= $discountAmount;
-                $this->data['discount'] = $discountAmount;
+                $total_num -= $discountAmount;
+                $this->data['discount'] += $discountAmount;
             } else {
-                $this->data['discount'] += ($discountAmount / 100) * $_SESSION['totalNum'][$this->data['user_id']];
-                $_SESSION['totalNum'][$this->data['user_id']] -= ($discountAmount / 100) * $_SESSION['totalNum'][$this->data['user_id']];
+                $this->data['discount'] += ($discountAmount / 100) * $total_num;
+                $total_num -= ($discountAmount / 100) * $total_num;
                 
             }
         }
-        $this->Booking->updateOrderTotal($orderId, $_SESSION['totalNum'][$this->data['user_id']]);
+        $this->Booking->updateOrderTotal($orderId, $total_num);
         $this->Booking->updateOrderDiscount($orderId, $this->data['discount']);
-        $this->data['total'] = $_SESSION['totalNum'][$this->data['user_id']];
+        $this->data['total'] = $total_num;
         $this->data['camp_id'] = (int) $_POST['camp_id'];
         
         $this->data['selected_camp'] = $this->Camps->one((int) $_POST['camp_id']);
