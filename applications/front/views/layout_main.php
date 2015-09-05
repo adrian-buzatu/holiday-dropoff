@@ -81,7 +81,7 @@
                             </div>
                             <div class="contact">
                                 <div class="envelop"><img src="<?php echo asset_url() ?>images/phon-icon.png"></div>
-                                <div class="mailid">07944 485 552</div>
+                                <div class="mailid">0203 488 1410</div>
                             </div>
                         </div>
                         <div class="navigation">
