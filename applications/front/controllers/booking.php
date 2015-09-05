@@ -268,7 +268,7 @@ class Booking extends CI_Controller {
             
         }
         $couponPost = $this->input->post('txtcoupon_code', true);
-        
+        $this->data['env'] = $this->Settings->getItem('env');
         $coupon = $this->Booking->checkCoupon($couponPost);
         //pr($coupon, 1);
         $this->data['discount'] = $_SESSION['totalRaw'][$this->data['user_id']] - $_SESSION['totalNum'][$this->data['user_id']];

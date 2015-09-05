@@ -1,5 +1,8 @@
 <?php 
     $action = "https://www.sandbox.paypal.com/webscr";
+    if($env == 'prod'){
+        $action = "https://www.paypal.com/webscr";
+    }
     if($total == 0){
         $action = base_url(). "booking/success?no_paypal=1";
     }

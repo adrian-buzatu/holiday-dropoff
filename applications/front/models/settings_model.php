@@ -46,6 +46,16 @@ class Settings_Model extends CI_Model {
         $this->db->update('settings', $up, array('id' => 1));
     }
     
+    public function getItem($item){
+        $sql = "SELECT * FROM `settings` LIMIT 1";
+        $query = $this->db->query($sql);
+        if($query->num_rows == 0){
+            return false;
+        }
+        $res = $query->result_array();
+        return isset($res[0][$item]) ? $res[0][$item] : false;
+    }
+    
     public function makeGMapsUrl($address){
         return $address;
     }
