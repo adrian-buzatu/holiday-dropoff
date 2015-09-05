@@ -41,6 +41,13 @@ class Settings_Model extends CI_Model {
     }
     
     public function updateItem($item){
+        if (!$this->db->field_exists(key($item), 'settings')){
+            $this->load->dbforge();
+            $fields = array(
+                key($item) => array('type' => 'TEXT')
+            );
+            $this->dbforge->add_column('settings', $fields);
+        }
         $this->db->update('settings', $item, array('id' => 1));
     }
 }

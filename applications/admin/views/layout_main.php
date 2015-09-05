@@ -66,6 +66,7 @@
                                         <li><a class="<?php echo controller() == 'report' ? 'active' : '';?>" href="<?php echo base_url()?>report">Report</a></li>
                                         <li><a class="<?php echo controller() == 'companyaddress' ? 'active' : '';?>" href="<?php echo base_url()?>companyaddress">Change Company Address</a></li>
                                         <li><a class="<?php echo controller() == 'notificationemail' ? 'active' : '';?>" href="<?php echo base_url()?>notificationemail">Change Admin Notification Email</a></li>
+                                         <li><a class="<?php echo controller() == 'environment' ? 'active' : '';?>" href="<?php echo base_url()?>environment">Change Environment</a></li>
                                         <li><a class="<?php echo controller() == 'account' ? 'active' : '';?>" href="<?php echo base_url()?>account/change_password">Change Password</a></li>
                                         <li><a href="<?php echo base_url()?>logout">Logout</a></li>
                                     </ul>
