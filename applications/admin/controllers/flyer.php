@@ -27,7 +27,7 @@ class Flyer extends CI_Controller {
             
         } else {
             $file = $_FILES['flyer'];
-            $name = time() . "_" . $file['name'];
+            $name = time() . "_" . slugify_filename($file['name']);
             $config['upload_path'] = base_path(). "assets/front/images/uploads/";
             $config['allowed_types'] = 'doc|pdf';
             $config['max_size']	= '20480';

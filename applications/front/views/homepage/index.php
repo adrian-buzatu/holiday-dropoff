@@ -40,7 +40,12 @@
 <div class="middlecontant2">
     <div class="welcome"><img src="<?php echo asset_url() ?>images/welcome.png" width="428" height="40" /></div>
     <div class="welcome2">Holiday Boredom solved!</div>
-    <div class="icon2"> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" /> </div>
+    <div class="icon2"> 
+        <?php for($i = 1; $i < 16; $i++):?>
+            <img src="<?php echo asset_url() ?>images/holidaystar.png" alt="" />
+        <?php endfor;?>    
+        
+    </div>
     <div class="body-main-content">
         <?php echo $page['content']?>
     </div>

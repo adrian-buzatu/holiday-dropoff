@@ -67,7 +67,7 @@ class Order_Model extends CI_Model {
             . " JOIN `users` u ON (o.`user_id` = u.`id`)"
             . " WHERE o.`status` = '1'"
             . " AND o.`camp_id` = '". $camp_id . "'"
-            . " AND od.`price` > 0 "
+            /*. " AND od.`price` > 0 " */
             . " AND od.`day` BETWEEN ". $start . " AND ". $end 
             /*. " GROUP BY od.`child_id`" */
             . " ORDER BY od.`day`, o.`id`";
@@ -98,7 +98,7 @@ class Order_Model extends CI_Model {
                 . ", IF(o.`extended` = 1, '(e)', '(n)' ) ) ) as days_booked"
                 . " FROM `order_details` o"
                 . " JOIN `children` c ON (o.`child_id` = c.`id`)"
-                . " WHERE o.`order_id` = '". $orderId . "' AND o.`price` > 0"
+                . " WHERE o.`order_id` = '". $orderId . "'"
                 . " GROUP BY o.`child_id`";
         $query = $this->db->query($sql);
         if($query->num_rows == 0){

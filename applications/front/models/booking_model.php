@@ -181,7 +181,7 @@ class Booking_Model extends CI_Model {
     private function ___getChildOrderDaysBooked($orderId, $childId){
         $sql = "SELECT od.`day`, od.`extended` FROM `order_details` od"
                 . " WHERE od.`order_id` = '". $orderId . "' "
-                . "AND od.`child_id` = '". $childId . "' AND od.`price` > 0 "
+                . "AND od.`child_id` = '". $childId . "' "
                 . " ORDER BY od.`day` ASC";
         $query = $this->db->query($sql);
         if($query->num_rows() === 0){

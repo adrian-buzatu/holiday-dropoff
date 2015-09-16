@@ -11,6 +11,6 @@
         <br /><br />
         Your transaction has been completed and a receipt for your purchase has been 
         <br />emailed to you. You may log in to your account at
-        <br /><a href="https://www.sandbox.paypal.com/uk/">www.sandbox.paypal.com/uk</a> to view details of this transaction.
+        <br /><a href="https://www.paypal.com/uk/">www.paypal.com/uk</a> to view details of this transaction.
     </div>
 </div>

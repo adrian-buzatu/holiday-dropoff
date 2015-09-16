@@ -324,7 +324,7 @@ class Booking extends CI_Controller {
     function success() {
         $orderId = $_SESSION['order_id'];
         if(!isset($_GET['no_paypal']) || (int) $_GET['no_paypal'] != 1){
-            $paypal = get_paypal_credentials(true);
+            $paypal = get_paypal_credentials();
             $id = $paypal['identity_token'];
             $tx = $_GET['tx'];
             $request = curl_init();
@@ -332,7 +332,7 @@ class Booking extends CI_Controller {
             // Set request options
             curl_setopt_array($request, array
             (
-              CURLOPT_URL => 'https://www.sandbox.paypal.com/cgi-bin/webscr',
+              CURLOPT_URL => 'https://www.paypal.com/cgi-bin/webscr',
               CURLOPT_POST => TRUE,
               CURLOPT_POSTFIELDS => http_build_query(array
                 (
@@ -353,7 +353,9 @@ class Booking extends CI_Controller {
             {
                 $this->Booking->updateOrder($orderId, array('status' => 1, 'tx' => $tx));
             } else {
-                die('wrong id');
+                pr($response);
+                die('wrong id'. $orderId);
+                
             }
         } else{
             $tx = "FREE".microtime();

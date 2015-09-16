@@ -1,7 +1,7 @@
 <?php 
-    $action = "https://www.sandbox.paypal.com/webscr";
+    $action = "https://www.sandbox.paypal.com/cgi-bin/webscr";
     if($env == 'prod'){
-        $action = "https://www.paypal.com/webscr";
+        $action = "https://www.paypal.com/cgi-bin/webscr";
     }
     if($total == 0){
         $action = base_url(). "booking/success?no_paypal=1";
@@ -17,7 +17,7 @@
     <form method="post" action="<?php echo $action;?>">
         <input type="hidden" name="camp_id" value="<?php echo $camp_id?>" />
         <input type="hidden" name="cmd" value="_xclick">
-	<input type="hidden" name="business" value="Paypal-facilitator@holidaydropoff.com">
+	<input type="hidden" name="business" value="paypal@holidaydropoff.com">
 	<input type="hidden" name="currency_code" value="GBP">
 	<input type="hidden" name="item_name" value="<?php echo $selected_camp['name']?>">
         <input type="hidden" name="notify_url" value="<?php echo base_url()?>booking/process_paypal">
