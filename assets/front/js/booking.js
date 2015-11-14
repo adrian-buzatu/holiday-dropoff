@@ -75,7 +75,7 @@
         ajaxCall: function(){
             var me = this;
             $.ajax({
-                url: window.location.origin + "/holiday-dropoff/ajax/update_total",
+                url: window.location.origin + "/ajax/update_total",
                 method: "POST",
                 dataType: "json",
                 data: this.accesors.form.serialize(),
@@ -171,7 +171,7 @@
                 var parent = me.accesors.currentParent;
                 
                 if(!me.helpers.isUndefined($(this).attr('checked'))){
-                    parent.find(checkbox_class + '_' + week).each(function(){
+                    parent.find(checkbox_class + '_' + week + ":enabled").each(function(){
                         $(this).attr('checked', 'checked');
                         $(this).addClass('js_checked');
                     });
@@ -179,15 +179,15 @@
                     //$(me.accesors.bookAllDaysPrefix + book_all_to_uncheck + "_" + week).removeClass('js_checked').
                     //        addClass('js_checked');
                     if(me.checkboxType === 'extended'){
-                        parent.find(target_checkbox_class + "_" + week).attr('checked', 'checked').
+                        parent.find(target_checkbox_class + "_" + week + ":enabled").attr('checked', 'checked').
                             removeClass('js_checked').addClass('js_checked');
-                        parent.find(me.accesors.bookAllDaysPrefix + book_all_to_uncheck + "_" + week).attr('checked', 'checked');
-                        parent.find(me.accesors.bookAllDaysPrefix + book_all_to_uncheck + "_" + week).removeClass('js_checked').
+                        parent.find(me.accesors.bookAllDaysPrefix + book_all_to_uncheck + "_" + week + ":enabled").attr('checked', 'checked');
+                        parent.find(me.accesors.bookAllDaysPrefix + book_all_to_uncheck + "_" + week + ":enabled").removeClass('js_checked').
                             addClass('js_checked');
                     }
                     
                 } else {
-                    parent.find(checkbox_class + '.js_checked' + checkbox_class + '_' + week).
+                    parent.find(checkbox_class + '.js_checked' + checkbox_class + '_' + week + ":enabled").
                             removeClass('js_checked').removeAttr('checked');
                 }
                 me.ajaxCall();

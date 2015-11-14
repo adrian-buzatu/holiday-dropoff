@@ -14,9 +14,9 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://www.pythox.com/holiday-dropoff/admin/';
-$config['front_url']	= 'http://www.pythox.com/holiday-dropoff/';
-$config['base_path'] = '/kunden/homepages/15/d548075287/htdocs/holiday-dropoff/';
+$config['base_url']	= 'http://dev.hdocamp.com/admin/';
+$config['front_url']	= 'http://dev.hdocamp.com/';
+$config['base_path'] = '';
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -225,7 +225,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '@q@t0ff0xygAn--nn@+';
+$config['encryption_key'] = '';
 
 /*
 |--------------------------------------------------------------------------

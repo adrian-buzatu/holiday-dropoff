@@ -17,10 +17,10 @@
 //            $(".TabbedPanelsContentVisible").removeClass('TabbedPanelsContent1').
 //                removeClass('TabbedPanelsContent2').
 //                addClass(classes[$(this).attr('rel')]);
-            window.location.href = window.location.origin + "/holiday-dropoff/gallery/" + $(".photogallery_category_browser").val() + "/" + $(this).attr('rel');
+            window.location.href = window.location.origin + "/gallery/" + $(".photogallery_category_browser").val() + "/" + $(this).attr('rel');
         });
         $(".photogallery_category_browser").change(function(){
-            window.location.href = window.location.origin + "/holiday-dropoff/gallery/" + $(this).val() + "/" + $(this).attr('rel');
+            window.location.href = window.location.origin + "/gallery/" + $(this).val() + "/" + $(this).attr('rel');
         });
         $('#images_list ul').lightSlider({
             gallery: true,
@@ -33,7 +33,7 @@
             currentPagerPosition: 'left'
         }); 
         $("#video_list ul").youtubeVideoGallery({
-            assetFolder: window.location.origin + "/holiday-dropoff/assets/front/images/",
+            assetFolder: window.location.origin + "/assets/front/images/",
             plugin:'colorbox'
         });
     });

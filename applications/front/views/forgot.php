@@ -13,6 +13,17 @@
                         <td style="padding-left:20px; padding-top:50px;">
                             <form id="frmforgot" name="frmforgot" action="<?php echo base_url()?>login/forgot" method="post">
                                 <table width="380" border="0" cellspacing="0" cellpadding="0">
+                                    <?php if (form_error('email') != ''): ?>
+                                        <tr>
+                                            <td>
+                                                <div style="font-size:14px; color:#FF0000; margin-top:-25px; position:absolute;">  
+
+                                                    <?php echo form_error('email') ?>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endif; ?>
                                     <tr>
                                         <td style="color:#000000; font-size:15px;">Email Address</td>
                                     </tr>

@@ -46,7 +46,7 @@ class Contactus extends CI_Controller {
     }
     
     function process(){
-        $to = "adrian.t.buzatu@gmail.com";
+        $to = "info@holidaydropoff.com";
         $subject = $this->input->post('subject');
         $message = $this->input->post('msg').
                                 ", \r\n".$this->input->post("name")."(".$this->input->post('email').")";

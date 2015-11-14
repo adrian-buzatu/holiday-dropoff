@@ -26,7 +26,7 @@
             wrapperid: "fadeshow1", //ID of blank DIV on page to house Slideshow
             dimensions: [671, 229], //width/height of gallery in pixels. Should reflect dimensions of largest image
             imagearray: [
-                ["<?php echo asset_url() ?>images/gallery26.jpg"], ["<?php echo asset_url() ?>images/gallery27.jpg"], ["<?php echo asset_url() ?>images/gallery28.jpg"], ],
+                <?php echo $banners?>, ],
             displaymode: {type: 'auto', pause: 2500, cycles: 0, wraparound: false},
             persist: false, //remember last viewed slide and recall within same session?
             fadeduration: 500, //transition duration (milliseconds)

@@ -99,7 +99,15 @@ class Report extends CI_Controller {
                     $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id'])){
                 //$subtotal += $item['price'];
             }
+            $item['price'] = $item['extended'] == 0 ? 
+                    $item['price'] : $item['price'] + $this->Order->getExtendedPrice($camp_id);
             $total += $item['price'];
+            /*
+             * $total = (!isset($campsExcel[$loop_index - 1]) ||
+                    $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id']) 
+                    ||  date("d/m/Y", $campsExcel[$loop_index]['day']) != date("d/m/Y", $campsExcel[$loop_index - 1]['day']) ?
+                    $total + $item['total'] : $total;
+             */
             $daysTotal += $item['normal'];
             $daysExtended += $item['extended'];
             $color = $sub_loop_index % 2 === 0 ? 'fdff00' : 'FFFFFF';
@@ -109,14 +117,17 @@ class Report extends CI_Controller {
                     ) ?
                     $item['parent'] : '';
             $number = (!isset($campsExcel[$loop_index - 1]) ||
-                    $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id']) ?
+                    $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id']) ||  
+                    date("d/m/Y", $campsExcel[$loop_index]['day']) != date("d/m/Y", $campsExcel[$loop_index - 1]['day']) ?
                     $item['number'] : '';
             $payment = (!isset($campsExcel[$loop_index - 1]) ||
-                    $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id']) ?
+                    $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id']) ||
+                    date("d/m/Y", $campsExcel[$loop_index]['day']) != date("d/m/Y", $campsExcel[$loop_index - 1]['day']) ?
                     $this->Order->getOrderDaySubtotal($campsExcel[$loop_index]['id'],
                             $campsExcel[$loop_index]['day']) : '';
             $email = (!isset($campsExcel[$loop_index - 1]) ||
-                    $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id']) ?
+                    $campsExcel[$loop_index]['id'] != $campsExcel[$loop_index - 1]['id']) 
+                    ||  date("d/m/Y", $campsExcel[$loop_index]['day']) != date("d/m/Y", $campsExcel[$loop_index - 1]['day']) ?
                     $item['email'] : '';
             if ($item['child_id'] != -1) {
                 $child = $item['child'];

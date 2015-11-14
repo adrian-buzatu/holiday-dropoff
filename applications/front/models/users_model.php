@@ -178,7 +178,7 @@ class Users_Model extends CI_Model {
     
     function getUserChildren($id, $limit = 99){
         $sql = "
-            SELECT * FROM `children` c
+            SELECT c.* FROM `children` c
             JOIN `user_children` uc ON (uc.`child_id` = c.`id`)
             WHERE uc.`user_id` = '". (int)$id ."'
                 LIMIT ". $limit ."

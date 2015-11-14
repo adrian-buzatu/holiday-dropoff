@@ -1,8 +1,6 @@
 <?php 
-    $action = "https://www.sandbox.paypal.com/cgi-bin/webscr";
-    if($env == 'prod'){
-        $action = "https://www.paypal.com/cgi-bin/webscr";
-    }
+    $action = base_url(). "booking/process_paypal";
+    
     if($total == 0){
         $action = base_url(). "booking/success?no_paypal=1";
     }
@@ -22,7 +20,7 @@
 	<input type="hidden" name="item_name" value="<?php echo $selected_camp['name']?>">
         <input type="hidden" name="notify_url" value="<?php echo base_url()?>booking/process_paypal">
         <input type="hidden" name="return" value="<?php echo base_url()?>booking/success">
-        <input type="hidden" name="cancel" value="<?php echo base_url()?>booking/cancel">
+        <input type="hidden" name="cancel" value="<?php echo base_url()?>booking">
         <input type="hidden" name="amount" value="<?php echo number_format((float)$total, 2)?>">
         <div class="bookonline-middle-content">
             <div id="TabbedPanels2" class="TabbedPane2s">

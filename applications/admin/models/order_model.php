@@ -67,7 +67,7 @@ class Order_Model extends CI_Model {
             . " JOIN `users` u ON (o.`user_id` = u.`id`)"
             . " WHERE o.`status` = '1'"
             . " AND o.`camp_id` = '". $camp_id . "'"
-            /*. " AND od.`price` > 0 " */
+            . " AND od.`price` > 0 " 
             . " AND od.`day` BETWEEN ". $start . " AND ". $end 
             /*. " GROUP BY od.`child_id`" */
             . " ORDER BY od.`day`, o.`id`";
@@ -79,15 +79,22 @@ class Order_Model extends CI_Model {
     }
     
     function getOrderDaySubtotal($order_id, $day){
-        $sql = "SELECT SUM(`price`) as `subtotal` FROM `order_details`"
-                . " WHERE `order_id` = '". $order_id . "' AND `day` = '". $day. "'"
-                . " GROUP BY `order_id`";
+        $sql = "SELECT od.`price` + IF(od.`extended` = 0, 0 ,"
+                . "(SELECT c.`extra_days_fee` FROM `camps` c WHERE c.`id` = o.`camp_id` LIMIT 1) ) as `price` "
+                . "FROM `order_details` od "
+                . "JOIN `order` o ON (od.`order_id` = o.`id`)"
+                . " WHERE od.`order_id` = '". $order_id . "' AND od.`day` = '". $day. "'"
+                . " ";
         $query = $this->db->query($sql);
         if($query->num_rows == 0){
             return 0;
         }
+        $subtotal = 0;
         $res = $query->result_array();
-        return $res[0]['subtotal'];
+        foreach($res as $item){
+            $subtotal += $item['price'];
+        }
+        return $subtotal;
     }
     
     function children($orderId){
@@ -98,13 +105,19 @@ class Order_Model extends CI_Model {
                 . ", IF(o.`extended` = 1, '(e)', '(n)' ) ) ) as days_booked"
                 . " FROM `order_details` o"
                 . " JOIN `children` c ON (o.`child_id` = c.`id`)"
-                . " WHERE o.`order_id` = '". $orderId . "'"
+                . " WHERE o.`order_id` = '". $orderId . "' AND o.`price` > 0 "
                 . " GROUP BY o.`child_id`";
         $query = $this->db->query($sql);
         if($query->num_rows == 0){
             return false;
         }
         return $query->result_array();
+    }
+    
+    function getExtendedPrice($camp_id = 1){
+        $sql = "SELECT `extra_days_fee` FROM `camps` WHERE `id` = '". $camp_id ."' LIMIT 1";
+        $result = $this->db->query($sql)->result_array();
+        return $result[0]['extra_days_fee'];
     }
     //put your code here
 }

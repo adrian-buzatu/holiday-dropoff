@@ -48,12 +48,12 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'db564981185.db.1and1.com';
+$db['default']['hostname'] = '';
 //$db['default']['port'] = '3306';
-$db['default']['username'] = 'dbo564981185';
-$db['default']['password'] = 'testadrian';
-$db['default']['database'] = 'db564981185';
-$db['default']['dbdriver'] = 'mysqli';
+$db['default']['username'] = '';
+$db['default']['password'] = '';
+$db['default']['database'] = '';
+$db['default']['dbdriver'] = '';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;

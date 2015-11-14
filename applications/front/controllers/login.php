@@ -101,5 +101,15 @@ class Login extends CI_Controller {
         } else
             return true;
     }
+    
+    function mail_exists() {
+        $email = $this->input->post('email');
+        if ($this->Users->checkMail($email) == true) {
+            $this->form_validation->set_message('mail_exists', 'The email address does not exist in your database.');
+            return false;
+        } else {
+            return true;
+        }
+    }
 
 }

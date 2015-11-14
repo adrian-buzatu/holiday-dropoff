@@ -94,7 +94,10 @@ class Ajax extends CI_Controller {
         }
         foreach($days_array as $weekNumber => $daysBookedPerWeek){
             $dayCount = 1;
-            
+            $price_per_week = 0;
+            /*foreach($daysBookedPerWeek  as $day => $children){
+                $price_per_week += $price[$day];
+            }*/
             $totalDaysForCamp = $totalDaysForCampArr[$weekNumber];
             foreach($daysBookedPerWeek  as $day => $children){
                 $fullWeekChildren = array();
@@ -125,7 +128,10 @@ class Ajax extends CI_Controller {
                             $_SESSION['total'][$this->data['user_id']][$child][$weekNumber] += $currentPrice;
                         }
                     if (isset($fullWeekArray[$weekNumber][$child])) {
+                        /*$_SESSION['total'][$this->data['user_id']][$child][$weekNumber] = 
+                                $prices[0] >= $price_per_week ? $prices[0] : $price_per_week;*/
                         $_SESSION['total'][$this->data['user_id']][$child][$weekNumber] = $prices[0];
+                        
                         if ($friend === false) {
                             
                             $diff = ($count > 1 && $count < 4) ?

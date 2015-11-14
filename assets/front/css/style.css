@@ -2183,3 +2183,6 @@ input{
     width: 386px;
     word-break: break-word;
 }
+.booking_checkbox[disabled]{
+    display: none;
+}

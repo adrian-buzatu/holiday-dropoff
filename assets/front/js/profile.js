@@ -76,7 +76,7 @@ $(document).ready(function(){
             return false;
         } else {
             $.ajax({
-                url: window.location.origin + "/holiday-dropoff/profile/add_child",
+                url: window.location.origin + "/profile/add_child",
                 type: "POST",
                 dataType: "json",
                 data: "first_name=" + $("#first_name").val() + "&last_name=" + $("#last_name").val() 
@@ -84,15 +84,15 @@ $(document).ready(function(){
                 success: function(data){
                     post = data.data;
                     html = "<tr>";
-                    html += '<td width="11%" align="center" style="font-weight: normal; padding: 16px 0pt 13px 28px;"><a href="#"><img height="22" width="24" alt="" src="http://www.pythox.com/holiday-dropoff/assets/front/images/star-icon.png"></a></td>';
+                    html += '<td width="11%" align="center" style="font-weight: normal; padding: 16px 0pt 13px 28px;"><a href="#"><img height="22" width="24" alt="" src="http://www.pythox.com/assets/front/images/star-icon.png"></a></td>';
                     html += '<td width="22%" style="font-size: 15px; height: 32px; line-height: 27px;">';
                     html += '<a style="color: rgb(51, 51, 51);" href="javascript:void(1)" rel="3">' + post.first_name + ' ' + post.last_name + '</a> ';
                     html += '</td>';
                     html += '<td>';
-                    html += '<a href="javascript:void(1)" class="update_child" rel="' + post.id + '"><img alt="" src="http://www.pythox.com/holiday-dropoff/assets/front/images/updateyellobt.png"></a>';
+                    html += '<a href="javascript:void(1)" class="update_child" rel="' + post.id + '"><img alt="" src="http://www.pythox.com/assets/front/images/updateyellobt.png"></a>';
                     html += '</td>';
                     html += '<td style="margin-right:5%;">';
-                    html += '<a href="javascript:void(1)" rel="' + post.id + '" class="delete_child"><img alt="" src="http://www.pythox.com/holiday-dropoff/assets/front/images/deleteyellobt.png"></a>';
+                    html += '<a href="javascript:void(1)" rel="' + post.id + '" class="delete_child"><img alt="" src="http://www.pythox.com/assets/front/images/deleteyellobt.png"></a>';
                     html += '</td>';
                                     
                     html += "</tr>";
@@ -133,7 +133,7 @@ $(document).ready(function(){
             return false;
         } else {
             $.ajax({
-                url: window.location.origin + "/holiday-dropoff/profile/update_child",
+                url: window.location.origin + "/profile/update_child",
                 type: "POST",
                 dataType: "json",
                 data: "first_name=" + $("#up_first_name").val() + "&last_name=" + $("#up_last_name").val() 
@@ -163,7 +163,7 @@ $(document).ready(function(){
         var childId = $(this).attr('rel');
         var me = $(this);
         $.ajax({
-            url: window.location.origin + "/holiday-dropoff/profile/delete_child",
+            url: window.location.origin + "/profile/delete_child",
             type: "POST",
             dataType: "json",
             data: "child_id=" + childId,
@@ -178,7 +178,7 @@ $(document).ready(function(){
         var me = $(this);
         console.log("update triggered");
         $.ajax({
-            url: window.location.origin + "/holiday-dropoff/profile/get_child",
+            url: window.location.origin + "/profile/get_child",
             type: "POST",
             dataType: "json",
             data: "child_id=" + childId,
