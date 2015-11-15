@@ -44,14 +44,15 @@ var Camps = function() {
                 data: "start_date=" + startDate + "&end_date=" + endDate + "&camp_id=" + me.post.camp_id,
                 success: function(response){
                     html = response.output;
-                    console.log(response.output);
                     me.config.camp_prices_holder.html(html);
                 }
             });
         });
         $(document).on('dblclick', '.price_tag_day', function(){
             $('.price_tag_day').val($(this).val());
-            $('#book_all').val($('.price_tag_day').length * $(this).val())
+            var default_full_weeks_price = ( $('.price_tag_day').length * $(this).val() ) / $('#full_weeks_no').val();
+            var default_price = default_full_weeks_price + $('.week_' + $('#full_weeks_no').val() + 1).length * $(this).val();
+            $('#book_all').val(default_price)
         });
     }
 };

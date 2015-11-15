@@ -130,7 +130,8 @@ class Ajax extends CI_Controller {
                     if (isset($fullWeekArray[$weekNumber][$child])) {
                         /*$_SESSION['total'][$this->data['user_id']][$child][$weekNumber] = 
                                 $prices[0] >= $price_per_week ? $prices[0] : $price_per_week;*/
-                        $_SESSION['total'][$this->data['user_id']][$child][$weekNumber] = $prices[0];
+                        $_SESSION['total'][$this->data['user_id']][$child][$weekNumber] = 
+                                isset($prices[$weekNumber - 1]) ? $prices[$weekNumber - 1] : $prices[0];
                         
                         if ($friend === false) {
                             
@@ -150,10 +151,10 @@ class Ajax extends CI_Controller {
                         $numChildrenFullWeek = count($fullWeekChildren[$weekNumber]);
                         //echo $numChildrenFullWeek." ";
                         if($numChildrenFullWeek > 1 && $numChildrenFullWeek < 4){
-                            $_SESSION['total'][$this->data['user_id']][$child][$weekNumber] = $discount[$numChildrenFullWeek] * $prices[0];
+                            $_SESSION['total'][$this->data['user_id']][$child][$weekNumber] = $discount[$numChildrenFullWeek] * (isset($prices[$weekNumber - 1]) ? $prices[$weekNumber - 1] : $prices[0]);
                             
                         } else {
-                             $_SESSION['total'][$this->data['user_id']][$child][$weekNumber] = $prices[0];
+                             $_SESSION['total'][$this->data['user_id']][$child][$weekNumber] = isset($prices[$weekNumber - 1]) ? $prices[$weekNumber - 1] : $prices[0];
                         }
                         
                        

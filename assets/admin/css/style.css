@@ -576,11 +576,21 @@ input.multipleimg-submit {
     padding: 5px 0;
 }
 .price_tag_camp{
-    padding: 5px 0 0 0;
+    padding: 5px 0 5px 0;
 }
 .red{
     color: red;
 }
 .extended_day_color{
     color: #FFAA00;
+}
+.book-all-wrapper{
+    border-top: solid #000 1px; 
+    border-bottom: solid #000 1px; 
+    margin: 5px 0;
+}
+
+.book-all-wrapper > div:first-child{
+    margin: 5px 0; 
+    color: blue; 
 }

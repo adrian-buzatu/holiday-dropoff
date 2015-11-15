@@ -2186,3 +2186,9 @@ input{
 .booking_checkbox[disabled]{
     display: none;
 }
+td.disabled-entry{
+    background: #eee;
+}
+.TabbedPanelsTab a{
+    display: block;
+}

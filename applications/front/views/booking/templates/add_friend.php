@@ -96,11 +96,11 @@
                                                 ?>
 
                                                 <?php if(isset($prices[$i])): $dayCount ++;?>
-                                                    <td width="89" rowspan="2" align="center" class="tdclasso normal <?php echo 'show show_'. $weekCount?>">
+                                                    <td width="89" rowspan="2" align="center" class="tdclasso normal <?php echo ($prices[$i] == 0) ? 'disabled-entry' : 'show_'. $weekCount?>">
                                                         <input <?php echo ($prices[$i] == 0) ? 'disabled' : ''?> week="<?php echo $weekCount?>" type="checkbox" 
                                                                class="<?php if(isset($children_days_booked[0]['normal']) && in_array($i, $children_days_booked[0]['normal'])):?>js_checked<?php endif;?> normal_check booking_checkbox normal_check_<?php echo $weekCount?>" rel="extended" child="0"
                                                                <?php if(isset($children_days_booked[0]['normal']) && in_array($i, $children_days_booked[0]['normal'])):?>checked<?php endif;?> name="friend_days_booked[<?php echo $weekCount?>][<?php echo $i ?>][0]" id="" value="<?php echo $i ?>" />
-                                                                Book </td>
+                                                                <?php echo ($prices[$i] == 0) ? 'N/A' : 'Book'?> </td>
                                                 <?php endif;?>
                                             <?php endfor; ?>
 
@@ -117,12 +117,12 @@
                                                 ?>
 
                                                 <?php if(isset($prices[$i])): $dayCount ++;?>
-                                                <td width="89" rowspan="2" align="center" class="tdclasso extended ">
+                                                <td width="89" rowspan="2" align="center" class="tdclasso extended <?php echo ($prices[$i] == 0) ? 'disabled-entry' : 'show_'. $weekCount?>">
                                                     <input <?php echo ($prices[$i] == 0) ? 'disabled' : ''?> week="<?php echo $weekCount?>" type="checkbox"  
                                                            <?php if(isset($children_days_booked[0]['extended']) && in_array($i, $children_days_booked[0]['extended'])):?>checked<?php endif;?> 
                                                         class="<?php if(isset($children_days_booked[0]['extended']) && in_array($i, $children_days_booked[0]['extended'])):?>js_checked<?php endif;?> extended_check booking_checkbox extended_check_<?php echo $weekCount?>" rel="normal" child="0"
                                                         name="friend_days_extended_booked[<?php echo $weekCount?>][<?php echo $i ?>][0]" id="" value="<?php echo $i ?>" />
-                                                            Book </td>
+                                                            <?php echo ($prices[$i] == 0) ? 'N/A' : 'Book'?> </td>
                                                 <?php endif;?>
                                             <?php endfor; ?>
                                         </tr>
