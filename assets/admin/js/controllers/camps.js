@@ -43,8 +43,9 @@ var Camps = function() {
                 dataType: "json",
                 data: "start_date=" + startDate + "&end_date=" + endDate + "&camp_id=" + me.post.camp_id,
                 success: function(response){
-                    html = response.output;
+                    html = response.output;                    
                     me.config.camp_prices_holder.html(html);
+                    
                 }
             });
         });
@@ -54,5 +55,6 @@ var Camps = function() {
             var default_price = default_full_weeks_price + $('.week_' + $('#full_weeks_no').val() + 1).length * $(this).val();
             $('#book_all').val(default_price)
         });
+        
     }
 };

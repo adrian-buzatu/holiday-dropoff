@@ -3,11 +3,11 @@
 class Main {
 
     public function __construct() {
-        session_start_escaped();
+        session_start();
         $CI = &get_instance();
         
         $CI->load->model('Users_Model', 'Users');
-        
+       
         $data = array();
         $this->data['user'] = array();
         

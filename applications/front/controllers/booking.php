@@ -141,6 +141,11 @@ class Booking extends CI_Controller {
                     $currentPrice = ($count > 1 && $count < 4) ?
                         ($discount[$count] * $prices[$day]) :
                         $prices[$day];
+                    if(isset($_SESSION['full_week'][$this->data['user_id']][$child][$weekDay])){
+                        //check if there is a special discount for that full week or not                        
+                        $currentPrice -= $this->Camps->getFullWeekDailyDiscount((int) $_POST['camp_id'], $weekDay);
+                        
+                    }
                     $orderDetails = array(
                         'order_id' => $orderId,
                         'child_id' => $child,
@@ -326,7 +331,7 @@ class Booking extends CI_Controller {
     }
     
     function process_paypal(){
-        $paypalmode = '';
+        $paypalmode = 'sandbox';
         $ItemName 		= $_POST["item_name"]; //Item Name
 	$ItemTotalPrice = $ItemPrice = $GrandTotal		= $_POST["amount"]; //Item Price
 	$ItemNumber 	= $_POST["camp_id"]; //Item Number
@@ -375,14 +380,15 @@ class Booking extends CI_Controller {
         $_SESSION['ShippinDiscount'] = $ShippinDiscount; //Shipping discount for this order. Specify this as negative number.
         $_SESSION['ShippinCost'] = $ShippinCost; //Although you may change the value later, try to pass in a shipping amount that is reasonably accurate.
         $_SESSION['GrandTotal'] = $GrandTotal;
-        $paypal = get_paypal_credentials();
+        $paypal = get_paypal_credentials(true);
         $httpParsedResponseAr = PPHttpPost('SetExpressCheckout',
             $padata, 
             $paypal['paypal_username'], 
             $paypal['paypal_password'], 
             $paypal['paypal_signature'], 
-            ''
+            'sandbox'
         );
+        
         if ("SUCCESS" == strtoupper($httpParsedResponseAr["ACK"]) || "SUCCESSWITHWARNING" == strtoupper($httpParsedResponseAr["ACK"])) {
             
             $env = $paypalmode == 'sandbox' ? ".sandbox" : "";
@@ -483,14 +489,14 @@ class Booking extends CI_Controller {
                     '&PAYMENTREQUEST_0_CURRENCYCODE=' . urlencode("GBP");
 
             //We need to execute the "DoExpressCheckoutPayment" at this point to Receive payment from user.
-            $paypal = get_paypal_credentials();
+            $paypal = get_paypal_credentials(true);
             
             $httpParsedResponseAr = PPHttpPost('DoExpressCheckoutPayment',
                 $padata, 
                 $paypal['paypal_username'], 
                 $paypal['paypal_password'], 
                 $paypal['paypal_signature'], 
-                ''
+                'sandbox'
             );
 
             //Check if everything went ok..
@@ -519,7 +525,7 @@ class Booking extends CI_Controller {
                      $paypal['paypal_username'], 
                      $paypal['paypal_password'], 
                      $paypal['paypal_signature'], 
-                     ''
+                     'sandbox'
                  );
 
                 if ("SUCCESS" == strtoupper($httpParsedResponseAr["ACK"]) || "SUCCESSWITHWARNING" == strtoupper($httpParsedResponseAr["ACK"])) {

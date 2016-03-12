@@ -60,6 +60,17 @@ class Camps_Model  extends CI_Model {
         return $output;
     }
     
+    function getFullWeekDailyDiscount($campId, $weekNumber){
+        $result = $this->
+                db->                
+                get_where('camp_prices', array('camp_id' => $campId, 'camp_price_type' => $weekNumber - 1));
+        if($result->num_rows() == 0){
+            return 0;
+        }
+        $output = $result->result_array();
+        return is_numeric($output[0]['daily_discount_for_full_week']) ? $output[0]['daily_discount_for_full_week'] : 0 ;
+    }
+    
     function getCampaignAvailableDays($campId){
         $sql = "SELECT COUNT(*) `nb_results`, "
                 . "WEEK(FROM_UNIXTIME(cp.`camp_price_type`)) as week, "

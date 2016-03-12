@@ -19,9 +19,31 @@
             <div class="price_tag_camp">
                 <input type="text" name="price[<?php echo $weekCount - 1?>]" class='book_all' size="4" value='<?php echo isset($camp[$weekCount - 1]) ? $camp[$weekCount - 1] : 1 * $days?>' />
             </div>
+            <div class="strong">
+                    Daily discount for full week
+            </div>
+            <div class="price_tag_camp">
+                <input type="text" name="daily_discount_for_full_week[<?php echo $weekCount - 1?>]" class='daily_discount_for_full_week_<?php echo $weekCount - 1?>' size="4" value='0' readonly />
+            </div>
         </div>
     <?php endfor; ?>
     <input type="hidden" id="full_weeks_no" value="<?php echo $weekCount - 1?>">
     
 </div>
+<script type="text/javascript">
+$('.book_all').on('keyup', function(){
+    var week_total = parseInt($(this).val());
+    console.log($(this).val());
+    var week_number = parseInt($(this).attr('name').replace(/[a-z\[]+/,'').substr(0,1)) + 1;
+    var week_sum = 0;
+    $('.week_' + week_number + '[value!=0]').each(function(){
+       week_sum += parseInt($(this).val()); 
+    });
+    if(week_total < week_sum){
+        $('.daily_discount_for_full_week_' + (week_number - 1)).val(
+            (week_sum - week_total) / ($('.week_' + week_number + '[value!=0]').length)
+        );
+    }
+});
+</script>
 

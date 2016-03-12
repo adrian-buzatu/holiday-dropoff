@@ -46,6 +46,7 @@
                                 <?php endif; ?>
                             </td>
                         </tr>
+                         
                         <tr>
                             <td class="categories-form-content" align="right" width="15%">Username</td>
                             <td width="85%">
@@ -59,7 +60,21 @@
                                 <?php endif; ?>
                             </td>
                         </tr>
-
+                        
+                        <tr>
+                            <td class="categories-form-content" align="right" width="15%">Password</td>
+                            <td width="85%">
+                                <input type="password" name="password" value="">
+                            </td>
+                            <td colspan="2">
+                                <?php if (form_error('password') != ""): ?>
+                                    <div class="form_error">
+                                        <?php echo form_error('password'); ?>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
+                        </tr>                        
+                        
                         <tr>
                             <td class="categories-form-content" align="right" width="15%">Email</td>
                             <td width="85%">

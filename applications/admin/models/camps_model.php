@@ -30,14 +30,16 @@ class Camps_Model  extends CI_Model {
         return $this->db->insert_id();
     }
     
-    function addCampPrices($pricesArray, $campId){
+    function addCampPrices($pricesArray, $campId, $daily_discount_for_full_week = array()){
         $this->db->delete('camp_prices', array('camp_id' => $campId));
         foreach($pricesArray as $weekDay => $price){
             $this->db->insert('camp_prices', 
                 array(
                     'camp_id' => $campId, 
                     'camp_price_type' => $weekDay,
-                    'price' => $price
+                    'price' => $price,
+                    'daily_discount_for_full_week' => 
+                        isset($daily_discount_for_full_week[$weekDay]) ? $daily_discount_for_full_week[$weekDay] : 0
                 )
             );
         }

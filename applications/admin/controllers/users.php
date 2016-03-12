@@ -75,6 +75,9 @@ class Users extends CI_Controller {
                 'address3' => $this->input->post('address3', true),
                 
             );
+            if($this->input->post('password') != ""){
+                $up['password'] = sha1($this->input->post('password'));
+            }
             $this->Users->update($up, $id);
         }
         $this->layout->view('users/edit.php', $this->data);

@@ -29,7 +29,8 @@ class Ajax extends CI_Controller {
         $daysExtendedBooked = isset($_POST['days_extended_booked']) ? $_POST['days_extended_booked'] : array();
         $friendDaysBooked = isset($_POST['friend_days_booked']) ? $_POST['friend_days_booked'] : array();
         $friendDaysExtendedBooked = isset($_POST['friend_days_extended_booked']) ? $_POST['friend_days_extended_booked'] : array();
-        $_SESSION['total'][$this->data['user_id']] = array();    
+        $_SESSION['total'][$this->data['user_id']] = array();
+        $_SESSION['full_week'][$this->data['user_id']] = array();
         $_SESSION['totalNum'][$this->data['user_id']] = 0;
         $_SESSION['totalRaw'][$this->data['user_id']] = 0;
         $_SESSION['camp_id'][$this->data['user_id']] = $this->input->post('camp_id');
@@ -132,7 +133,7 @@ class Ajax extends CI_Controller {
                                 $prices[0] >= $price_per_week ? $prices[0] : $price_per_week;*/
                         $_SESSION['total'][$this->data['user_id']][$child][$weekNumber] = 
                                 isset($prices[$weekNumber - 1]) ? $prices[$weekNumber - 1] : $prices[0];
-                        
+                        $_SESSION['full_week'][$this->data['user_id']][$child][$weekNumber] = isset($prices[$weekNumber - 1]) ? $prices[$weekNumber - 1] : $prices[0];
                         if ($friend === false) {
                             
                             $diff = ($count > 1 && $count < 4) ?

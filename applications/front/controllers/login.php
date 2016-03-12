@@ -8,7 +8,7 @@ class Login extends CI_Controller {
         $this->load->model('Emails_Model', 'Emails');
     }
 
-    public function index() {
+    public function index() { 
         $this->form_validation->set_error_delimiters('<div id="login_error">', '</div>');
         $this->form_validation->set_rules('username', 'Username', 'required|callback_check_contact_data');
         $this->form_validation->set_rules('password', 'Password', 'required');
@@ -23,8 +23,7 @@ class Login extends CI_Controller {
                 $redirect = 'profile';
                 $this->Users->update(array('first_login' => 0), $_SESSION['username']['user_id']);
                 $_SESSION['username']['first_login'] = 0;
-            }
-            
+            }            
             redirect($redirect);
             
         }

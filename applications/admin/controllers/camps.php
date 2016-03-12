@@ -62,7 +62,11 @@ class Camps extends CI_Controller {
             );
             $this->data['success'] = true;
             $campId = $this->Camps->add($campGroup);
-            $this->Camps->addCampPrices($this->input->post('price'), $campId);
+            $daily_discount_for_full_week = array();
+            if($this->input->post('daily_discount_for_full_week')){
+                $daily_discount_for_full_week = $this->input->post('daily_discount_for_full_week');
+            }
+            $this->Camps->addCampPrices($this->input->post('price'), $id, $daily_discount_for_full_week);
         }
         $this->layout->view('camps/create.php', $this->data);
     }
@@ -109,7 +113,11 @@ class Camps extends CI_Controller {
             $this->data['success'] = true;
             $this->Camps->update($campGroup, array('id' => $id));
             if($this->input->post('price')){
-                $this->Camps->addCampPrices($this->input->post('price'), $id);
+                $daily_discount_for_full_week = array();
+                if($this->input->post('daily_discount_for_full_week')){
+                    $daily_discount_for_full_week = $this->input->post('daily_discount_for_full_week');
+                }
+                $this->Camps->addCampPrices($this->input->post('price'), $id, $daily_discount_for_full_week);
             }
             
         }
